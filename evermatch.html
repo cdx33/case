@@ -951,10 +951,10 @@
       </div>
 
       <figure class="figure">
-        <img src="assets/evermatch-portfolio.jpg" width="1400" height="843" loading="lazy"
-             alt="The EverMatch portfolio overview page: a single-page layout walking through the project's starting point, the predictive-trait analysis from the Stanford dataset, the first match-engine prototype, the pivot, and the second chat-companion prototype.">
+        <img src="assets/evermatch-predictive-traits.jpg" width="1400" height="843" loading="lazy"
+             alt="Horizontal bar chart titled &quot;What Predicts Relationship Success — Which Features Matter Most for Relationship Success?&quot;. The top predictor by a wide margin is relationship duration in years. Other strong predictors: age, cohabitation status, weekly frequency, income, marital status, professional or doctoral education. Source: Stanford HCMST dataset 2017 to 2022.">
         <figcaption>
-          EverMatch portfolio overview — starting point, predictive-trait analysis, prototype 1, the pivot, and prototype 2. The full project on a page.
+          Feature importance from the Stanford HCMST dataset (2017–2022). Relationship duration dominates as a predictor of couples remaining together — but it requires history to measure, which the early-compatibility question doesn't have.
         </figcaption>
       </figure>
     </div>
@@ -972,6 +972,16 @@
         <p class="lead">
           The first prototype was a match engine: collect user traits via a GPT-driven form, embed them, cluster the user against the existing user base, and surface the nearest neighbours as candidate matches.
         </p>
+      </div>
+
+      <figure class="figure">
+        <img src="assets/evermatch-matching-flow.jpg"
+             alt="Matching flow diagram. Four stages connected by arrows: Input (user with phone), Compare to Dataset (database icon with embedding cluster), Assign to Cluster (overlapping user circles), Find Matches (two profile cards). Caption beneath the diagram reads 'Image generated using ChatGPT'."
+             width="1600" height="1090">
+        <figcaption>The architecture: collect input → embed against the dataset → cluster the user → surface nearest-neighbour matches.</figcaption>
+      </figure>
+
+      <div class="prose">
         <p><strong>What the prototype taught:</strong></p>
       </div>
 
@@ -986,6 +996,13 @@
           Prototype one solved a smaller problem than I'd set out to solve. It worked, in a narrow technical sense, and it didn't earn user trust. That combination is a signal that the problem-framing was wrong.
         </p>
       </div>
+
+      <figure class="figure">
+        <img src="assets/evermatch-prototype-1.jpg"
+             alt="Screenshot of the Prototype 1 interface, a dark-themed ChatGPT conversation. Top message: 'Talked to evermatch-api.onrender.com. Got your matches! Based on your answers, here are your top 3 potential partners.' Two candidate cards follow: Profile Image, Age 29, Compatibility Score 0.32, with a written explanation; and Profile Image, Age 25, Compatibility Score 0.21, with a second written explanation."
+             width="1200" height="989">
+        <figcaption>What Prototype 1 actually looked like in use — GPT-driven, returning ranked candidates with compatibility scores and one-line rationales.</figcaption>
+      </figure>
     </div>
   </section>
 
