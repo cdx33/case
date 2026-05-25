@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aron Ryszka — UX Researcher</title>
-<meta name="description" content="Selected UX research and design work by Aron Ryszka — MSc UX Engineering at City, University of London, with a copywriting background. London.">
+<title>Guardian 4 CGM — A cognitive-ergonomics case study by Aron Ryszka</title>
+<meta name="description" content="An MSc Human Factors case study applying Schema-Based Errors, Rasmussen's SRK model, and Norman's framework to a continuous glucose monitor whose application process has barely changed in 17 years.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
@@ -18,9 +18,9 @@
     --ink: #2C2416;
     --ink-soft: #6B6256;
     --ink-mute: #9C948A;
-    --accent: #C4652A;
-    --accent-soft: #FBF0E8;
-    --accent-deep: #A8541F;
+    --accent: #1F5F6B;
+    --accent-soft: #E8F2F4;
+    --accent-deep: #164751;
     --commit: #5A7C5A;
     --commit-soft: #EDF4ED;
     --stale: #C49000;
@@ -785,125 +785,48 @@
   }
 
 
-  /* ── Project tiles (index only) ──────────────────────────────── */
-  .tiles {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    margin-top: 2.5rem;
-  }
-  @media (min-width: 760px) {
-    .tiles { grid-template-columns: 1fr 1fr; }
-  }
-  .tile {
-    display: flex;
-    flex-direction: column;
-    background: var(--paper);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--tile-accent);
-    border-radius: 4px;
-    padding: 1.75rem 1.875rem;
-    text-decoration: none;
-    color: inherit;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .tile { transition: transform 180ms ease, border-left-width 180ms ease; }
-  }
-  .tile:hover {
-    transform: translateY(-2px);
-    border-left-width: 5px;
-  }
-  .tile-eyebrow {
-    font-size: 0.6875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--tile-accent);
-    font-weight: 500;
-    margin: 0 0 0.75rem;
-  }
-  .tile h3 {
+  /* ── Prose sub-heads and lists ───────────────────────────────── */
+  .prose h3 {
     font-family: var(--serif);
-    font-weight: 400;
-    font-size: 1.75rem;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin: 0 0 0.75rem;
+    font-weight: 500;
+    font-size: 1.375rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 2rem 0 0.875rem;
+  }
+  .prose ul {
+    margin: 0 0 1.25rem;
+    padding-left: 1.25rem;
+    list-style: none;
+    max-width: 38rem;
+  }
+  .prose ul li {
+    position: relative;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
     color: var(--ink);
   }
-  .tile-pitch {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 1.1875rem;
-    line-height: 1.35;
-    color: var(--ink-soft);
-    margin: 0 0 1rem;
-  }
-  .tile-body {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: var(--ink-soft);
-    margin: 0 0 1.25rem;
-  }
-  .tile-link {
-    margin-top: auto;
-    font-family: var(--sans);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--tile-accent);
-  }
-  .tile:hover .tile-link {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .tile:focus-visible {
-    outline: 2px solid var(--tile-accent);
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
-
-  /* LinkedIn rendered as url-style link, not a pill */
-  .live-link a.live-link-url {
-    background: none;
-    border: none;
-    padding: 0;
-    border-radius: 0;
-    font-family: 'SF Mono', 'Consolas', Menlo, monospace;
-    font-size: 0.8125rem;
-    font-weight: 400;
-    color: var(--ink-mute);
-    letter-spacing: -0.005em;
-  }
-  .live-link a.live-link-url:hover {
-    background: none;
+  .prose ul li::before {
+    content: "—";
+    position: absolute;
+    left: -1.25rem;
     color: var(--accent);
-    border: none;
   }
 
-  /* Links inside the contact meta strip */
-  .meta dd a {
-    color: var(--accent);
-    text-decoration: none;
-    transition: color 150ms ease;
-  }
-  .meta dd a:hover { color: var(--accent-deep); text-decoration: underline; text-underline-offset: 3px; }
 
-  /* Contact strip: 1 col on mobile, 3 on desktop */
-  .meta.meta-3 { grid-template-columns: 1fr; }
-  @media (min-width: 640px) {
-    .meta.meta-3 { grid-template-columns: repeat(3, 1fr); }
-  }
+  /* Keep the back-link reachable on mobile */
+  .topnav-links { display: flex; }
+  .topnav-links a { white-space: nowrap; }
 </style>
 </head>
 <body>
 
 <nav class="topnav" aria-label="Page navigation">
   <div class="topnav-inner">
-    <a href="#top" class="topnav-mark">Aron Ryszka</a>
+    <a href="#top" class="topnav-mark">Aron Ryszka — Guardian 4</a>
     <div class="topnav-links">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="/index.html#work">Back to work <span aria-hidden="true">↗</span></a>
     </div>
   </div>
 </nav>
@@ -913,143 +836,252 @@
   <!-- ─── Hero ──────────────────────────────────────────────────── -->
   <header class="hero">
     <div class="container">
-      <p class="eyebrow">Portfolio</p>
-      <h1 class="title">Aron Ryszka</h1>
-      <p class="dek">UX research and design.</p>
+      <p class="eyebrow">Case Study</p>
+      <h1 class="title">Guardian 4</h1>
+      <p class="dek">Cognitive ergonomics of a medical device people apply at home, every day.</p>
       <p class="lede">
-        My background is in copywriting and content; I now work in UX research and design. That mix means I think about what users need to <em>understand</em>, not just what they see. MSc in User Experience Engineering, City, University of London — looking for research roles where understanding the problem is where the work starts.
+        A continuous glucose monitor that's saved more than one life — and one whose application process has barely changed since 2006. This case study analyses why users make the errors they make, using three established human-factors frameworks, and proposes three low-cost design interventions grounded in the analysis.
       </p>
       <dl class="meta">
         <div>
           <dt>Author</dt>
-          <dd>Aron Ryszka</dd>
+          <dd>Aron Ryszka, 2025</dd>
         </div>
         <div>
-          <dt>Role</dt>
-          <dd>UX Researcher</dd>
+          <dt>Format</dt>
+          <dd>MSc Human Factors case study</dd>
         </div>
         <div>
-          <dt>Based in</dt>
-          <dd>London, UK</dd>
+          <dt>Year</dt>
+          <dd>2025</dd>
         </div>
         <div>
-          <dt>Available</dt>
-          <dd>Immediately</dd>
+          <dt>Course</dt>
+          <dd>INM435</dd>
         </div>
       </dl>
-      <p class="live-link">
-        <a href="mailto:aron.ryszka@gmail.com">
-          aron.ryszka@gmail.com
-          <span aria-hidden="true">↗</span>
-        </a>
-        <a class="live-link-url" href="https://www.linkedin.com/in/aron-ryszka/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-      </p>
     </div>
   </header>
 
-  <!-- ─── 1. Selected work ──────────────────────────────────────── -->
-  <section id="work">
+  <!-- ─── 1. The device ─────────────────────────────────────────── -->
+  <section id="device">
     <div class="container">
       <div class="section-head">
         <p class="section-num">01</p>
-        <h2 class="section-title">Selected <em>work</em></h2>
+        <h2 class="section-title">A medical device people <em>use at home</em></h2>
       </div>
 
       <div class="prose">
         <p class="lead">
-          Four projects from the last twelve months. One MSc capstone, one human-factors case study, three deliverables from a product internship, and one academic prototype on AI matchmaking.
+          The Medtronic Guardian 4 is a continuous glucose monitor (CGM) — a small sensor worn on the body that reads interstitial glucose every few minutes and feeds the data to an insulin pump or a phone. It is one of the most commonly NHS-prescribed CGMs for Type 1 diabetes. It is also, by application complexity, the closest thing to medical equipment a patient will ever attach to themselves at home.
         </p>
+        <p>
+          The Guardian 4 launched in late 2023. Its predecessor launched in 2006. The application process — the sequence of physical steps the user performs every seven days to start a new sensor — has not meaningfully changed across that 17-year span. The sensor is applied via a one-press serter, the needle has to be removed manually, three adhesive patches are applied in a specific order, a transmitter is clicked on, and the system is paired with the pump. Skipping any step or doing them in the wrong order can render a £55 sensor unusable.
+        </p>
+        <p>
+          The comparable device for most users is the <strong>Freestyle Libre 2</strong> — a CGM the size of a £2 coin, applied in a single press, scanned with a phone via NFC, and lasting two weeks (versus one for Guardian 4). The contrast between them is the case study.
+        </p>
+        <blockquote class="quote">
+          "It's well worth it when things finally start working for you."
+          <cite>— Minute-Pilot5282, r/Medtronic780g</cite>
+        </blockquote>
       </div>
 
-      <div class="tiles">
-        <a class="tile" style="--tile-accent:#C4652A;" href="/branchflow.html" aria-label="Read the BranchFlow case study">
-          <p class="tile-eyebrow">2025–26 · MSc Capstone</p>
-          <h3>BranchFlow</h3>
-          <p class="tile-pitch">A branching interface for AI-assisted research.</p>
-          <p class="tile-body">A working React app testing whether interface architecture — branches, curated context, explicit commit semantics — can address five documented failure modes of chat-style LLMs for sustained intellectual work. Two pilots and four think-aloud sessions; 4 of 4 participants articulated the conceptual model unprompted.</p>
-          <span class="tile-link">Read the case →</span>
-        </a>
-
-        <a class="tile" style="--tile-accent:#1F5F6B;" href="/guardian-4.html" aria-label="Read the Guardian 4 CGM case study">
-          <p class="tile-eyebrow">2025 · MSc Human Factors</p>
-          <h3>Guardian 4 CGM</h3>
-          <p class="tile-pitch">Cognitive ergonomics of a medical device I use every day.</p>
-          <p class="tile-body">A cognitive-ergonomics analysis of Medtronic's continuous glucose monitor, applying Schema-Based Error Types, Rasmussen's SRK model, and Norman's framework against my own year of personal use. Three low-cost design interventions and a usability-testing plan grounded in the analysis.</p>
-          <span class="tile-link">Read the case →</span>
-        </a>
-
-        <a class="tile" style="--tile-accent:#5B3F6E;" href="/chapter-2.html" aria-label="Read the Chapter 2 internship case study">
-          <p class="tile-eyebrow">2025 · Product Internship</p>
-          <h3>Chapter 2</h3>
-          <p class="tile-pitch">Four months at a recruitment-tech startup. Three things shipped.</p>
-          <p class="tile-body">An end-to-end candidate workflow synthesised from real recruiter transcripts and AI-generated JTBD personas. A provisional-booking state architecture and its in-product messaging. A platform-wide UX copy audit with a voice-and-tone framework. Plus one API caching insight that lowered cost.</p>
-          <span class="tile-link">Read the case →</span>
-        </a>
-
-        <a class="tile" style="--tile-accent:#B85878;" href="/evermatch.html" aria-label="Read the EverMatch case study">
-          <p class="tile-eyebrow">2025 · MSc Project</p>
-          <h3>EverMatch</h3>
-          <p class="tile-pitch">An AI matchmaker that became an AI companion.</p>
-          <p class="tile-body">An exploration of what AI can — and can't — do for dating. Started with the Stanford HCMST dataset and a GPT-plus-clustering match engine. Pivoted, after testing exposed the limits of structured data, to a behavioural chat-companion model that earns trust before it asks for input.</p>
-          <span class="tile-link">Read the case →</span>
-        </a>
-      </div>
     </div>
   </section>
 
-  <!-- ─── 2. About ──────────────────────────────────────────────── -->
-  <section id="about">
+  <!-- ─── 2. Fourteen errors ────────────────────────────────────── -->
+  <section id="errors">
     <div class="container">
       <div class="section-head">
         <p class="section-num">02</p>
-        <h2 class="section-title">About</h2>
+        <h2 class="section-title">Fourteen <em>errors</em></h2>
       </div>
 
       <div class="prose">
         <p class="lead">
-          I'm Aron — a UX researcher based in London, with an MSc in User Experience Engineering from City, University of London. Before that, I worked as a copywriter for a Polish home-décor retailer, then spent two years as a door supervisor in UK hospitality — which taught me more about reading rooms and de-escalation than any course since.
+          A qualitative review of Medtronic user forums and CGM communities identified fourteen recurring application errors. Some are slips of attention; some are reasonable misapplications of mental models learned from other devices; some are the device's design genuinely fighting the user. Grouped by stage of application:
         </p>
+      </div>
+
+      <ol class="failures">
+        <li><strong>Procedure imported from another CGM</strong><span>User applies a procedure learned from Guardian 3 or Libre. The devices look similar; the procedures differ.</span></li>
+        <li><strong>Step misread or misinterpreted</strong><span>Instructions are not always unambiguous. A user reading carefully can still take the wrong step.</span></li>
+        <li><strong>Step skipped under distraction</strong><span>Application takes time; the user is interrupted; they resume incorrectly.</span></li>
+        <li><strong>Serter button difficulty</strong><span>The one-press serter requires firm two-button compression. Users with reduced grip strength struggle.</span></li>
+        <li><strong>Wrong part of needle pressed during removal</strong><span>The needle has small grips; misidentification leads to pulling the wrong thing.</span></li>
+        <li><strong>Sensor removed accidentally with the needle</strong><span>The most consequential error. The user intends to remove the needle and removes the entire sensor with it — £55 lost, eight hours without monitoring before a replacement is available.</span></li>
+        <li><strong>Patch applied instead of removing the needle</strong><span>Often intentional — users apply the patch first to anchor the sensor, then try to remove the needle. This is now the safer route.</span></li>
+        <li><strong>Patches applied out of order</strong><span>The strip patch (Patch 3) must be applied before the oval patches; doing it the other way prevents the strip from sitting flat.</span></li>
+        <li><strong>Patches applied in the wrong rotation</strong><span>The patches have an intended orientation; the user picks the wrong axis.</span></li>
+        <li><strong>Patch omitted</strong><span>Three patches required; user forgets one. The sensor will fail within hours.</span></li>
+        <li><strong>Transmitter connected before oval patches applied</strong><span>Transmitter is satisfying to click on. Users connect it eagerly, then can't reach underneath to apply the patches.</span></li>
+        <li><strong>Transmitter connected without applying patches at all</strong><span>User thinks the process is complete after the click. It isn't.</span></li>
+        <li><strong>Wrong-point resumption after interruption</strong><span>Resumed task at the wrong step; the patient cannot tell from the device's state which step they're on.</span></li>
+        <li><strong>Process assumed complete prematurely</strong><span>The transmitter clicks; the LED flashes; the user assumes done. The sensor still needs pump-side activation.</span></li>
+      </ol>
+
+      <div class="prose">
         <p>
-          Most recently I spent four months at <strong>Chapter 2</strong>, a recruitment-tech startup, as a research-led product intern. I synthesised real recruiter interview transcripts with AI-generated JTBD personas to produce an 8-stage workflow map that guided the team's roadmap. I designed the platform's booking journey, audited every line of copy in the recruiter view, and proposed an API caching change that lowered our Gemini API spend.
-        </p>
-        <p>
-          My approach: <strong>understand the problem before solving it</strong>. That sounds obvious. It isn't. Most of the friction in the products I've worked on came from skipping that step — from a brief that assumed it knew the answer, or a feature that solved the wrong problem fluently. The copywriting background is why I'm sensitive to this. The wrong word is almost always the wrong concept underneath. Fixing one without the other never works.
-        </p>
-        <p>
-          What I'm looking for: a UX research role on a team that treats research as the start of the work, not the end of it. Comfortable with AI in the loop — sceptical about it doing the loop for me.
+          Fourteen errors is not a long list. But this is a high-stakes context: the most severe outcomes — a missed sensor leading to undetected hypoglycaemia — can be life-threatening for the 20–25% of patients who lack hypoglycaemia awareness. The bar for error frequency is therefore not "tolerable across a typical user base." It's "as close to zero as design can reach."
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ─── 3. Contact ────────────────────────────────────────────── -->
-  <section id="contact">
+  <!-- ─── 3. Three frameworks ───────────────────────────────────── -->
+  <section id="frameworks">
     <div class="container">
       <div class="section-head">
         <p class="section-num">03</p>
-        <h2 class="section-title">Get in <em>touch</em></h2>
+        <h2 class="section-title">Three <em>frameworks</em></h2>
       </div>
 
       <div class="prose">
         <p class="lead">
-          The fastest way is email. London-based, available for full-time research roles from <strong>January 2026</strong>.
+          The fourteen errors look chaotic; classified through the right frameworks, they aren't. The analysis applies three lenses sequentially — each catches what the others miss.
+        </p>
+
+        <h3>Schema-Based Error Types</h3>
+        <p>
+          Reason's schema theory holds that users carry mental templates ("schemas") for sequences they've performed before. Errors come from one of three failure modes: the <strong>wrong schema activated</strong> (you applied a Libre procedure to a Guardian); the <strong>correct schema activated wrongly</strong> (you pulled when you should have pressed); or the <strong>schema not activated at all</strong> (you forgot to apply a patch).
+        </p>
+        <p>
+          Twelve of fourteen Guardian 4 errors fall into one of these three categories. The remaining two are device-mechanical (Errors 04, 05) and are partly schema-related anyway.
+        </p>
+
+        <h3>Rasmussen's SRK Model</h3>
+        <p>
+          Skill, Rule, Knowledge — three levels of cognitive control mapped to how automatic the action is. Skill-based actions are unconscious (System 1 in Kahneman's terms); rule-based actions consult known if-then patterns; knowledge-based actions require slow, deliberate reasoning (System 2). Errors at each level have different causes and different fixes.
+        </p>
+        <p>
+          Most Guardian 4 errors live at the <strong>rule-based</strong> level — users have learned an if-then for application but the if-then isn't the device's actual procedure. A handful are <strong>knowledge-based</strong> (first-time users, unfamiliar instructions). The serter-button failures are <strong>skill-based</strong>.
+        </p>
+
+        <h3>Norman's Error Model</h3>
+        <p>
+          Norman classifies errors into <strong>slips</strong> (you knew what to do; you did it wrong) and <strong>mistakes</strong> (you didn't know what to do; you planned the wrong thing). Reason's <strong>lapses</strong> (memory failures of omission) round out the categorisation.
+        </p>
+        <p>
+          Where SRK explains the cognitive level the user was operating at, Norman explains whether the failure was in execution or in planning. Sensor-removed-with-needle is a slip; transmitter-connected-before-patches is a mistake; patch-omitted is a lapse.
+        </p>
+
+        <h3>Cross-model analysis</h3>
+        <p>
+          A 14-row cross-classification table maps every error against all three frameworks. The complete table is in the linked report; the headline finding: <strong>the most consequential error in the dataset — accidentally removing the sensor while removing the needle (Error 06) — classifies as "correct schema activated wrongly · skill-based · slip."</strong> That cross-classification is what makes the redesign possible. A slip-class error at the skill level cannot be fixed by clearer instructions. It can only be fixed by changing what the user's hand can do.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 4. Three interventions ────────────────────────────────── -->
+  <section id="interventions">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">04</p>
+        <h2 class="section-title">Three <em>interventions</em></h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          Three design changes proposed, all low-cost relative to the device's £55 unit cost, and each targeted at a specific cluster of errors from the cross-model analysis. Together they address eleven of the fourteen errors.
         </p>
       </div>
 
-      <dl class="meta meta-3">
-        <div>
-          <dt>Email</dt>
-          <dd><a href="mailto:aron.ryszka@gmail.com">aron.ryszka@gmail.com</a></dd>
-        </div>
-        <div>
-          <dt>LinkedIn</dt>
-          <dd><a href="https://www.linkedin.com/in/aron-ryszka/" target="_blank" rel="noopener noreferrer">aron-ryszka ↗</a></dd>
-        </div>
-        <div>
-          <dt>Phone</dt>
-          <dd><a href="tel:+447851052053">+44 7851 052 053</a></dd>
-        </div>
-      </dl>
+      <div class="commitments" style="grid-template-columns:1fr; max-width:38rem;">
+        <article class="commitment" style="border-left-color:var(--accent);">
+          <div class="commitment-label" style="color:var(--accent);">Design intervention · I</div>
+          <h3>Colour-coded, numbered instruction guide</h3>
+          <p>Split application into two visual phases — <em>attach</em> and <em>activate</em> — each its own colour. Number every patch and every component to match the order it appears in the sequence. The intervention costs almost nothing per unit; pure inking and printing.</p>
+          <p><strong>Targets.</strong> Errors 01, 02, 03, 08, 09, 10, 13 — lapses and mistakes driven by memory and sequencing failures (rule-based).</p>
+        </article>
+        <article class="commitment" style="border-left-color:var(--accent);">
+          <div class="commitment-label" style="color:var(--accent);">Design intervention · II</div>
+          <h3>Needle-component redesign</h3>
+          <p>Replace the pull-removal action with a press-release mechanism — the needle pops out after a clear button press, mirroring the action Medtronic already uses on its own infusion sets. Larger, more obvious buttons. Distinct from the sensor body.</p>
+          <p><strong>Targets.</strong> Error 06 — the catastrophic-cost slip. A skill-level fix for a skill-level failure.</p>
+        </article>
+        <article class="commitment" style="border-left-color:var(--accent);">
+          <div class="commitment-label" style="color:var(--accent);">Design intervention · III</div>
+          <h3>Reorder: patch before needle</h3>
+          <p>Move the first oval patch in the procedure from after needle removal to before it. Users already do this informally; standardising it removes the temptation to pull while unattached and prevents the most common path to sensor displacement.</p>
+          <p><strong>Targets.</strong> Errors 06, 07, 11 — sequencing-driven mistakes.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 5. How I'd test this ──────────────────────────────────── -->
+  <section id="testing">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">05</p>
+        <h2 class="section-title">Testing the <em>redesign</em></h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          Three interventions are hypotheses, not facts. The case study includes a usability-testing plan that the redesign would need to pass before it could be claimed as a fix.
+        </p>
+        <p>
+          <strong>Method.</strong> Comparative usability testing, redesigned device against current Guardian 4. Within-participant design, counterbalanced order.
+        </p>
+        <p>
+          <strong>Participants.</strong> Twelve, recruited across two cohorts — six experienced Guardian 4 users (six months or more of use) and six first-time CGM users. The split matters: skill-based errors only show up in habitual users, and knowledge-based errors only show up in new ones.
+        </p>
+        <p><strong>Measures.</strong></p>
+        <ul>
+          <li><em>Quantitative:</em> error frequency per stage, time-to-completion, abandonment rate, severity-weighted error score.</li>
+          <li><em>Qualitative:</em> think-aloud during application, semi-structured interview after.</li>
+        </ul>
+        <p>
+          <strong>Analysis.</strong> Errors observed in the redesign mapped back to the same three frameworks used in the original analysis. If the framework-classification distribution shifts — fewer slips, fewer lapses, similar mistakes — the redesign succeeded at its targets. If error frequency drops but the same classes recur, the redesign attacked the wrong layer.
+        </p>
+        <p>
+          <strong>Limit acknowledged.</strong> Single-session evaluation cannot capture learning effects across weeks of use. A four-week diary study after the initial test would be the proper follow-up. The MSc scope didn't permit it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 6. What's transferable ────────────────────────────────── -->
+  <section id="transferable">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">06</p>
+        <h2 class="section-title">What's <em>transferable</em></h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          Three lessons that hold outside the medical-device context.
+        </p>
+      </div>
+
+      <ol class="impl">
+        <li><strong>Three frameworks are stronger than one.</strong><span>Schema-based analysis tells you which mental model failed; SRK tells you the cognitive level; Norman tells you whether it was execution or planning. Each catches errors the others miss. For multi-stage tasks where errors are diverse, single-framework analysis under-classifies.</span></li>
+        <li><strong>Catastrophic-cost errors need physical fixes, not informational ones.</strong><span>Clearer instructions don't solve skill-level slips. The hand has to be physically prevented from doing the wrong thing — or designed so the wrong thing is harder than the right thing.</span></li>
+        <li><strong>Familiarity is a hazard.</strong><span>Users coming from a different device of the same class will import their old schema. Where two devices serve the same function but procedure differs significantly, the new device either has to look obviously different (visual differentiation) or has to make the old schema fail safely on first attempt.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ─── 7. Reflection ─────────────────────────────────────────── -->
+  <section id="reflection">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">07</p>
+        <h2 class="section-title">Reflection</h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          The proposal is grounded in established frameworks and qualitative analysis of recurring user reports. It would still need testing against real users to claim impact. What this case study <em>can</em> honestly claim is that the analytical method works — applying three frameworks to a complex sequential task produced a clearer map of where failures cluster, and that map turned into design interventions that target specific error classes rather than the symptoms.
+        </p>
+        <p>
+          If the redesign reduced the rate of Error 06 alone — sensor lost with the needle — Medtronic would recoup the cost of the design change in under a year of warranty claims. That is not the point of the case study; it is, however, an answer to the question of whether human-factors analysis pays for itself.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -1058,7 +1090,7 @@
 <footer>
   <p class="mark">Aron Ryszka</p>
   <p>London · 2026</p>
-  <p class="colophon">UX Research &amp; Design · Open to roles</p>
+  <p class="colophon">MSc Human Factors · Cognitive ergonomics case study</p>
 </footer>
 
 </body>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aron Ryszka — UX Researcher</title>
-<meta name="description" content="Selected UX research and design work by Aron Ryszka — MSc UX Engineering at City, University of London, with a copywriting background. London.">
+<title>Chapter 2 — Product internship work by Aron Ryszka</title>
+<meta name="description" content="Four months as a research-led product intern at Chapter 2, a recruitment-tech startup. Three deliverables shipped across research, service design, and content systems.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
@@ -18,9 +18,9 @@
     --ink: #2C2416;
     --ink-soft: #6B6256;
     --ink-mute: #9C948A;
-    --accent: #C4652A;
-    --accent-soft: #FBF0E8;
-    --accent-deep: #A8541F;
+    --accent: #5B3F6E;
+    --accent-soft: #EFE9F2;
+    --accent-deep: #452F54;
     --commit: #5A7C5A;
     --commit-soft: #EDF4ED;
     --stale: #C49000;
@@ -785,113 +785,79 @@
   }
 
 
-  /* ── Project tiles (index only) ──────────────────────────────── */
-  .tiles {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    margin-top: 2.5rem;
-  }
-  @media (min-width: 760px) {
-    .tiles { grid-template-columns: 1fr 1fr; }
-  }
-  .tile {
-    display: flex;
-    flex-direction: column;
+  /* ── Photographic figure (img) ───────────────────────────────── */
+  .figure img {
+    width: 100%;
+    height: auto;
+    max-width: 920px;
+    display: block;
+    margin: 0 auto;
     background: var(--paper);
     border: 1px solid var(--border);
-    border-left: 4px solid var(--tile-accent);
-    border-radius: 4px;
-    padding: 1.75rem 1.875rem;
-    text-decoration: none;
-    color: inherit;
+    border-radius: 6px;
   }
-  @media (prefers-reduced-motion: no-preference) {
-    .tile { transition: transform 180ms ease, border-left-width 180ms ease; }
+  .figure--wide img {
+    max-width: 940px;
   }
-  .tile:hover {
-    transform: translateY(-2px);
-    border-left-width: 5px;
-  }
-  .tile-eyebrow {
-    font-size: 0.6875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--tile-accent);
-    font-weight: 500;
-    margin: 0 0 0.75rem;
-  }
-  .tile h3 {
+
+
+  /* ── Prose sub-heads and lists ───────────────────────────────── */
+  .prose h3 {
     font-family: var(--serif);
-    font-weight: 400;
-    font-size: 1.75rem;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin: 0 0 0.75rem;
+    font-weight: 500;
+    font-size: 1.375rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 2rem 0 0.875rem;
+  }
+  .prose ul {
+    margin: 0 0 1.25rem;
+    padding-left: 1.25rem;
+    list-style: none;
+    max-width: 38rem;
+  }
+  .prose ul li {
+    position: relative;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
     color: var(--ink);
   }
-  .tile-pitch {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 1.1875rem;
-    line-height: 1.35;
-    color: var(--ink-soft);
-    margin: 0 0 1rem;
+  .prose ul li::before {
+    content: "—";
+    position: absolute;
+    left: -1.25rem;
+    color: var(--accent);
   }
-  .tile-body {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: var(--ink-soft);
-    margin: 0 0 1.25rem;
+
+
+  /* Keep the back-link reachable on mobile */
+  .topnav-links { display: flex; }
+  .topnav-links a { white-space: nowrap; }
+  /* ── Lightbox ───────────────────────────────────────────────── */
+  .lb-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.85);
+    cursor: zoom-out;
+    align-items: center;
+    justify-content: center;
   }
-  .tile-link {
-    margin-top: auto;
-    font-family: var(--sans);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--tile-accent);
+  .lb-overlay.is-open {
+    display: flex;
   }
-  .tile:hover .tile-link {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .tile:focus-visible {
-    outline: 2px solid var(--tile-accent);
-    outline-offset: 3px;
+  .lb-overlay img {
+    max-width: 95vw;
+    max-height: 92vh;
+    width: auto;
+    height: auto;
     border-radius: 4px;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.6);
   }
-
-  /* LinkedIn rendered as url-style link, not a pill */
-  .live-link a.live-link-url {
-    background: none;
-    border: none;
-    padding: 0;
-    border-radius: 0;
-    font-family: 'SF Mono', 'Consolas', Menlo, monospace;
-    font-size: 0.8125rem;
-    font-weight: 400;
-    color: var(--ink-mute);
-    letter-spacing: -0.005em;
-  }
-  .live-link a.live-link-url:hover {
-    background: none;
-    color: var(--accent);
-    border: none;
-  }
-
-  /* Links inside the contact meta strip */
-  .meta dd a {
-    color: var(--accent);
-    text-decoration: none;
-    transition: color 150ms ease;
-  }
-  .meta dd a:hover { color: var(--accent-deep); text-decoration: underline; text-underline-offset: 3px; }
-
-  /* Contact strip: 1 col on mobile, 3 on desktop */
-  .meta.meta-3 { grid-template-columns: 1fr; }
-  @media (min-width: 640px) {
-    .meta.meta-3 { grid-template-columns: repeat(3, 1fr); }
+  .figure--wide img {
+    cursor: zoom-in;
   }
 </style>
 </head>
@@ -899,11 +865,9 @@
 
 <nav class="topnav" aria-label="Page navigation">
   <div class="topnav-inner">
-    <a href="#top" class="topnav-mark">Aron Ryszka</a>
+    <a href="#top" class="topnav-mark">Aron Ryszka — Chapter 2</a>
     <div class="topnav-links">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="/index.html#work">Back to work <span aria-hidden="true">↗</span></a>
     </div>
   </div>
 </nav>
@@ -913,143 +877,239 @@
   <!-- ─── Hero ──────────────────────────────────────────────────── -->
   <header class="hero">
     <div class="container">
-      <p class="eyebrow">Portfolio</p>
-      <h1 class="title">Aron Ryszka</h1>
-      <p class="dek">UX research and design.</p>
+      <p class="eyebrow">Internship Case</p>
+      <h1 class="title">Chapter 2</h1>
+      <p class="dek">Four months at a recruitment-tech startup. Three things shipped.</p>
       <p class="lede">
-        My background is in copywriting and content; I now work in UX research and design. That mix means I think about what users need to <em>understand</em>, not just what they see. MSc in User Experience Engineering, City, University of London — looking for research roles where understanding the problem is where the work starts.
+        A research-led product internship at Chapter 2, a London recruitment-tech startup. Three deliverables shipped — a candidate workflow synthesised from transcripts and AI personas, an end-to-end booking journey, and a platform-wide copy audit. Plus one engineering insight that lowered our Gemini API spend.
       </p>
       <dl class="meta">
         <div>
           <dt>Author</dt>
-          <dd>Aron Ryszka</dd>
+          <dd>Aron Ryszka, 2025</dd>
         </div>
         <div>
           <dt>Role</dt>
-          <dd>UX Researcher</dd>
+          <dd>Product Intern (UX-led)</dd>
         </div>
         <div>
-          <dt>Based in</dt>
-          <dd>London, UK</dd>
+          <dt>Duration</dt>
+          <dd>Aug – Dec 2025</dd>
         </div>
         <div>
-          <dt>Available</dt>
-          <dd>Immediately</dd>
+          <dt>Tools</dt>
+          <dd>Figma · FigJam · Material 3</dd>
         </div>
       </dl>
-      <p class="live-link">
-        <a href="mailto:aron.ryszka@gmail.com">
-          aron.ryszka@gmail.com
-          <span aria-hidden="true">↗</span>
-        </a>
-        <a class="live-link-url" href="https://www.linkedin.com/in/aron-ryszka/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-      </p>
     </div>
   </header>
 
-  <!-- ─── 1. Selected work ──────────────────────────────────────── -->
-  <section id="work">
+  <!-- ─── 1. The placement ──────────────────────────────────────── -->
+  <section id="placement">
     <div class="container">
       <div class="section-head">
         <p class="section-num">01</p>
-        <h2 class="section-title">Selected <em>work</em></h2>
+        <h2 class="section-title">The <em>placement</em></h2>
       </div>
 
       <div class="prose">
         <p class="lead">
-          Four projects from the last twelve months. One MSc capstone, one human-factors case study, three deliverables from a product internship, and one academic prototype on AI matchmaking.
-        </p>
-      </div>
-
-      <div class="tiles">
-        <a class="tile" style="--tile-accent:#C4652A;" href="/branchflow.html" aria-label="Read the BranchFlow case study">
-          <p class="tile-eyebrow">2025–26 · MSc Capstone</p>
-          <h3>BranchFlow</h3>
-          <p class="tile-pitch">A branching interface for AI-assisted research.</p>
-          <p class="tile-body">A working React app testing whether interface architecture — branches, curated context, explicit commit semantics — can address five documented failure modes of chat-style LLMs for sustained intellectual work. Two pilots and four think-aloud sessions; 4 of 4 participants articulated the conceptual model unprompted.</p>
-          <span class="tile-link">Read the case →</span>
-        </a>
-
-        <a class="tile" style="--tile-accent:#1F5F6B;" href="/guardian-4.html" aria-label="Read the Guardian 4 CGM case study">
-          <p class="tile-eyebrow">2025 · MSc Human Factors</p>
-          <h3>Guardian 4 CGM</h3>
-          <p class="tile-pitch">Cognitive ergonomics of a medical device I use every day.</p>
-          <p class="tile-body">A cognitive-ergonomics analysis of Medtronic's continuous glucose monitor, applying Schema-Based Error Types, Rasmussen's SRK model, and Norman's framework against my own year of personal use. Three low-cost design interventions and a usability-testing plan grounded in the analysis.</p>
-          <span class="tile-link">Read the case →</span>
-        </a>
-
-        <a class="tile" style="--tile-accent:#5B3F6E;" href="/chapter-2.html" aria-label="Read the Chapter 2 internship case study">
-          <p class="tile-eyebrow">2025 · Product Internship</p>
-          <h3>Chapter 2</h3>
-          <p class="tile-pitch">Four months at a recruitment-tech startup. Three things shipped.</p>
-          <p class="tile-body">An end-to-end candidate workflow synthesised from real recruiter transcripts and AI-generated JTBD personas. A provisional-booking state architecture and its in-product messaging. A platform-wide UX copy audit with a voice-and-tone framework. Plus one API caching insight that lowered cost.</p>
-          <span class="tile-link">Read the case →</span>
-        </a>
-
-        <a class="tile" style="--tile-accent:#B85878;" href="/evermatch.html" aria-label="Read the EverMatch case study">
-          <p class="tile-eyebrow">2025 · MSc Project</p>
-          <h3>EverMatch</h3>
-          <p class="tile-pitch">An AI matchmaker that became an AI companion.</p>
-          <p class="tile-body">An exploration of what AI can — and can't — do for dating. Started with the Stanford HCMST dataset and a GPT-plus-clustering match engine. Pivoted, after testing exposed the limits of structured data, to a behavioural chat-companion model that earns trust before it asks for input.</p>
-          <span class="tile-link">Read the case →</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── 2. About ──────────────────────────────────────────────── -->
-  <section id="about">
-    <div class="container">
-      <div class="section-head">
-        <p class="section-num">02</p>
-        <h2 class="section-title">About</h2>
-      </div>
-
-      <div class="prose">
-        <p class="lead">
-          I'm Aron — a UX researcher based in London, with an MSc in User Experience Engineering from City, University of London. Before that, I worked as a copywriter for a Polish home-décor retailer, then spent two years as a door supervisor in UK hospitality — which taught me more about reading rooms and de-escalation than any course since.
+          Chapter 2 is a London-based recruitment-tech startup building tooling for in-house recruiters. I joined for four months as a product intern — research-led, sitting between the product manager and the engineering team. The three deliverables below are the ones I'd put on a placement debrief. The fourth (an API caching observation) sits at the bottom because it didn't need a deliverable to land.
         </p>
         <p>
-          Most recently I spent four months at <strong>Chapter 2</strong>, a recruitment-tech startup, as a research-led product intern. I synthesised real recruiter interview transcripts with AI-generated JTBD personas to produce an 8-stage workflow map that guided the team's roadmap. I designed the platform's booking journey, audited every line of copy in the recruiter view, and proposed an API caching change that lowered our Gemini API spend.
-        </p>
-        <p>
-          My approach: <strong>understand the problem before solving it</strong>. That sounds obvious. It isn't. Most of the friction in the products I've worked on came from skipping that step — from a brief that assumed it knew the answer, or a feature that solved the wrong problem fluently. The copywriting background is why I'm sensitive to this. The wrong word is almost always the wrong concept underneath. Fixing one without the other never works.
-        </p>
-        <p>
-          What I'm looking for: a UX research role on a team that treats research as the start of the work, not the end of it. Comfortable with AI in the loop — sceptical about it doing the loop for me.
+          The placement coincided with the team rebuilding the recruiter view of the platform from the ground up. That timing was lucky: I joined when there were big questions on the table — what does the recruiter actually do, in what order, with what tools, against what brief — and the team needed answers more than they needed polish. Most of what follows came out of that window.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ─── 3. Contact ────────────────────────────────────────────── -->
-  <section id="contact">
+  <!-- ─── 2. Candidate workflow synthesis ───────────────────────── -->
+  <section id="workflow">
+    <div class="container-wide">
+      <div class="container" style="width:100%; padding:0; margin:0;">
+        <div class="section-head">
+          <p class="section-num">02</p>
+          <h2 class="section-title">Candidate workflow <em>synthesis</em></h2>
+        </div>
+
+        <div class="prose">
+          <p class="lead">
+            Mapping the recruiter's end-to-end candidate journey, from client brief to placement, to identify high-impact intervention points for the product.
+          </p>
+          <p>
+            The team had three things going in: a small library of real recruiter interview transcripts collected before I joined; a sprint of AI-generated JTBD personas the product manager had commissioned; and a near-universal sense from leadership that the recruiter view of the platform was working <em>around</em> recruiters' actual flow, not with it. What was missing was a workflow map that synthesised both sources into a single picture.
+          </p>
+          <p>
+            That synthesis was my work. I read the transcripts, coded recurring activity types, and stress-tested the AI-generated personas against what real recruiters described. Where the personas held up, I kept them; where they didn't — there was a strong fit on tool use, a weak fit on the timing of placement decisions — I dropped or rewrote them. The output was an <strong>eight-stage candidate workflow map</strong>, structured as: <em>Get Brief · Clarify Role · Plan Sourcing · Inbound Side · Outbound Side · Plan Tools · Screen &amp; List · Maintain Pool.</em> Each stage carried goals, actions, inputs and outputs, recruiter pain points, and product opportunity areas.
+          </p>
+          <p>
+            The map was adopted by the product team to guide design and roadmap decisions across the rebuild.
+          </p>
+          <blockquote class="quote">
+            "The brief is the worst part. By the time the brief is clean enough to source from, half the time has already gone."
+            <cite>— Workflow finding, Stage 01 (Get Brief)</cite>
+          </blockquote>
+        </div>
+      </div>
+
+      <figure class="figure figure--wide">
+        <img src="assets/chapter-2-workflow-diagram.png" width="1920" height="1080" loading="lazy"
+             alt="Eight-stage candidate workflow map: Get Brief, Clarify Role, Plan Sourcing, Inbound Ads, Outbound LinkedIn, Plan B Tools, Screen and List, Maintain Pool. Each stage shows the recruiter's goals and pain points, with a journey arc of severity at the bottom.">
+        <figcaption>
+          Eight-stage candidate workflow map. Each stage has its own goals, pain points, and product opportunity areas — used to guide sprint prioritisation across the recruiter-view rebuild.
+        </figcaption>
+      </figure>
+
+      <div class="container" style="width:100%; padding:0; margin:0;">
+        <div class="commitments" style="grid-template-columns:1fr; max-width:38rem;">
+          <article class="commitment" style="border-left-color:var(--accent);">
+            <div class="commitment-label" style="color:var(--accent);">Method note</div>
+            <h3>AI personas widened the hypothesis space; recruiters anchored the findings</h3>
+            <p>The interviews underpinning this synthesis were conducted before I joined the team; I worked from the transcripts. The AI-generated personas were treated as exploratory artefacts to widen the hypothesis space, not as primary evidence — every persona claim that survived to the final map was anchored to something a real recruiter had said.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 3. Provisional booking journey ────────────────────────── -->
+  <section id="booking">
+    <div class="container-wide">
+      <div class="container" style="width:100%; padding:0; margin:0;">
+        <div class="section-head">
+          <p class="section-num">03</p>
+          <h2 class="section-title">Provisional booking <em>journey</em></h2>
+        </div>
+
+        <div class="prose">
+          <p class="lead">
+            Designing the end-to-end candidate booking journey, from provisional sent through to confirmed booking and platform-level integration.
+          </p>
+          <p>
+            The brief: define and redesign the provisional booking process — booking states, transition logic, and Worksome (contract platform) integration — so the engineering team could implement the functionality. The previous design had two states (booked / not booked) and a lot of edge cases the recruiters were navigating by Slack.
+          </p>
+          <p>
+            I built a service blueprint covering five states (<em>Provisional Sent · Provisional Accepted · In Progress · Booking Confirmed · Cancelled</em>), with explicit transition rules between them and triggers for the Worksome integration at the contract stage. Every transition produced a system event; every system event produced both an in-product notification and an email to the client and candidate. The blueprint listed all of them.
+          </p>
+          <p>
+            The deliverable to engineering was a 19-event message specification — every email, every notification, in every state combination, with subject line, body, and trigger condition. I wrote the copy for each message in the voice-and-tone framework I'd built for the platform (see next section) so the recruiter-facing and candidate-facing voices stayed coherent across the system.
+          </p>
+        </div>
+      </div>
+
+      <figure class="figure figure--wide">
+        <img src="assets/chapter-2-bookings-flow.png" width="2048" height="451" loading="lazy"
+             alt="Provisional booking flow diagram. Left half: Provisional Sent to Provisional Accepted state machine with decision points and message triggers. Right half: In Progress to Booking Confirmed state machine with Worksome integration steps. Five swim-lane rows represent system roles.">
+        <figcaption>
+          Provisional booking flow with state transitions and Worksome integration triggers. Five booking states; 19 templated system messages.
+        </figcaption>
+      </figure>
+
+      <div class="container" style="width:100%; padding:0; margin:0;">
+        <div class="prose">
+          <p>What the design delivered to engineering:</p>
+          <ul>
+            <li>Five-state booking machine with explicit transition rules</li>
+            <li>Trigger map for the Worksome integration (contract creation, signing, cancellation)</li>
+            <li>19 message templates with subject, body, and trigger condition</li>
+            <li>A status-visibility specification for the recruiter view (what each user sees in each state)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 4. Platform UX writing audit ──────────────────────────── -->
+  <section id="writing">
+    <div class="container-wide">
+      <div class="container" style="width:100%; padding:0; margin:0;">
+        <div class="section-head">
+          <p class="section-num">04</p>
+          <h2 class="section-title">Platform UX writing <em>audit</em></h2>
+        </div>
+
+        <div class="prose">
+          <p class="lead">
+            A platform-wide copy audit of the recruiter view, with a voice-and-tone framework grounded in the company's brand principles.
+          </p>
+          <p>
+            The recruiter view had no copy system. Button labels were inconsistent across screens (<em>Save · Submit · Confirm</em> in different places for similar actions); status logic varied; helper text was authored ad-hoc per feature. I audited the full recruiter surface — every button, every status, every system message, every form field — flagged the inconsistencies, and proposed standardised replacements.
+          </p>
+          <p>
+            The framework underneath the audit is a voice chart built against six company brand principles — <em>Efficient · Trustworthy · Connects · Energetic · Innovative · Client-Centric</em> — broken down into five axes: concepts, vocabulary, verbosity, grammar, punctuation, capitalisation. Where the brand principles pulled in different directions (efficiency wants short; trustworthiness wants complete; client-centricity wants warm), the chart specifies which wins in which context.
+          </p>
+          <p>
+            The chart became the authoring spec for both my own work on the booking messages and for subsequent product copy authored by other team members after I left.
+          </p>
+        </div>
+      </div>
+
+      <figure class="figure">
+        <img src="assets/chapter-2-voice-chart.jpg" width="1400" height="2744" loading="lazy"
+             alt="Voice and tone matrix. Six brand principles across columns: Efficient, Trustworthy, Connects, Energetic, Innovative, Client-Centric. Six writing dimensions down rows: Concepts, Vocabulary, Verbosity, Grammar, Punctuation, Capitalization. Each cell gives writing guidance for that principle and dimension.">
+        <figcaption>
+          Voice-and-tone matrix: six company brand principles × six writing dimensions. Used as the authoring spec for new product copy.
+        </figcaption>
+      </figure>
+
+      <div class="container" style="width:100%; padding:0; margin:0;">
+        <div class="prose">
+          <p>What the audit produced:</p>
+          <ul>
+            <li>A 60-item recommendation list, prioritised by user-facing visibility</li>
+            <li>Standardised microcopy for every action verb across the recruiter view (Save / Send / Edit / Cancel / Confirm)</li>
+            <li>A voice-and-tone matrix tying every writing decision back to brand principles</li>
+            <li>Implementation directly in the codebase for the booking-message templates (HTML/CSS edits)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 5. One observation worth its own line ─────────────────── -->
+  <section id="observation">
     <div class="container">
       <div class="section-head">
-        <p class="section-num">03</p>
-        <h2 class="section-title">Get in <em>touch</em></h2>
+        <p class="section-num">05</p>
+        <h2 class="section-title">One observation, <em>worth its own line</em></h2>
       </div>
 
       <div class="prose">
         <p class="lead">
-          The fastest way is email. London-based, available for full-time research roles from <strong>January 2026</strong>.
+          Mid-placement, while running the recruiter-view rebuild past the engineering team, I noticed the candidate search was re-running the same Gemini API call every time a recruiter navigated back from a result detail page.
+        </p>
+        <p>
+          The pattern was: recruiter runs a search, opens a candidate, navigates back, search re-runs from scratch. Every back-navigation cost an API call. At the volume the platform was running, that was a meaningful share of the monthly LLM bill — searches the recruiter had already performed within the last few minutes were being run again because the result wasn't being cached.
+        </p>
+        <p>
+          I flagged it, sketched a cache-on-search-result pattern, and handed it to engineering. The fix wasn't designerly. The observation came from sitting next to engineering enough to spot the call pattern in dev tools while reviewing a flow.
+        </p>
+        <p>
+          What it taught me: research-led product roles in small teams aren't only about the user-facing surface. Sometimes the highest-leverage move is the one that doesn't change what the user sees.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 6. Reflection ─────────────────────────────────────────── -->
+  <section id="reflection">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">06</p>
+        <h2 class="section-title">Reflection</h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          Four months at Chapter 2 was the first time I'd worked in product proper — close to engineering, close to the brief, close to a real backlog. Three things changed how I work as a result.
         </p>
       </div>
 
-      <dl class="meta meta-3">
-        <div>
-          <dt>Email</dt>
-          <dd><a href="mailto:aron.ryszka@gmail.com">aron.ryszka@gmail.com</a></dd>
-        </div>
-        <div>
-          <dt>LinkedIn</dt>
-          <dd><a href="https://www.linkedin.com/in/aron-ryszka/" target="_blank" rel="noopener noreferrer">aron-ryszka ↗</a></dd>
-        </div>
-        <div>
-          <dt>Phone</dt>
-          <dd><a href="tel:+447851052053">+44 7851 052 053</a></dd>
-        </div>
-      </dl>
+      <ol class="impl">
+        <li><strong>Synthesis beats discovery in small teams.</strong><span>A four-person product team rarely has bandwidth for new primary research. The leverage is in synthesising what the team already has — transcripts on a hard drive, half-finished personas, a Slack channel of recruiter feedback — into something the whole team can actually use. The workflow map was my biggest contribution; it was built from material that already existed.</span></li>
+        <li><strong>AI artefacts widen the hypothesis space; they don't replace evidence.</strong><span>The AI-generated personas were useful for exactly that. They surfaced edge cases I'd have missed on the transcript pass alone. None of them became findings in their own right. Every claim in the final workflow map traced back to something a recruiter actually said.</span></li>
+        <li><strong>The wrong word is the wrong concept underneath.</strong><span>The writing audit isn't a separate practice from the design audit; it <em>is</em> a design audit. The reason buttons were inconsistent across the recruiter view was that the team had never agreed what those buttons <em>were</em>. Naming things makes the design clearer.</span></li>
+      </ol>
     </div>
   </section>
 
@@ -1058,8 +1118,38 @@
 <footer>
   <p class="mark">Aron Ryszka</p>
   <p>London · 2026</p>
-  <p class="colophon">UX Research &amp; Design · Open to roles</p>
+  <p class="colophon">Chapter 2 · Product internship · Aug–Dec 2025</p>
 </footer>
 
+<div class="lb-overlay" id="lb-overlay" role="dialog" aria-modal="true">
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+  (function () {
+    var overlay = document.getElementById('lb-overlay');
+    var lbImg   = document.getElementById('lb-img');
+
+    document.querySelectorAll('.figure--wide img').forEach(function (img) {
+      img.addEventListener('click', function () {
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        overlay.classList.add('is-open');
+      });
+    });
+
+    overlay.addEventListener('click', function () {
+      overlay.classList.remove('is-open');
+      lbImg.src = '';
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        overlay.classList.remove('is-open');
+        lbImg.src = '';
+      }
+    });
+  })();
+</script>
 </body>
 </html>
