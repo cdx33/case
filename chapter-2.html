@@ -834,6 +834,31 @@
   /* Keep the back-link reachable on mobile */
   .topnav-links { display: flex; }
   .topnav-links a { white-space: nowrap; }
+  /* ── Lightbox ───────────────────────────────────────────────── */
+  .lb-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.85);
+    cursor: zoom-out;
+    align-items: center;
+    justify-content: center;
+  }
+  .lb-overlay.is-open {
+    display: flex;
+  }
+  .lb-overlay img {
+    max-width: 95vw;
+    max-height: 92vh;
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+  }
+  .figure--wide img {
+    cursor: zoom-in;
+  }
 </style>
 </head>
 <body>
@@ -1096,5 +1121,35 @@
   <p class="colophon">Chapter 2 · Product internship · Aug–Dec 2025</p>
 </footer>
 
+<div class="lb-overlay" id="lb-overlay" role="dialog" aria-modal="true">
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+  (function () {
+    var overlay = document.getElementById('lb-overlay');
+    var lbImg   = document.getElementById('lb-img');
+
+    document.querySelectorAll('.figure--wide img').forEach(function (img) {
+      img.addEventListener('click', function () {
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        overlay.classList.add('is-open');
+      });
+    });
+
+    overlay.addEventListener('click', function () {
+      overlay.classList.remove('is-open');
+      lbImg.src = '';
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        overlay.classList.remove('is-open');
+        lbImg.src = '';
+      }
+    });
+  })();
+</script>
 </body>
 </html>
