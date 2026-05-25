@@ -7,7 +7,7 @@
 <meta name="description" content="An MSc HCI artefact investigating whether interface design alone can address five documented failure modes of chat-style LLMs for sustained intellectual work. Aron Ryszka, 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #F5F2EB;
@@ -33,6 +33,7 @@
 
     --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
     --sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', 'SF Mono', Menlo, monospace;
 
     --container: min(720px, calc(100% - 3rem));
     --container-wide: min(940px, calc(100% - 3rem));
@@ -97,6 +98,183 @@
   @media (min-width: 760px) {
     .topnav-links { display: flex; }
   }
+
+  /* ── Article grid ─────────────────────────────────────────────── */
+  .case-article {
+    display: block;
+  }
+  @media (min-width: 960px) {
+    .case-article {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 640px) 1fr;
+      gap: 3rem;
+      max-width: 1180px;
+      margin-inline: auto;
+      padding-inline: 2rem;
+      align-items: start;
+    }
+    .case-sidebar--desktop { grid-column: 1; }
+    .case-content { grid-column: 2; }
+  }
+
+  /* ── Summary card ─────────────────────────────────────────────── */
+  .summary-card {
+    margin: 2.5rem 0 3rem;
+    padding: 1.75rem 1.75rem 1.875rem;
+    background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+    border-radius: 6px;
+    max-width: 38rem;
+  }
+  @media (min-width: 760px) {
+    .summary-card { padding: 2rem 2.25rem; }
+  }
+  .summary-card .eyebrow { margin-bottom: 1.125rem; }
+  .summary-card p:not(.eyebrow) {
+    margin: 0 0 0.875rem;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .summary-card p:not(.eyebrow):last-child { margin-bottom: 0; }
+  .summary-card p em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--accent);
+    margin-right: 0.25rem;
+  }
+
+  /* ── Case sidebar (desktop) ───────────────────────────────────── */
+  .case-sidebar--desktop {
+    display: none;
+  }
+  @media (min-width: 960px) {
+    .case-sidebar--desktop {
+      display: block;
+      position: sticky;
+      top: 96px;
+      align-self: start;
+    }
+  }
+  .case-sidebar--desktop .eyebrow { margin-bottom: 1rem; }
+  .case-sidebar--desktop .eyebrow-spaced { margin-top: 2rem; }
+  .sidebar-fields {
+    margin: 0;
+    padding: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .sidebar-fields > div {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 0.75rem;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--border-soft);
+  }
+  .sidebar-fields > div:last-child { border-bottom: 1px solid var(--border-soft); }
+  .sidebar-fields dt {
+    font-size: 0.75rem;
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.06em;
+    color: var(--ink-mute);
+    font-weight: 500;
+    line-height: 1.4;
+    padding-top: 0.0625rem;
+  }
+  .sidebar-fields dd {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .sidebar-fields dd a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: border-color 150ms ease;
+  }
+  .sidebar-fields dd a:hover { border-bottom-color: var(--accent); }
+  .sidebar-outcomes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .sidebar-outcomes li {
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: var(--ink);
+    padding: 0.4375rem 0;
+    border-top: 1px solid var(--border-soft);
+  }
+  .sidebar-outcomes li:last-child { border-bottom: 1px solid var(--border-soft); }
+
+  /* ── Case sidebar (mobile accordion) ──────────────────────────── */
+  .case-sidebar-mobile {
+    margin: 1.5rem 0 2rem;
+    padding: 0;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  @media (min-width: 960px) {
+    .case-sidebar-mobile { display: none; }
+  }
+  .case-sidebar-mobile > summary {
+    padding: 1rem 0;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    font-weight: 500;
+    list-style: none;
+  }
+  .case-sidebar-mobile > summary::-webkit-details-marker { display: none; }
+  .case-sidebar-mobile[open] > summary { padding-bottom: 0.5rem; }
+  .case-sidebar-mobile > *:not(summary) { padding-bottom: 1rem; }
+  .case-sidebar-mobile .sidebar-fields,
+  .case-sidebar-mobile .sidebar-outcomes { /* inherit styles from desktop version */ }
+
+  /* ── Oversized margin numerals ────────────────────────────────── */
+  .section-num {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 60;
+    font-size: clamp(3rem, 5vw, 4rem);
+    letter-spacing: -0.04em;
+    color: var(--accent);
+    margin: 0 0 0.5rem;
+    line-height: 1;
+  }
+  .section-num::after { content: none; }
+  @media (min-width: 960px) {
+    .section-num {
+      font-size: clamp(4rem, 7vw, 6rem);
+      position: relative;
+      margin-left: -2rem;
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  /* ── Hero h1 upgrade ──────────────────────────────────────────── */
+  h1.title {
+    font-size: clamp(3.5rem, 10vw, 7.25rem);
+    font-variation-settings: "opsz" 144, "SOFT" 50;
+    letter-spacing: -0.035em;
+  }
+  .dek {
+    font-variation-settings: "SOFT" 100;
+  }
+
+  /* ── Section opener small caps ────────────────────────────────── */
+  .opener {
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+  }
+
+  /* ── Tabular figures on the hero meta ─────────────────────────── */
+  .meta dd { font-variant-numeric: tabular-nums; }
 
   /* ── Hero ────────────────────────────────────────────────────── */
   .hero {
@@ -259,9 +437,18 @@
     text-decoration-color: var(--accent);
   }
   .prose code {
-    font-family: 'SF Mono', 'Consolas', 'Liberation Mono', Menlo, monospace;
+    font-family: var(--mono);
     font-size: 0.875em;
     background: var(--paper);
+    padding: 0.125em 0.4em;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .mono {
+    font-family: var(--mono);
+    font-size: 0.875em;
+    background: var(--paper-alt);
     padding: 0.125em 0.4em;
     border-radius: 3px;
     border: 1px solid var(--border);
@@ -752,23 +939,6 @@
     color: var(--ink-mute);
   }
 
-  /* ── Subtle reveal on load ───────────────────────────────────── */
-  @media (prefers-reduced-motion: no-preference) {
-    .hero > * {
-      opacity: 0;
-      transform: translateY(8px);
-      animation: rise 700ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
-    }
-    .hero .eyebrow { animation-delay: 80ms; }
-    .hero .title   { animation-delay: 160ms; }
-    .hero .dek     { animation-delay: 260ms; }
-    .hero .lede    { animation-delay: 340ms; }
-    .hero .meta    { animation-delay: 420ms; }
-    @keyframes rise {
-      to { opacity: 1; transform: translateY(0); }
-    }
-  }
-
   /* ── Focus state ─────────────────────────────────────────────── */
   a:focus-visible {
     outline: 2px solid var(--accent);
@@ -836,6 +1006,57 @@
     </div>
   </header>
 
+  <div class="case-article">
+
+    <!-- Desktop sidebar -->
+    <aside class="case-sidebar case-sidebar--desktop" aria-label="About this project">
+      <p class="eyebrow">About this project</p>
+      <dl class="sidebar-fields">
+        <div><dt>Year</dt><dd>2025–26</dd></div>
+        <div><dt>Format</dt><dd>MSc capstone</dd></div>
+        <div><dt>Role</dt><dd>Research · concept · design · build</dd></div>
+        <div><dt>Method</dt><dd>Research-through-design</dd></div>
+        <div><dt>Stack</dt><dd>React · Gemini 2.5 Flash</dd></div>
+        <div><dt>Demo</dt><dd><a href="https://branchingv2.vercel.app/" target="_blank" rel="noopener noreferrer"><code class="mono">branchingv2.vercel.app</code> <span aria-hidden="true">↗</span></a></dd></div>
+      </dl>
+      <p class="eyebrow eyebrow-spaced">Outcomes</p>
+      <ul class="sidebar-outcomes">
+        <li>4 of 4 participants articulated the conceptual model unprompted</li>
+        <li>Mean SUS 60 (range 45–80)</li>
+        <li>Two pilots and four valid think-aloud sessions</li>
+      </ul>
+    </aside>
+
+    <!-- Main reading column -->
+    <div class="case-content">
+
+      <!-- Mobile accordion -->
+      <details class="case-sidebar-mobile">
+        <summary>About this project <span aria-hidden="true">↓</span></summary>
+        <dl class="sidebar-fields">
+          <div><dt>Year</dt><dd>2025–26</dd></div>
+          <div><dt>Format</dt><dd>MSc capstone</dd></div>
+          <div><dt>Role</dt><dd>Research · concept · design · build</dd></div>
+          <div><dt>Method</dt><dd>Research-through-design</dd></div>
+          <div><dt>Stack</dt><dd>React · Gemini 2.5 Flash</dd></div>
+          <div><dt>Demo</dt><dd><a href="https://branchingv2.vercel.app/" target="_blank" rel="noopener noreferrer"><code class="mono">branchingv2.vercel.app</code> <span aria-hidden="true">↗</span></a></dd></div>
+        </dl>
+        <p class="eyebrow eyebrow-spaced">Outcomes</p>
+        <ul class="sidebar-outcomes">
+          <li>4 of 4 participants articulated the conceptual model unprompted</li>
+          <li>Mean SUS 60 (range 45–80)</li>
+          <li>Two pilots and four valid think-aloud sessions</li>
+        </ul>
+      </details>
+
+      <!-- Summary card -->
+      <aside class="summary-card">
+        <p class="eyebrow">In short</p>
+        <p><em>The problem.</em> Chat interfaces don't support sustained research — five documented failure modes around context, drift, cognition, metacognition.</p>
+        <p><em>The bet.</em> Interface architecture (not better models) can address them: branching, curated context, explicit commit, goal visibility.</p>
+        <p><em>What surfaced.</em> The conceptual model landed (4 of 4 articulated it unprompted). The verb surface didn't — clarity-of-concept ≠ clarity-of-action. Five transferable lessons for AI research tools.</p>
+      </aside>
+
   <!-- ─── 1. The gap ────────────────────────────────────────────── -->
   <section id="gap">
     <div class="container">
@@ -846,7 +1067,7 @@
 
       <div class="prose">
         <p class="lead">
-          Researchers, academic writers, and knowledge workers increasingly run early-stage thinking through LLMs — secondary research, exploratory writing, sensemaking. The interface they do it inside was never designed for that work. Five failure modes are now documented in the literature:
+          <span class="opener">Researchers, academic</span> writers, and knowledge workers increasingly run early-stage thinking through LLMs — secondary research, exploratory writing, sensemaking. The interface they do it inside was never designed for that work. Five failure modes are now documented in the literature:
         </p>
 
         <ol class="failures">
@@ -890,7 +1111,7 @@
 
         <div class="prose">
           <p class="lead">
-            Once learned, branching architecture and explicit commit semantics reduce sustained cognitive load by externalising state the user's working memory can't hold. That is the hypothesis. It rests on four design propositions.
+            <span class="opener">Once learned,</span> branching architecture and explicit commit semantics reduce sustained cognitive load by externalising state the user's working memory can't hold. That is the hypothesis. It rests on four design propositions.
           </p>
         </div>
       </div>
@@ -931,7 +1152,7 @@
 
         <div class="prose">
           <p class="lead">
-            BranchFlow is a single-page React app backed by a serverless LLM proxy. The working surface is three panels. The model on the right of every interaction is Gemini 2.5 Flash. The architecture, more than the UI, carries the design's argument.
+            <span class="opener">BranchFlow is</span> a single-page React app backed by a serverless LLM proxy. The working surface is three panels. The model on the right of every interaction is Gemini 2.5 Flash. The architecture, more than the UI, carries the design's argument.
           </p>
 
           <p>
@@ -985,7 +1206,7 @@
           <article class="commitment">
             <div class="commitment-label">Architectural commitment · I</div>
             <h3>The AI proposes, it never mutates</h3>
-            <p>When the model wants to add, edit, merge, or archive a finding, it returns a <code>[PROPOSED_ACTIONS]</code> block alongside its prose. The proposal renders as an Apply / Dismiss card under the message.</p>
+            <p>When the model wants to add, edit, merge, or archive a finding, it returns a <code class="mono">[PROPOSED_ACTIONS]</code> block alongside its prose. The proposal renders as an Apply / Dismiss card under the message.</p>
             <p>Only the user's Apply click invokes the underlying handler. Apply / Dismiss is the structural answer to metacognitive monitoring: you don't have to police the AI, because it can't write to the record without you.</p>
           </article>
           <article class="commitment">
@@ -1015,7 +1236,7 @@
 
       <div class="prose">
         <p class="lead">
-          Research-through-design (Zimmerman, Forlizzi &amp; Evenson, 2007) across four phases: competitive analysis, concept design, prototype, evaluation. The prototype was supposed to be a Figma deck. It became a working React app on Vercel.
+          <span class="opener">Research-through-design</span> (Zimmerman, Forlizzi &amp; Evenson, 2007) across four phases: competitive analysis, concept design, prototype, evaluation. The prototype was supposed to be a Figma deck. It became a working React app on Vercel.
         </p>
 
         <p>
@@ -1027,7 +1248,7 @@
         </p>
 
         <p>
-          Mean SUS across <em>n</em>&nbsp;=&nbsp;4 was <strong>60.0 (range 45–80)</strong>, below the 68-point industry mean (Bangor et al., 2008). With four participants and a novel interface in a single sub-hour session, SUS is framed here as a sanity check, not as evidence. The qualitative data carries the weight.
+          Mean SUS across <code class="mono">n = 4</code> was <strong>60.0 (range 45–80)</strong>, below the 68-point industry mean (Bangor et al., 2008). With four participants and a novel interface in a single sub-hour session, SUS is framed here as a sanity check, not as evidence. The qualitative data carries the weight.
         </p>
       </div>
     </div>
@@ -1043,12 +1264,12 @@
 
       <div class="prose">
         <p class="lead">
-          Reflexive thematic analysis (Braun &amp; Clarke, 2019) across four transcripts produced thirty inductive codes, clustered through affinity mapping into seven themes. The strongest signal arrived early and unprompted.
+          <span class="opener">Reflexive thematic</span> analysis (Braun &amp; Clarke, 2019) across four transcripts produced thirty inductive codes, clustered through affinity mapping into seven themes. The strongest signal arrived early and unprompted.
         </p>
       </div>
 
       <aside class="hero-stat">
-        <p class="stat-num">4<span>of</span>4</p>
+        <p class="stat-num"><span class="stat-digit" data-target="4">0</span><span>of</span><span class="stat-digit" data-target="4">0</span></p>
         <p class="stat-label">participants spontaneously articulated the Finding · Branch · Conclusion model — without prompting, in their own words.</p>
       </aside>
 
@@ -1152,7 +1373,7 @@
 
       <div class="prose">
         <p class="lead">
-          Five generalisable lessons for AI research tools, in order of evidential confidence.
+          <span class="opener">Five generalisable</span> lessons for AI research tools, in order of evidential confidence.
         </p>
 
         <ol class="impl">
@@ -1191,7 +1412,7 @@
 
       <div class="prose">
         <p class="lead">
-          The design's core cognitive claim — that branching plus commit semantics reduces sustained cognitive load — was not tested by this study, and could not have been. A single-session first-encounter evaluation can confirm that the conceptual model is learnable. It cannot distinguish germane schema acquisition from extraneous surface learning.
+          <span class="opener">The design's</span> core cognitive claim — that branching plus commit semantics reduces sustained cognitive load — was not tested by this study, and could not have been. A single-session first-encounter evaluation can confirm that the conceptual model is learnable. It cannot distinguish germane schema acquisition from extraneous surface learning.
         </p>
 
         <blockquote class="quote">
@@ -1200,7 +1421,7 @@
         </blockquote>
 
         <p>
-          The principal next step is a two-week longitudinal A/B study (<em>n</em>&nbsp;≥&nbsp;8) with a linear-chat baseline, NASA-TLX measured at first use and again after sustained use, within-participant design. Methodological infrastructure: a brief synchronous orientation to mitigate the P5 case, event instrumentation in the codebase to capture time-on-task and click paths, and a second coder for the thematic analysis. None of this is novel; the present study should have done it.
+          The principal next step is a two-week longitudinal A/B study (<code class="mono">n ≥ 8</code>) with a linear-chat baseline, NASA-TLX measured at first use and again after sustained use, within-participant design. Methodological infrastructure: a brief synchronous orientation to mitigate the P5 case, event instrumentation in the codebase to capture time-on-task and click paths, and a second coder for the thematic analysis. None of this is novel; the present study should have done it.
         </p>
 
         <p>
@@ -1210,6 +1431,10 @@
     </div>
   </section>
 
+    </div><!-- /.case-content -->
+
+  </div><!-- /.case-article -->
+
 </main>
 
 <footer>
@@ -1217,6 +1442,11 @@
   <p>Aron Ryszka · 2026</p>
   <p class="colophon">MSc HCI artefact · Research-through-design</p>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js" defer></script>
+<script src="scripts/case-choreography.js" defer></script>
 
 </body>
 </html>
