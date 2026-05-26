@@ -276,6 +276,66 @@
   /* ── Tabular figures on the hero meta ─────────────────────────── */
   .meta dd { font-variant-numeric: tabular-nums; }
 
+  /* ── Read next ────────────────────────────────────────────────── */
+  .read-next {
+    margin: 5rem 0 2rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border-soft);
+  }
+  .read-next .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+  .read-next-link {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 1rem 2rem;
+    text-decoration: none;
+    color: var(--ink);
+    padding: 1.25rem 0 1.5rem;
+    border-bottom: 1px solid var(--border);
+    transition: border-color 200ms ease, padding 200ms ease;
+  }
+  .read-next-link:hover {
+    border-bottom-color: var(--accent);
+    padding-bottom: 1.875rem;
+  }
+  .read-next-title {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin: 0 0 0.5rem;
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .read-next-dek {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 36em;
+  }
+  .read-next-arrow {
+    font-family: var(--sans);
+    font-size: 1.5rem;
+    color: var(--accent);
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    transition: transform 200ms ease;
+  }
+  .read-next-link:hover .read-next-arrow {
+    transform: translateX(4px);
+  }
+
   /* ── Hero ────────────────────────────────────────────────────── */
   .hero {
     padding: 4rem 0 3.5rem;
@@ -1430,6 +1490,15 @@
       </div>
     </div>
   </section>
+
+    <aside class="read-next" aria-label="Continue reading">
+      <p class="eyebrow">Read next</p>
+      <a href="guardian-4.html" class="read-next-link">
+        <span class="read-next-title">Guardian 4 CGM</span>
+        <span class="read-next-dek">Cognitive ergonomics of a medical device people apply at home, every day.</span>
+        <span class="read-next-arrow" style="color: #1F5F6B" aria-hidden="true">→</span>
+      </a>
+    </aside>
 
     </div><!-- /.case-content -->
 
