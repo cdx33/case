@@ -7,7 +7,7 @@
 <meta name="description" content="Four months as a research-led product intern at Chapter 2, a recruitment-tech startup. Three deliverables shipped across research, service design, and content systems.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #F5F2EB;
@@ -33,6 +33,7 @@
 
     --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
     --sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
 
     --container: min(720px, calc(100% - 3rem));
     --container-wide: min(940px, calc(100% - 3rem));
@@ -188,15 +189,21 @@
   .section-num {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: 0.875rem;
-    letter-spacing: 0.05em;
+    font-variation-settings: "opsz" 144, "SOFT" 60;
+    font-size: clamp(3rem, 5vw, 4rem);
+    letter-spacing: -0.04em;
     color: var(--accent);
-    margin: 0 0 1rem;
+    margin: 0 0 0.5rem;
+    line-height: 1;
   }
-  .section-num::after {
-    content: " /";
-    color: var(--ink-mute);
-    margin-left: 0.25rem;
+  .section-num::after { content: none; }
+  @media (min-width: 960px) {
+    .section-num {
+      font-size: clamp(4rem, 7vw, 6rem);
+      position: relative;
+      margin-left: -2rem;
+      margin-bottom: 0.75rem;
+    }
   }
   h2.section-title {
     font-family: var(--serif);
@@ -751,23 +758,6 @@
     color: var(--ink-mute);
   }
 
-  /* ── Subtle reveal on load ───────────────────────────────────── */
-  @media (prefers-reduced-motion: no-preference) {
-    .hero > * {
-      opacity: 0;
-      transform: translateY(8px);
-      animation: rise 700ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
-    }
-    .hero .eyebrow { animation-delay: 80ms; }
-    .hero .title   { animation-delay: 160ms; }
-    .hero .dek     { animation-delay: 260ms; }
-    .hero .lede    { animation-delay: 340ms; }
-    .hero .meta    { animation-delay: 420ms; }
-    @keyframes rise {
-      to { opacity: 1; transform: translateY(0); }
-    }
-  }
-
   /* ── Focus state ─────────────────────────────────────────────── */
   a:focus-visible {
     outline: 2px solid var(--accent);
@@ -834,6 +824,221 @@
   /* Keep the back-link reachable on mobile */
   .topnav-links { display: flex; }
   .topnav-links a { white-space: nowrap; }
+
+  /* ── Mono ────────────────────────────────────────────────────── */
+  .mono {
+    font-family: var(--mono);
+    font-size: 0.875em;
+    background: var(--paper-alt);
+    padding: 0.125em 0.4em;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--ink);
+  }
+
+  /* ── Case article grid ───────────────────────────────────────── */
+  .case-article { display: block; }
+  @media (min-width: 960px) {
+    .case-article {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 640px) 1fr;
+      gap: 3rem;
+      max-width: 1180px;
+      margin-inline: auto;
+      padding-inline: 2rem;
+      align-items: start;
+    }
+    .case-sidebar--desktop { grid-column: 1; }
+    .case-content { grid-column: 2; }
+  }
+
+  /* ── Summary card ────────────────────────────────────────────── */
+  .summary-card {
+    margin: 2.5rem 0 3rem;
+    padding: 1.75rem 1.75rem 1.875rem;
+    background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+    border-radius: 6px;
+    max-width: 38rem;
+  }
+  @media (min-width: 760px) {
+    .summary-card { padding: 2rem 2.25rem; }
+  }
+  .summary-card .eyebrow { margin-bottom: 1.125rem; }
+  .summary-card p:not(.eyebrow) {
+    margin: 0 0 0.875rem;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .summary-card p:not(.eyebrow):last-child { margin-bottom: 0; }
+  .summary-card p em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--accent);
+    margin-right: 0.25rem;
+  }
+
+  /* ── Desktop sidebar ─────────────────────────────────────────── */
+  .case-sidebar--desktop {
+    display: none;
+  }
+  @media (min-width: 960px) {
+    .case-sidebar--desktop {
+      display: block;
+      position: sticky;
+      top: 96px;
+      align-self: start;
+    }
+  }
+  .case-sidebar--desktop .eyebrow { margin-bottom: 1rem; }
+  .case-sidebar--desktop .eyebrow-spaced { margin-top: 2rem; }
+  .sidebar-fields {
+    margin: 0;
+    padding: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .sidebar-fields > div {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 0.75rem;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--border-soft);
+  }
+  .sidebar-fields > div:last-child { border-bottom: 1px solid var(--border-soft); }
+  .sidebar-fields dt {
+    font-size: 0.75rem;
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.06em;
+    color: var(--ink-mute);
+    font-weight: 500;
+    line-height: 1.4;
+    padding-top: 0.0625rem;
+  }
+  .sidebar-fields dd {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .sidebar-outcomes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .sidebar-outcomes li {
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: var(--ink);
+    padding: 0.4375rem 0;
+    border-top: 1px solid var(--border-soft);
+  }
+  .sidebar-outcomes li:last-child { border-bottom: 1px solid var(--border-soft); }
+
+  /* ── Mobile sidebar accordion ────────────────────────────────── */
+  .case-sidebar-mobile {
+    margin: 1.5rem 0 2rem;
+    padding: 0;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  @media (min-width: 960px) {
+    .case-sidebar-mobile { display: none; }
+  }
+  .case-sidebar-mobile > summary {
+    padding: 1rem 0;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    font-weight: 500;
+    list-style: none;
+  }
+  .case-sidebar-mobile > summary::-webkit-details-marker { display: none; }
+  .case-sidebar-mobile[open] > summary { padding-bottom: 0.5rem; }
+  .case-sidebar-mobile > *:not(summary) { padding-bottom: 1rem; }
+
+  /* ── h1.title + .dek font-variation upgrades ─────────────────── */
+  h1.title {
+    font-variation-settings: "opsz" 144, "SOFT" 20;
+  }
+  .dek {
+    font-variation-settings: "SOFT" 40;
+  }
+
+  /* ── Section opener small caps ───────────────────────────────── */
+  .opener {
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+  }
+
+  /* ── Tabular figures on the hero meta ─────────────────────────── */
+  .meta dd { font-variant-numeric: tabular-nums; }
+
+  /* ── Read next ────────────────────────────────────────────────── */
+  .read-next {
+    margin: 5rem 0 2rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border-soft);
+  }
+  .read-next .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+  .read-next-link {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 1rem 2rem;
+    text-decoration: none;
+    color: var(--ink);
+    padding: 1.25rem 0 1.5rem;
+    border-bottom: 1px solid var(--border);
+    transition: border-color 200ms ease, padding 200ms ease;
+  }
+  .read-next-link:hover {
+    border-bottom-color: var(--accent);
+    padding-bottom: 1.875rem;
+  }
+  .read-next-title {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin: 0 0 0.5rem;
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .read-next-dek {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 36em;
+  }
+  .read-next-arrow {
+    font-family: var(--sans);
+    font-size: 1.5rem;
+    color: var(--accent);
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    transition: transform 200ms ease;
+  }
+  .read-next-link:hover .read-next-arrow {
+    transform: translateX(4px);
+  }
+
   /* ── Lightbox ───────────────────────────────────────────────── */
   .lb-overlay {
     display: none;
@@ -904,6 +1109,55 @@
     </div>
   </header>
 
+  <div class="case-article">
+
+    <aside class="case-sidebar case-sidebar--desktop" aria-label="About this project">
+      <p class="eyebrow">About this project</p>
+      <dl class="sidebar-fields">
+        <div><dt>Year</dt><dd>Aug – Dec 2025</dd></div>
+        <div><dt>Format</dt><dd>Product internship (4 months)</dd></div>
+        <div><dt>Role</dt><dd>Research-led product intern</dd></div>
+        <div><dt>Company</dt><dd>Chapter 2</dd></div>
+        <div><dt>Sector</dt><dd>Recruitment tech</dd></div>
+        <div><dt>Tools</dt><dd>Figma · FigJam · Material 3</dd></div>
+      </dl>
+      <p class="eyebrow eyebrow-spaced">Deliverables</p>
+      <ul class="sidebar-outcomes">
+        <li>8-stage candidate workflow adopted by product team</li>
+        <li>Provisional booking state machine + 19 message templates</li>
+        <li>Platform-wide voice &amp; tone framework</li>
+        <li>API caching insight — lowered Gemini API spend</li>
+      </ul>
+    </aside>
+
+    <div class="case-content">
+
+      <details class="case-sidebar-mobile">
+        <summary>About this project ↓</summary>
+        <dl class="sidebar-fields">
+          <div><dt>Year</dt><dd>Aug – Dec 2025</dd></div>
+          <div><dt>Format</dt><dd>Product internship (4 months)</dd></div>
+          <div><dt>Role</dt><dd>Research-led product intern</dd></div>
+          <div><dt>Company</dt><dd>Chapter 2</dd></div>
+          <div><dt>Sector</dt><dd>Recruitment tech</dd></div>
+          <div><dt>Tools</dt><dd>Figma · FigJam · Material 3</dd></div>
+        </dl>
+        <p class="eyebrow">Deliverables</p>
+        <ul class="sidebar-outcomes">
+          <li>8-stage candidate workflow adopted by product team</li>
+          <li>Provisional booking state machine + 19 message templates</li>
+          <li>Platform-wide voice &amp; tone framework</li>
+          <li>API caching insight — lowered Gemini API spend</li>
+        </ul>
+      </details>
+
+      <aside class="summary-card">
+        <p class="eyebrow">In short</p>
+        <p><em>The placement.</em> Four months as a research-led product intern at a London recruitment-tech startup, sitting between product and engineering on the recruiter-view rebuild.</p>
+        <p><em>What shipped.</em> An 8-stage candidate workflow synthesised from real recruiter transcripts and AI-generated JTBD personas; a provisional booking state machine with 19 system messages; a platform-wide UX copy audit with a voice &amp; tone framework.</p>
+        <p><em>One extra observation.</em> An API caching gap in the candidate search that was costing real Gemini spend — sketched and handed to engineering.</p>
+      </aside>
+
   <!-- ─── 1. The placement ──────────────────────────────────────── -->
   <section id="placement">
     <div class="container">
@@ -914,7 +1168,7 @@
 
       <div class="prose">
         <p class="lead">
-          Chapter 2 is a London-based recruitment-tech startup building tooling for in-house recruiters. I joined for four months as a product intern — research-led, sitting between the product manager and the engineering team. The three deliverables below are the ones I'd put on a placement debrief. The fourth (an API caching observation) sits at the bottom because it didn't need a deliverable to land.
+          <span class="opener">Chapter 2 is</span> a London-based recruitment-tech startup building tooling for in-house recruiters. I joined for four months as a product intern — research-led, sitting between the product manager and the engineering team. The three deliverables below are the ones I'd put on a placement debrief. The fourth (an API caching observation) sits at the bottom because it didn't need a deliverable to land.
         </p>
         <p>
           The placement coincided with the team rebuilding the recruiter view of the platform from the ground up. That timing was lucky: I joined when there were big questions on the table — what does the recruiter actually do, in what order, with what tools, against what brief — and the team needed answers more than they needed polish. Most of what follows came out of that window.
@@ -937,7 +1191,7 @@
             Mapping the recruiter's end-to-end candidate journey, from client brief to placement, to identify high-impact intervention points for the product.
           </p>
           <p>
-            The team had three things going in: a small library of real recruiter interview transcripts collected before I joined; a sprint of AI-generated JTBD personas the product manager had commissioned; and a near-universal sense from leadership that the recruiter view of the platform was working <em>around</em> recruiters' actual flow, not with it. What was missing was a workflow map that synthesised both sources into a single picture.
+            <span class="opener">The team had</span> three things going in: a small library of real recruiter interview transcripts collected before I joined; a sprint of AI-generated JTBD personas the product manager had commissioned; and a near-universal sense from leadership that the recruiter view of the platform was working <em>around</em> recruiters' actual flow, not with it. What was missing was a workflow map that synthesised both sources into a single picture.
           </p>
           <p>
             That synthesis was my work. I read the transcripts, coded recurring activity types, and stress-tested the AI-generated personas against what real recruiters described. Where the personas held up, I kept them; where they didn't — there was a strong fit on tool use, a weak fit on the timing of placement decisions — I dropped or rewrote them. The output was an <strong>eight-stage candidate workflow map</strong>, structured as: <em>Get Brief · Clarify Role · Plan Sourcing · Inbound Side · Outbound Side · Plan Tools · Screen &amp; List · Maintain Pool.</em> Each stage carried goals, actions, inputs and outputs, recruiter pain points, and product opportunity areas.
@@ -986,7 +1240,7 @@
             Designing the end-to-end candidate booking journey, from provisional sent through to confirmed booking and platform-level integration.
           </p>
           <p>
-            The brief: define and redesign the provisional booking process — booking states, transition logic, and Worksome (contract platform) integration — so the engineering team could implement the functionality. The previous design had two states (booked / not booked) and a lot of edge cases the recruiters were navigating by Slack.
+            <span class="opener">The brief:</span> define and redesign the provisional booking process — booking states, transition logic, and Worksome (contract platform) integration — so the engineering team could implement the functionality. The previous design had two states (booked / not booked) and a lot of edge cases the recruiters were navigating by Slack.
           </p>
           <p>
             I built a service blueprint covering five states (<em>Provisional Sent · Provisional Accepted · In Progress · Booking Confirmed · Cancelled</em>), with explicit transition rules between them and triggers for the Worksome integration at the contract stage. Every transition produced a system event; every system event produced both an in-product notification and an email to the client and candidate. The blueprint listed all of them.
@@ -1033,7 +1287,7 @@
             A platform-wide copy audit of the recruiter view, with a voice-and-tone framework grounded in the company's brand principles.
           </p>
           <p>
-            The recruiter view had no copy system. Button labels were inconsistent across screens (<em>Save · Submit · Confirm</em> in different places for similar actions); status logic varied; helper text was authored ad-hoc per feature. I audited the full recruiter surface — every button, every status, every system message, every form field — flagged the inconsistencies, and proposed standardised replacements.
+            <span class="opener">The recruiter view</span> had no copy system. Button labels were inconsistent across screens (<em>Save · Submit · Confirm</em> in different places for similar actions); status logic varied; helper text was authored ad-hoc per feature. I audited the full recruiter surface — every button, every status, every system message, every form field — flagged the inconsistencies, and proposed standardised replacements.
           </p>
           <p>
             The framework underneath the audit is a voice chart built against six company brand principles — <em>Efficient · Trustworthy · Connects · Energetic · Innovative · Client-Centric</em> — broken down into five axes: concepts, vocabulary, verbosity, grammar, punctuation, capitalisation. Where the brand principles pulled in different directions (efficiency wants short; trustworthiness wants complete; client-centricity wants warm), the chart specifies which wins in which context.
@@ -1079,7 +1333,7 @@
           Mid-placement, while running the recruiter-view rebuild past the engineering team, I noticed the candidate search was re-running the same Gemini API call every time a recruiter navigated back from a result detail page.
         </p>
         <p>
-          The pattern was: recruiter runs a search, opens a candidate, navigates back, search re-runs from scratch. Every back-navigation cost an API call. At the volume the platform was running, that was a meaningful share of the monthly LLM bill — searches the recruiter had already performed within the last few minutes were being run again because the result wasn't being cached.
+          <span class="opener">The pattern was:</span> recruiter runs a search, opens a candidate, navigates back, search re-runs from scratch. Every back-navigation cost an API call. At the volume the platform was running, that was a meaningful share of the monthly LLM bill — searches the recruiter had already performed within the last few minutes were being run again because the result wasn't being cached.
         </p>
         <p>
           I flagged it, sketched a cache-on-search-result pattern, and handed it to engineering. The fix wasn't designerly. The observation came from sitting next to engineering enough to spot the call pattern in dev tools while reviewing a flow.
@@ -1101,7 +1355,7 @@
 
       <div class="prose">
         <p class="lead">
-          Four months at Chapter 2 was the first time I'd worked in product proper — close to engineering, close to the brief, close to a real backlog. Three things changed how I work as a result.
+          Four months at Chapter 2 was the first time I'd worked in product proper — close to engineering, close to the brief, close to a real backlog. <span class="opener">Three things</span> changed how I work as a result.
         </p>
       </div>
 
@@ -1112,6 +1366,19 @@
       </ol>
     </div>
   </section>
+
+      <aside class="read-next" aria-label="Continue reading">
+        <p class="eyebrow">Read next</p>
+        <a href="evermatch.html" class="read-next-link">
+          <span class="read-next-title">EverMatch</span>
+          <span class="read-next-dek">An AI matchmaker that became an AI companion.</span>
+          <span class="read-next-arrow" style="color: #B85878" aria-hidden="true">→</span>
+        </a>
+      </aside>
+
+    </div><!-- /.case-content -->
+
+  </div><!-- /.case-article -->
 
 </main>
 
@@ -1151,5 +1418,11 @@
     });
   })();
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js" defer></script>
+<script src="scripts/case-choreography.js" defer></script>
+
 </body>
 </html>
