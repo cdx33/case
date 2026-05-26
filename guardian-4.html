@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guardian 4 CGM — A cognitive-ergonomics case study by Aron Ryszka</title>
+<meta name="description" content="An MSc Human Factors case study applying Schema-Based Errors, Rasmussen's SRK model, and Norman's framework to a continuous glucose monitor whose application process has barely changed in 17 years.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F2EB;
+    --paper: #FFFEFA;
+    --paper-alt: #F0EDE6;
+    --border: #DDD8CE;
+    --border-soft: #E8E3D6;
+    --ink: #2C2416;
+    --ink-soft: #6B6256;
+    --ink-mute: #9C948A;
+    --accent: #1F5F6B;
+    --accent-soft: #E8F2F4;
+    --accent-deep: #164751;
+    --commit: #5A7C5A;
+    --commit-soft: #EDF4ED;
+    --stale: #C49000;
+    --stale-soft: #FEF7E0;
+    --danger: #B5403A;
+    --danger-soft: #FCEEED;
+    --theory: #7B5EA7;
+    --regulation: #4A6FA5;
+    --research: #2A7F6F;
+
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+    --container: min(720px, calc(100% - 3rem));
+    --container-wide: min(940px, calc(100% - 3rem));
+    --container-full: min(1100px, calc(100% - 3rem));
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ── Reusable layout ─────────────────────────────────────────── */
+  .container { width: var(--container); margin-inline: auto; }
+  .container-wide { width: var(--container-wide); margin-inline: auto; }
+  .container-full { width: var(--container-full); margin-inline: auto; }
+
+  /* ── Top nav ─────────────────────────────────────────────────── */
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(120%) blur(8px);
+    -webkit-backdrop-filter: saturate(120%) blur(8px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .topnav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    width: var(--container-full); margin-inline: auto;
+    padding: 0.875rem 0;
+  }
+  .topnav-mark {
+    font-family: var(--serif); font-weight: 500;
+    font-size: 1.0625rem; letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .topnav-mark::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .topnav-links {
+    display: none;
+    gap: 1.75rem;
+    font-size: 0.8125rem;
+    color: var(--ink-soft);
+  }
+  .topnav-links a {
+    color: inherit; text-decoration: none;
+    transition: color 150ms ease;
+  }
+  .topnav-links a:hover { color: var(--accent); }
+  @media (min-width: 760px) {
+    .topnav-links { display: flex; }
+  }
+
+  /* ── Hero ────────────────────────────────────────────────────── */
+  .hero {
+    padding: 4rem 0 3.5rem;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  @media (min-width: 760px) {
+    .hero { padding: 7rem 0 5rem; }
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin: 0 0 1.75rem;
+    font-weight: 500;
+  }
+  .eyebrow::before {
+    content: "◆";
+    margin-right: 0.5rem;
+    font-size: 0.625rem;
+    vertical-align: 0.1em;
+    color: var(--accent);
+  }
+  h1.title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(3.25rem, 9vw, 6rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin: 0 0 1.5rem;
+    color: var(--ink);
+  }
+  .dek {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.375rem, 3vw, 2rem);
+    line-height: 1.25;
+    color: var(--ink-soft);
+    margin: 0 0 2.5rem;
+    max-width: 32ch;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.0625rem, 1.3vw, 1.1875rem);
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0 0 3rem;
+    max-width: 52ch;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 2rem;
+    margin: 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-soft);
+  }
+  @media (min-width: 640px) {
+    .meta { grid-template-columns: repeat(4, 1fr); }
+  }
+  .meta > div { margin: 0; }
+  .meta dt {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-mute);
+    margin-bottom: 0.375rem;
+    font-weight: 500;
+  }
+  .meta dd {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  /* ── Sections ────────────────────────────────────────────────── */
+  section {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  @media (min-width: 760px) {
+    section { padding: 6rem 0; }
+  }
+
+  .section-head { margin-bottom: 2.5rem; }
+  .section-num {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144, "SOFT" 60;
+    font-size: clamp(3rem, 5vw, 4rem);
+    letter-spacing: -0.04em;
+    color: var(--accent);
+    margin: 0 0 0.5rem;
+    line-height: 1;
+  }
+  .section-num::after { content: none; }
+  @media (min-width: 960px) {
+    .section-num {
+      font-size: clamp(4rem, 7vw, 6rem);
+      position: relative;
+      margin-left: -2rem;
+      margin-bottom: 0.75rem;
+    }
+  }
+  h2.section-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin: 0;
+    color: var(--ink);
+    max-width: 22ch;
+  }
+  h2.section-title em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  /* ── Body prose ──────────────────────────────────────────────── */
+  .prose { max-width: 38rem; }
+  .prose p {
+    margin: 0 0 1.25rem;
+    color: var(--ink);
+  }
+  .prose p.lead {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    max-width: 30em;
+  }
+  .prose p.lead::first-letter {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 4.25rem;
+    line-height: 0.85;
+    float: left;
+    padding: 0.4rem 0.5rem 0 0;
+    color: var(--accent);
+  }
+  .prose strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .prose em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .prose a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, var(--accent) 50%, transparent);
+    transition: text-decoration-color 150ms ease;
+  }
+  .prose a:hover {
+    text-decoration-color: var(--accent);
+  }
+  .prose code {
+    font-family: 'SF Mono', 'Consolas', 'Liberation Mono', Menlo, monospace;
+    font-size: 0.875em;
+    background: var(--paper);
+    padding: 0.125em 0.4em;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .cite {
+    color: var(--ink-mute);
+    font-size: 0.9em;
+  }
+
+  /* ── Failure modes list ──────────────────────────────────────── */
+  .failures {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    counter-reset: failure;
+    max-width: 38rem;
+  }
+  .failures li {
+    counter-increment: failure;
+    position: relative;
+    padding: 1.25rem 0 1.25rem 3.25rem;
+    border-top: 1px solid var(--border-soft);
+  }
+  .failures li:last-child { border-bottom: 1px solid var(--border-soft); }
+  .failures li::before {
+    content: counter(failure, decimal-leading-zero);
+    position: absolute;
+    left: 0; top: 1.3rem;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 0.8125rem;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+  .failures strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: 1.0625rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: var(--ink);
+  }
+  .failures span {
+    font-size: 0.9375rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* ── Propositions grid ───────────────────────────────────────── */
+  .props {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--border-soft);
+    border: 1px solid var(--border-soft);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0;
+  }
+  @media (min-width: 640px) {
+    .props { grid-template-columns: 1fr 1fr; }
+  }
+  .props > article {
+    background: var(--paper);
+    padding: 1.75rem 1.75rem 1.875rem;
+    position: relative;
+  }
+  .props .prop-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .props h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.1875rem;
+    line-height: 1.25;
+    margin: 0 0 0.75rem;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .props p {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  /* ── Live demo link in hero ──────────────────────────────────── */
+  .live-link {
+    margin: 1.5rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-soft);
+    display: flex;
+    align-items: baseline;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+  }
+  .live-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 0.5rem 0.9375rem;
+    background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+    border-radius: 99px;
+    transition: all 180ms ease;
+  }
+  .live-link a:hover {
+    background: var(--accent);
+    color: var(--paper);
+    border-color: var(--accent);
+  }
+  .live-link a span { font-size: 0.875em; }
+  .live-link-url {
+    font-family: 'SF Mono', 'Consolas', Menlo, monospace;
+    font-size: 0.8125rem;
+    color: var(--ink-mute);
+    letter-spacing: -0.005em;
+  }
+
+  /* ── Live preview (browser frame) ────────────────────────────── */
+  .live-preview { margin: 2.5rem 0 1.5rem; }
+  .browser-frame {
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 16px 40px -16px rgba(44, 36, 22, 0.18),
+                0 2px 6px rgba(44, 36, 22, 0.05);
+    overflow: hidden;
+  }
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.625rem 0.875rem;
+    background: var(--paper-alt);
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 0.8125rem;
+  }
+  .browser-dots { display: inline-flex; gap: 0.375rem; flex-shrink: 0; }
+  .browser-dots i {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    display: block;
+  }
+  .browser-url {
+    flex: 1;
+    min-width: 0;
+    font-family: 'SF Mono', 'Consolas', Menlo, monospace;
+    font-size: 0.78125rem;
+    color: var(--ink-soft);
+    background: var(--paper);
+    border: 1px solid var(--border);
+    padding: 0.3125rem 0.75rem;
+    border-radius: 99px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    letter-spacing: -0.005em;
+  }
+  .browser-url-protocol { color: var(--ink-mute); }
+  .browser-open {
+    flex-shrink: 0;
+    font-family: var(--sans);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 0.3125rem 0.625rem;
+    border-radius: 4px;
+    transition: background 150ms ease;
+    white-space: nowrap;
+  }
+  .browser-open:hover { background: var(--accent-soft); }
+  @media (max-width: 540px) {
+    .browser-open { font-size: 0; padding: 0.3125rem; }
+    .browser-open span { font-size: 0.875rem; }
+  }
+  .browser-viewport {
+    position: relative;
+    aspect-ratio: 1.9;
+    background: var(--paper-alt);
+    overflow: hidden;
+  }
+  .browser-viewport-link {
+    position: absolute;
+    inset: 0;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .browser-fallback {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 600ms cubic-bezier(0.2, 0.6, 0.2, 1);
+    /* Defensive: if the image ever fails to load, hide the alt
+       text bloat and let the link container show its hover CTA. */
+    color: transparent;
+    font-size: 0;
+    text-indent: -9999px;
+    background: var(--paper-alt);
+  }
+  .browser-viewport-link:hover .browser-fallback {
+    transform: scale(1.015);
+  }
+  .browser-viewport-link::after {
+    content: "Open ↗";
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.5rem 0.875rem;
+    border-radius: 99px;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 200ms ease, transform 200ms ease;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(44, 36, 22, 0.2);
+  }
+  .browser-viewport-link:hover::after,
+  .browser-viewport-link:focus-visible::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Workspace figure ────────────────────────────────────────── */
+  .figure {
+    margin: 2.5rem 0 1.5rem;
+    text-align: center;
+  }
+  .figure svg {
+    width: 100%;
+    height: auto;
+    max-width: 880px;
+    display: block;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .figure figcaption {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.875rem;
+    color: var(--ink-mute);
+    margin-top: 1rem;
+    max-width: 42rem;
+    margin-inline: auto;
+    line-height: 1.5;
+  }
+
+  /* ── Commitment callouts ─────────────────────────────────────── */
+  .commitments {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  @media (min-width: 760px) {
+    .commitments { grid-template-columns: 1fr 1fr; }
+  }
+  .commitment {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--commit);
+    padding: 1.75rem 1.875rem;
+    border-radius: 4px;
+  }
+  .commitment-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--commit);
+    margin-bottom: 0.625rem;
+    font-weight: 500;
+  }
+  .commitment h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.25;
+    margin: 0 0 1rem;
+    color: var(--ink);
+  }
+  .commitment p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .commitment p + p { margin-top: 0.75rem; }
+
+  /* ── Hero stat (testing wins) ────────────────────────────────── */
+  .hero-stat {
+    margin: 2.5rem 0 3rem;
+    padding: 2.5rem 2rem;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-stat::before, .hero-stat::after {
+    content: "";
+    position: absolute;
+    width: 32px; height: 1px;
+    background: var(--accent);
+    top: 50%;
+  }
+  .hero-stat::before { left: -1px; }
+  .hero-stat::after  { right: -1px; }
+  .hero-stat .stat-num {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(3.5rem, 8vw, 5rem);
+    line-height: 1;
+    color: var(--accent);
+    margin: 0 0 0.75rem;
+    letter-spacing: -0.04em;
+  }
+  .hero-stat .stat-num span {
+    font-size: 0.5em;
+    color: var(--ink-mute);
+    font-style: italic;
+    vertical-align: 0.3em;
+    margin: 0 0.15em;
+  }
+  .hero-stat .stat-label {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.125rem;
+    color: var(--ink);
+    max-width: 28rem;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+
+  /* ── Themes ──────────────────────────────────────────────────── */
+  .themes { display: grid; gap: 2.5rem; margin-top: 1rem; }
+  .theme {
+    max-width: 38rem;
+  }
+  .theme-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.875rem;
+  }
+  .theme h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.375rem;
+    line-height: 1.25;
+    margin: 0;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .severity {
+    display: inline-block;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.625rem;
+    border-radius: 99px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .severity.major    { background: var(--stale-soft);   color: var(--stale); }
+  .severity.critical { background: var(--danger-soft);  color: var(--danger); }
+  .severity.moderate { background: var(--paper-alt);    color: var(--ink-soft); }
+  .severity.win      { background: var(--commit-soft);  color: var(--commit); }
+  .theme p {
+    margin: 0 0 1rem;
+    color: var(--ink);
+    line-height: 1.65;
+  }
+
+  /* ── Pull quotes ─────────────────────────────────────────────── */
+  blockquote.quote {
+    margin: 1.5rem 0;
+    padding: 0 0 0 1.25rem;
+    border-left: 2px solid var(--accent);
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 36em;
+  }
+  blockquote.quote cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-mute);
+    font-weight: 500;
+  }
+
+  /* ── Implications list ───────────────────────────────────────── */
+  .impl {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    counter-reset: imp;
+    max-width: 38rem;
+  }
+  .impl li {
+    counter-increment: imp;
+    position: relative;
+    padding: 1.5rem 0 1.5rem 3.5rem;
+    border-top: 1px solid var(--border-soft);
+  }
+  .impl li:last-child { border-bottom: 1px solid var(--border-soft); }
+  .impl li::before {
+    content: counter(imp, decimal-leading-zero);
+    position: absolute;
+    left: 0; top: 1.6rem;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: var(--accent);
+  }
+  .impl strong {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.125rem;
+    margin-bottom: 0.375rem;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .impl span {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  /* ── Footer ──────────────────────────────────────────────────── */
+  footer {
+    padding: 3.5rem 0 4rem;
+    color: var(--ink-mute);
+    text-align: center;
+  }
+  footer p {
+    margin: 0 0 0.5rem;
+    font-size: 0.875rem;
+  }
+  footer p.mark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+  }
+  footer .colophon {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-mute);
+  }
+
+  /* ── Focus state ─────────────────────────────────────────────── */
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ── Tiny helpers ────────────────────────────────────────────── */
+  .small-cap {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 500;
+    color: var(--ink-mute);
+  }
+
+
+  /* ── Prose sub-heads and lists ───────────────────────────────── */
+  .prose h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.375rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 2rem 0 0.875rem;
+  }
+  .prose ul {
+    margin: 0 0 1.25rem;
+    padding-left: 1.25rem;
+    list-style: none;
+    max-width: 38rem;
+  }
+  .prose ul li {
+    position: relative;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .prose ul li::before {
+    content: "—";
+    position: absolute;
+    left: -1.25rem;
+    color: var(--accent);
+  }
+
+
+  /* Keep the back-link reachable on mobile */
+  .topnav-links { display: flex; }
+  .topnav-links a { white-space: nowrap; }
+
+  /* ── Mono ────────────────────────────────────────────────────── */
+  .mono {
+    font-family: var(--mono);
+    font-size: 0.875em;
+    background: var(--paper-alt);
+    padding: 0.125em 0.4em;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--ink);
+  }
+
+  /* ── Case article grid ───────────────────────────────────────── */
+  .case-article { display: block; }
+  @media (min-width: 960px) {
+    .case-article {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 640px) 1fr;
+      gap: 3rem;
+      max-width: 1180px;
+      margin-inline: auto;
+      padding-inline: 2rem;
+      align-items: start;
+    }
+    .case-sidebar--desktop { grid-column: 1; }
+    .case-content { grid-column: 2; }
+  }
+
+  /* ── Summary card ────────────────────────────────────────────── */
+  .summary-card {
+    margin: 2.5rem 0 3rem;
+    padding: 1.75rem 1.75rem 1.875rem;
+    background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+    border-radius: 6px;
+    max-width: 38rem;
+  }
+  @media (min-width: 760px) {
+    .summary-card { padding: 2rem 2.25rem; }
+  }
+  .summary-card .eyebrow { margin-bottom: 1.125rem; }
+  .summary-card p:not(.eyebrow) {
+    margin: 0 0 0.875rem;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .summary-card p:not(.eyebrow):last-child { margin-bottom: 0; }
+  .summary-card p em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--accent);
+    margin-right: 0.25rem;
+  }
+
+  /* ── Desktop sidebar ─────────────────────────────────────────── */
+  .case-sidebar--desktop {
+    display: none;
+  }
+  @media (min-width: 960px) {
+    .case-sidebar--desktop {
+      display: block;
+      position: sticky;
+      top: 96px;
+      align-self: start;
+    }
+  }
+  .case-sidebar--desktop .eyebrow { margin-bottom: 1rem; }
+  .case-sidebar--desktop .eyebrow-spaced { margin-top: 2rem; }
+  .sidebar-fields {
+    margin: 0;
+    padding: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .sidebar-fields > div {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 0.75rem;
+    padding: 0.625rem 0;
+    border-top: 1px solid var(--border-soft);
+  }
+  .sidebar-fields > div:last-child { border-bottom: 1px solid var(--border-soft); }
+  .sidebar-fields dt {
+    font-size: 0.75rem;
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.06em;
+    color: var(--ink-mute);
+    font-weight: 500;
+    line-height: 1.4;
+    padding-top: 0.0625rem;
+  }
+  .sidebar-fields dd {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .sidebar-outcomes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .sidebar-outcomes li {
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: var(--ink);
+    padding: 0.4375rem 0;
+    border-top: 1px solid var(--border-soft);
+  }
+  .sidebar-outcomes li:last-child { border-bottom: 1px solid var(--border-soft); }
+
+  /* ── Mobile sidebar accordion ────────────────────────────────── */
+  .case-sidebar-mobile {
+    margin: 1.5rem 0 2rem;
+    padding: 0;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  @media (min-width: 960px) {
+    .case-sidebar-mobile { display: none; }
+  }
+  .case-sidebar-mobile > summary {
+    padding: 1rem 0;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    font-weight: 500;
+    list-style: none;
+  }
+  .case-sidebar-mobile > summary::-webkit-details-marker { display: none; }
+  .case-sidebar-mobile[open] > summary { padding-bottom: 0.5rem; }
+  .case-sidebar-mobile > *:not(summary) { padding-bottom: 1rem; }
+
+  /* ── h1.title + .dek font-variation upgrades ─────────────────── */
+  h1.title {
+    font-variation-settings: "opsz" 144, "SOFT" 20;
+  }
+  .dek {
+    font-variation-settings: "SOFT" 40;
+  }
+
+  /* ── Section opener small caps ───────────────────────────────── */
+  .opener {
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.04em;
+    font-weight: 500;
+  }
+
+  /* ── Tabular figures on the hero meta ─────────────────────────── */
+  .meta dd { font-variant-numeric: tabular-nums; }
+
+  /* ── Read next ────────────────────────────────────────────────── */
+  .read-next {
+    margin: 5rem 0 2rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border-soft);
+  }
+  .read-next .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+  .read-next-link {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 1rem 2rem;
+    text-decoration: none;
+    color: var(--ink);
+    padding: 1.25rem 0 1.5rem;
+    border-bottom: 1px solid var(--border);
+    transition: border-color 200ms ease, padding 200ms ease;
+  }
+  .read-next-link:hover {
+    border-bottom-color: var(--accent);
+    padding-bottom: 1.875rem;
+  }
+  .read-next-title {
+    display: block;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin: 0 0 0.5rem;
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .read-next-dek {
+    display: block;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 36em;
+  }
+  .read-next-arrow {
+    font-family: var(--sans);
+    font-size: 1.5rem;
+    color: var(--accent);
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    transition: transform 200ms ease;
+  }
+  .read-next-link:hover .read-next-arrow {
+    transform: translateX(4px);
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Page navigation">
+  <div class="topnav-inner">
+    <a href="#top" class="topnav-mark">Aron Ryszka — Guardian 4</a>
+    <div class="topnav-links">
+      <a href="/index.html#work">Back to work <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- ─── Hero ──────────────────────────────────────────────────── -->
+  <header class="hero">
+    <div class="container">
+      <p class="eyebrow">Case Study</p>
+      <h1 class="title">Guardian 4</h1>
+      <p class="dek">Cognitive ergonomics of a medical device people apply at home, every day.</p>
+      <p class="lede">
+        A continuous glucose monitor that's saved more than one life — and one whose application process has barely changed since 2006. This case study analyses why users make the errors they make, using three established human-factors frameworks, and proposes three low-cost design interventions grounded in the analysis.
+      </p>
+      <dl class="meta">
+        <div>
+          <dt>Author</dt>
+          <dd>Aron Ryszka, 2025</dd>
+        </div>
+        <div>
+          <dt>Format</dt>
+          <dd>MSc Human Factors case study</dd>
+        </div>
+        <div>
+          <dt>Year</dt>
+          <dd>2025</dd>
+        </div>
+        <div>
+          <dt>Course</dt>
+          <dd><code class="mono">INM435</code></dd>
+        </div>
+      </dl>
+    </div>
+  </header>
+
+  <div class="case-article">
+
+    <aside class="case-sidebar case-sidebar--desktop" aria-label="About this project">
+      <p class="eyebrow">About this project</p>
+      <dl class="sidebar-fields">
+        <div><dt>Year</dt><dd>2025</dd></div>
+        <div><dt>Format</dt><dd>MSc Human Factors case study</dd></div>
+        <div><dt>Course</dt><dd><code class="mono">INM435</code></dd></div>
+        <div><dt>Role</dt><dd>Analysis · design proposal · test plan</dd></div>
+        <div><dt>Frameworks</dt><dd>Schema-Based Errors · Rasmussen SRK · Norman</dd></div>
+        <div><dt>Output</dt><dd>3 design interventions · usability test plan</dd></div>
+      </dl>
+      <p class="eyebrow eyebrow-spaced">Findings</p>
+      <ul class="sidebar-outcomes">
+        <li>14 errors classified across three frameworks</li>
+        <li>3 design interventions, targeting 11 of 14 errors</li>
+        <li>Comparative usability test plan with within-participant design</li>
+      </ul>
+    </aside>
+
+    <div class="case-content">
+
+      <details class="case-sidebar-mobile">
+        <summary>About this project ↓</summary>
+        <dl class="sidebar-fields">
+          <div><dt>Year</dt><dd>2025</dd></div>
+          <div><dt>Format</dt><dd>MSc Human Factors case study</dd></div>
+          <div><dt>Course</dt><dd><code class="mono">INM435</code></dd></div>
+          <div><dt>Role</dt><dd>Analysis · design proposal · test plan</dd></div>
+          <div><dt>Frameworks</dt><dd>Schema-Based Errors · Rasmussen SRK · Norman</dd></div>
+          <div><dt>Output</dt><dd>3 design interventions · usability test plan</dd></div>
+        </dl>
+        <p class="eyebrow">Findings</p>
+        <ul class="sidebar-outcomes">
+          <li>14 errors classified across three frameworks</li>
+          <li>3 design interventions, targeting 11 of 14 errors</li>
+          <li>Comparative usability test plan with within-participant design</li>
+        </ul>
+      </details>
+
+      <aside class="summary-card">
+        <p class="eyebrow">In short</p>
+        <p><em>The setting.</em> A continuous glucose monitor whose application process hasn't meaningfully changed since 2006 — used at home by patients where the margin for error is high.</p>
+        <p><em>The lens.</em> Three frameworks applied sequentially: Schema-Based Errors (which mental model failed), Rasmussen's SRK (which cognitive level), Norman (execution or planning).</p>
+        <p><em>What followed.</em> Fourteen errors cross-classified; the most consequential (sensor lost with the needle) reads as a skill-level slip — only fixable physically. Three design interventions and a comparative test plan follow.</p>
+      </aside>
+
+  <!-- ─── 1. The device ─────────────────────────────────────────── -->
+  <section id="device">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">01</p>
+        <h2 class="section-title">A medical device people <em>use at home</em></h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          <span class="opener">The Medtronic</span> Guardian 4 is a continuous glucose monitor (CGM) — a small sensor worn on the body that reads interstitial glucose every few minutes and feeds the data to an insulin pump or a phone. It is one of the most commonly NHS-prescribed CGMs for Type 1 diabetes. It is also, by application complexity, the closest thing to medical equipment a patient will ever attach to themselves at home.
+        </p>
+        <p>
+          The Guardian 4 launched in late 2023. Its predecessor launched in 2006. The application process — the sequence of physical steps the user performs every seven days to start a new sensor — has not meaningfully changed across that 17-year span. The sensor is applied via a one-press serter, the needle has to be removed manually, three adhesive patches are applied in a specific order, a transmitter is clicked on, and the system is paired with the pump. Skipping any step or doing them in the wrong order can render a £55 sensor unusable.
+        </p>
+        <p>
+          The comparable device for most users is the <strong>Freestyle Libre 2</strong> — a CGM the size of a £2 coin, applied in a single press, scanned with a phone via NFC, and lasting two weeks (versus one for Guardian 4). The contrast between them is the case study.
+        </p>
+        <blockquote class="quote">
+          "It's well worth it when things finally start working for you."
+          <cite>— Minute-Pilot5282, r/Medtronic780g</cite>
+        </blockquote>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── 2. Fourteen errors ────────────────────────────────────── -->
+  <section id="errors">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">02</p>
+        <h2 class="section-title">Fourteen <em>errors</em></h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          <span class="opener">A qualitative</span> review of Medtronic user forums and CGM communities identified fourteen recurring application errors. Some are slips of attention; some are reasonable misapplications of mental models learned from other devices; some are the device's design genuinely fighting the user. Grouped by stage of application:
+        </p>
+      </div>
+
+      <ol class="failures">
+        <li><strong>Procedure imported from another CGM</strong><span>User applies a procedure learned from Guardian 3 or Libre. The devices look similar; the procedures differ.</span></li>
+        <li><strong>Step misread or misinterpreted</strong><span>Instructions are not always unambiguous. A user reading carefully can still take the wrong step.</span></li>
+        <li><strong>Step skipped under distraction</strong><span>Application takes time; the user is interrupted; they resume incorrectly.</span></li>
+        <li><strong>Serter button difficulty</strong><span>The one-press serter requires firm two-button compression. Users with reduced grip strength struggle.</span></li>
+        <li><strong>Wrong part of needle pressed during removal</strong><span>The needle has small grips; misidentification leads to pulling the wrong thing.</span></li>
+        <li><strong>Sensor removed accidentally with the needle</strong><span>The most consequential error. The user intends to remove the needle and removes the entire sensor with it — £55 lost, eight hours without monitoring before a replacement is available.</span></li>
+        <li><strong>Patch applied instead of removing the needle</strong><span>Often intentional — users apply the patch first to anchor the sensor, then try to remove the needle. This is now the safer route.</span></li>
+        <li><strong>Patches applied out of order</strong><span>The strip patch (Patch 3) must be applied before the oval patches; doing it the other way prevents the strip from sitting flat.</span></li>
+        <li><strong>Patches applied in the wrong rotation</strong><span>The patches have an intended orientation; the user picks the wrong axis.</span></li>
+        <li><strong>Patch omitted</strong><span>Three patches required; user forgets one. The sensor will fail within hours.</span></li>
+        <li><strong>Transmitter connected before oval patches applied</strong><span>Transmitter is satisfying to click on. Users connect it eagerly, then can't reach underneath to apply the patches.</span></li>
+        <li><strong>Transmitter connected without applying patches at all</strong><span>User thinks the process is complete after the click. It isn't.</span></li>
+        <li><strong>Wrong-point resumption after interruption</strong><span>Resumed task at the wrong step; the patient cannot tell from the device's state which step they're on.</span></li>
+        <li><strong>Process assumed complete prematurely</strong><span>The transmitter clicks; the LED flashes; the user assumes done. The sensor still needs pump-side activation.</span></li>
+      </ol>
+
+      <div class="prose">
+        <p>
+          Fourteen errors is not a long list. But this is a high-stakes context: the most severe outcomes — a missed sensor leading to undetected hypoglycaemia — can be life-threatening for the 20–25% of patients who lack hypoglycaemia awareness. The bar for error frequency is therefore not "tolerable across a typical user base." It's "as close to zero as design can reach."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 3. Three frameworks ───────────────────────────────────── -->
+  <section id="frameworks">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">03</p>
+        <h2 class="section-title">Three <em>frameworks</em></h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          <span class="opener">The fourteen</span> errors look chaotic; classified through the right frameworks, they aren't. The analysis applies three lenses sequentially — each catches what the others miss.
+        </p>
+
+        <h3>Schema-Based Error Types</h3>
+        <p>
+          Reason's schema theory holds that users carry mental templates ("schemas") for sequences they've performed before. Errors come from one of three failure modes: the <strong>wrong schema activated</strong> (you applied a Libre procedure to a Guardian); the <strong>correct schema activated wrongly</strong> (you pulled when you should have pressed); or the <strong>schema not activated at all</strong> (you forgot to apply a patch).
+        </p>
+        <p>
+          Twelve of fourteen Guardian 4 errors fall into one of these three categories. The remaining two are device-mechanical (Errors 04, 05) and are partly schema-related anyway.
+        </p>
+
+        <h3>Rasmussen's SRK Model</h3>
+        <p>
+          Skill, Rule, Knowledge — three levels of cognitive control mapped to how automatic the action is. Skill-based actions are unconscious (System 1 in Kahneman's terms); rule-based actions consult known if-then patterns; knowledge-based actions require slow, deliberate reasoning (System 2). Errors at each level have different causes and different fixes.
+        </p>
+        <p>
+          Most Guardian 4 errors live at the <strong>rule-based</strong> level — users have learned an if-then for application but the if-then isn't the device's actual procedure. A handful are <strong>knowledge-based</strong> (first-time users, unfamiliar instructions). The serter-button failures are <strong>skill-based</strong>.
+        </p>
+
+        <h3>Norman's Error Model</h3>
+        <p>
+          Norman classifies errors into <strong>slips</strong> (you knew what to do; you did it wrong) and <strong>mistakes</strong> (you didn't know what to do; you planned the wrong thing). Reason's <strong>lapses</strong> (memory failures of omission) round out the categorisation.
+        </p>
+        <p>
+          Where SRK explains the cognitive level the user was operating at, Norman explains whether the failure was in execution or in planning. Sensor-removed-with-needle is a slip; transmitter-connected-before-patches is a mistake; patch-omitted is a lapse.
+        </p>
+
+        <h3>Cross-model analysis</h3>
+        <p>
+          A 14-row cross-classification table maps every error against all three frameworks. The complete table is in the linked report; the headline finding: <strong>the most consequential error in the dataset — accidentally removing the sensor while removing the needle (<code class="mono">Error 06</code>) — classifies as "correct schema activated wrongly · skill-based · slip."</strong> That cross-classification is what makes the redesign possible. A slip-class error at the skill level cannot be fixed by clearer instructions. It can only be fixed by changing what the user's hand can do.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 4. Three interventions ────────────────────────────────── -->
+  <section id="interventions">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">04</p>
+        <h2 class="section-title">Three <em>interventions</em></h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          <span class="opener">Three design</span> changes proposed, all low-cost relative to the device's £55 unit cost, and each targeted at a specific cluster of errors from the cross-model analysis. Together they address eleven of the fourteen errors.
+        </p>
+      </div>
+
+      <div class="commitments" style="grid-template-columns:1fr; max-width:38rem;">
+        <article class="commitment" style="border-left-color:var(--accent);">
+          <div class="commitment-label" style="color:var(--accent);">Design intervention · I</div>
+          <h3>Colour-coded, numbered instruction guide</h3>
+          <p>Split application into two visual phases — <em>attach</em> and <em>activate</em> — each its own colour. Number every patch and every component to match the order it appears in the sequence. The intervention costs almost nothing per unit; pure inking and printing.</p>
+          <p><strong>Targets.</strong> Errors 01, 02, 03, 08, 09, 10, 13 — lapses and mistakes driven by memory and sequencing failures (rule-based).</p>
+        </article>
+        <article class="commitment" style="border-left-color:var(--accent);">
+          <div class="commitment-label" style="color:var(--accent);">Design intervention · II</div>
+          <h3>Needle-component redesign</h3>
+          <p>Replace the pull-removal action with a press-release mechanism — the needle pops out after a clear button press, mirroring the action Medtronic already uses on its own infusion sets. Larger, more obvious buttons. Distinct from the sensor body.</p>
+          <p><strong>Targets.</strong> <code class="mono">Error 06</code> — the catastrophic-cost slip. A skill-level fix for a skill-level failure.</p>
+        </article>
+        <article class="commitment" style="border-left-color:var(--accent);">
+          <div class="commitment-label" style="color:var(--accent);">Design intervention · III</div>
+          <h3>Reorder: patch before needle</h3>
+          <p>Move the first oval patch in the procedure from after needle removal to before it. Users already do this informally; standardising it removes the temptation to pull while unattached and prevents the most common path to sensor displacement.</p>
+          <p><strong>Targets.</strong> Errors 06, 07, 11 — sequencing-driven mistakes.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 5. How I'd test this ──────────────────────────────────── -->
+  <section id="testing">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">05</p>
+        <h2 class="section-title">Testing the <em>redesign</em></h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          <span class="opener">Three interventions</span> are hypotheses, not facts. The case study includes a usability-testing plan that the redesign would need to pass before it could be claimed as a fix.
+        </p>
+        <p>
+          <strong>Method.</strong> Comparative usability testing, redesigned device against current Guardian 4. Within-participant design, counterbalanced order.
+        </p>
+        <p>
+          <strong>Participants.</strong> Twelve, recruited across two cohorts — six experienced Guardian 4 users (six months or more of use) and six first-time CGM users. The split matters: skill-based errors only show up in habitual users, and knowledge-based errors only show up in new ones.
+        </p>
+        <p><strong>Measures.</strong></p>
+        <ul>
+          <li><em>Quantitative:</em> error frequency per stage, time-to-completion, abandonment rate, severity-weighted error score.</li>
+          <li><em>Qualitative:</em> think-aloud during application, semi-structured interview after.</li>
+        </ul>
+        <p>
+          <strong>Analysis.</strong> Errors observed in the redesign mapped back to the same three frameworks used in the original analysis. If the framework-classification distribution shifts — fewer slips, fewer lapses, similar mistakes — the redesign succeeded at its targets. If error frequency drops but the same classes recur, the redesign attacked the wrong layer.
+        </p>
+        <p>
+          <strong>Limit acknowledged.</strong> Single-session evaluation cannot capture learning effects across weeks of use. A four-week diary study after the initial test would be the proper follow-up. The MSc scope didn't permit it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 6. What's transferable ────────────────────────────────── -->
+  <section id="transferable">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">06</p>
+        <h2 class="section-title">What's <em>transferable</em></h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          <span class="opener">Three lessons</span> that hold outside the medical-device context.
+        </p>
+      </div>
+
+      <ol class="impl">
+        <li><strong>Three frameworks are stronger than one.</strong><span>Schema-based analysis tells you which mental model failed; SRK tells you the cognitive level; Norman tells you whether it was execution or planning. Each catches errors the others miss. For multi-stage tasks where errors are diverse, single-framework analysis under-classifies.</span></li>
+        <li><strong>Catastrophic-cost errors need physical fixes, not informational ones.</strong><span>Clearer instructions don't solve skill-level slips. The hand has to be physically prevented from doing the wrong thing — or designed so the wrong thing is harder than the right thing.</span></li>
+        <li><strong>Familiarity is a hazard.</strong><span>Users coming from a different device of the same class will import their old schema. Where two devices serve the same function but procedure differs significantly, the new device either has to look obviously different (visual differentiation) or has to make the old schema fail safely on first attempt.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ─── 7. Reflection ─────────────────────────────────────────── -->
+  <section id="reflection">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">07</p>
+        <h2 class="section-title">Reflection</h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          <span class="opener">The proposal</span> is grounded in established frameworks and qualitative analysis of recurring user reports. It would still need testing against real users to claim impact. What this case study <em>can</em> honestly claim is that the analytical method works — applying three frameworks to a complex sequential task produced a clearer map of where failures cluster, and that map turned into design interventions that target specific error classes rather than the symptoms.
+        </p>
+        <p>
+          If the redesign reduced the rate of <code class="mono">Error 06</code> alone — sensor lost with the needle — Medtronic would recoup the cost of the design change in under a year of warranty claims. That is not the point of the case study; it is, however, an answer to the question of whether human-factors analysis pays for itself.
+        </p>
+      </div>
+    </div>
+  </section>
+
+      <aside class="read-next" aria-label="Continue reading">
+        <p class="eyebrow">Read next</p>
+        <a href="chapter-2.html" class="read-next-link">
+          <span class="read-next-title">Chapter 2</span>
+          <span class="read-next-dek">Four months at a recruitment-tech startup. Three things shipped.</span>
+          <span class="read-next-arrow" style="color: #5B3F6E" aria-hidden="true">→</span>
+        </a>
+      </aside>
+
+    </div><!-- /.case-content -->
+
+  </div><!-- /.case-article -->
+
+</main>
+
+<footer>
+  <p class="mark">Aron Ryszka</p>
+  <p>London · 2026</p>
+  <p class="colophon">MSc Human Factors · Cognitive ergonomics case study</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js" defer></script>
+<script src="scripts/case-choreography.js" defer></script>
+
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aron Ryszka — UX Researcher</title>
-<meta name="description" content="Selected UX research and design work by Aron Ryszka — MSc UX Engineering at City, University of London, with a copywriting background. London.">
+<title>EverMatch — An AI matchmaker that became an AI companion</title>
+<meta name="description" content="An MSc prototype exploring AI matchmaking using the Stanford HCMST dataset. Pivoted from data-driven matching to a behavioural chat-companion model after testing exposed the limits of structured data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
@@ -18,9 +18,9 @@
     --ink: #2C2416;
     --ink-soft: #6B6256;
     --ink-mute: #9C948A;
-    --accent: #C4652A;
-    --accent-soft: #FBF0E8;
-    --accent-deep: #A8541F;
+    --accent: #B85878;
+    --accent-soft: #F8E8EE;
+    --accent-deep: #9B4262;
     --commit: #5A7C5A;
     --commit-soft: #EDF4ED;
     --stale: #C49000;
@@ -785,125 +785,85 @@
   }
 
 
-  /* ── Project tiles (index only) ──────────────────────────────── */
-  .tiles {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-    margin-top: 2.5rem;
-  }
-  @media (min-width: 760px) {
-    .tiles { grid-template-columns: 1fr 1fr; }
-  }
-  .tile {
-    display: flex;
-    flex-direction: column;
+  /* ── Photographic figure (img) ───────────────────────────────── */
+  .figure img {
+    width: 100%;
+    height: auto;
+    max-width: 920px;
+    display: block;
+    margin: 0 auto;
     background: var(--paper);
     border: 1px solid var(--border);
-    border-left: 4px solid var(--tile-accent);
-    border-radius: 4px;
-    padding: 1.75rem 1.875rem;
-    text-decoration: none;
-    color: inherit;
+    border-radius: 6px;
   }
-  @media (prefers-reduced-motion: no-preference) {
-    .tile { transition: transform 180ms ease, border-left-width 180ms ease; }
-  }
-  .tile:hover {
-    transform: translateY(-2px);
-    border-left-width: 5px;
-  }
-  .tile-eyebrow {
-    font-size: 0.6875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--tile-accent);
-    font-weight: 500;
-    margin: 0 0 0.75rem;
-  }
-  .tile h3 {
+
+
+  /* ── Prose sub-heads and lists ───────────────────────────────── */
+  .prose h3 {
     font-family: var(--serif);
-    font-weight: 400;
-    font-size: 1.75rem;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin: 0 0 0.75rem;
+    font-weight: 500;
+    font-size: 1.375rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 2rem 0 0.875rem;
+  }
+  .prose ul {
+    margin: 0 0 1.25rem;
+    padding-left: 1.25rem;
+    list-style: none;
+    max-width: 38rem;
+  }
+  .prose ul li {
+    position: relative;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
     color: var(--ink);
   }
-  .tile-pitch {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 1.1875rem;
-    line-height: 1.35;
-    color: var(--ink-soft);
-    margin: 0 0 1rem;
-  }
-  .tile-body {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: var(--ink-soft);
-    margin: 0 0 1.25rem;
-  }
-  .tile-link {
-    margin-top: auto;
-    font-family: var(--sans);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--tile-accent);
-  }
-  .tile:hover .tile-link {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .tile:focus-visible {
-    outline: 2px solid var(--tile-accent);
-    outline-offset: 3px;
-    border-radius: 4px;
-  }
-
-  /* LinkedIn rendered as url-style link, not a pill */
-  .live-link a.live-link-url {
-    background: none;
-    border: none;
-    padding: 0;
-    border-radius: 0;
-    font-family: 'SF Mono', 'Consolas', Menlo, monospace;
-    font-size: 0.8125rem;
-    font-weight: 400;
-    color: var(--ink-mute);
-    letter-spacing: -0.005em;
-  }
-  .live-link a.live-link-url:hover {
-    background: none;
+  .prose ul li::before {
+    content: "—";
+    position: absolute;
+    left: -1.25rem;
     color: var(--accent);
-    border: none;
   }
 
-  /* Links inside the contact meta strip */
-  .meta dd a {
+
+  /* ── Answered / Unanswered cards (props with lists) ──────────── */
+  .props .severity { display: inline-block; margin-bottom: 1rem; }
+  .props ul {
+    margin: 0;
+    padding-left: 1.25rem;
+    list-style: none;
+  }
+  .props ul li {
+    position: relative;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-bottom: 0.75rem;
+  }
+  .props ul li:last-child { margin-bottom: 0; }
+  .props ul li::before {
+    content: "—";
+    position: absolute;
+    left: -1.25rem;
     color: var(--accent);
-    text-decoration: none;
-    transition: color 150ms ease;
   }
-  .meta dd a:hover { color: var(--accent-deep); text-decoration: underline; text-underline-offset: 3px; }
+  .props ul li strong { color: var(--ink); font-weight: 600; }
 
-  /* Contact strip: 1 col on mobile, 3 on desktop */
-  .meta.meta-3 { grid-template-columns: 1fr; }
-  @media (min-width: 640px) {
-    .meta.meta-3 { grid-template-columns: repeat(3, 1fr); }
-  }
+
+  /* Keep the back-link reachable on mobile */
+  .topnav-links { display: flex; }
+  .topnav-links a { white-space: nowrap; }
 </style>
 </head>
 <body>
 
 <nav class="topnav" aria-label="Page navigation">
   <div class="topnav-inner">
-    <a href="#top" class="topnav-mark">Aron Ryszka</a>
+    <a href="#top" class="topnav-mark">Aron Ryszka — EverMatch</a>
     <div class="topnav-links">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="/index.html#work">Back to work <span aria-hidden="true">↗</span></a>
     </div>
   </div>
 </nav>
@@ -913,143 +873,240 @@
   <!-- ─── Hero ──────────────────────────────────────────────────── -->
   <header class="hero">
     <div class="container">
-      <p class="eyebrow">Portfolio</p>
-      <h1 class="title">Aron Ryszka</h1>
-      <p class="dek">Product UX, research-led.</p>
+      <p class="eyebrow">Case Study</p>
+      <h1 class="title">EverMatch</h1>
+      <p class="dek">An AI matchmaker that became an AI companion.</p>
       <p class="lede">
-        My background is in copywriting and content; I now work in UX research and design. That mix means I think about what users need to <em>understand</em>, not just what they see. MSc in User Experience Engineering, City, University of London — looking for research roles where understanding the problem is where the work starts.
+        A short academic prototype that started as a data-driven dating match engine, ran into the limits of what structured data can actually predict about human connection, and pivoted into a behavioural chat-companion built on observed behaviour rather than declared preferences. The pivot is the case.
       </p>
       <dl class="meta">
         <div>
           <dt>Author</dt>
-          <dd>Aron Ryszka</dd>
+          <dd>Aron Ryszka, 2025</dd>
         </div>
         <div>
-          <dt>Role</dt>
-          <dd>UX Researcher</dd>
+          <dt>Format</dt>
+          <dd>MSc Project</dd>
         </div>
         <div>
-          <dt>Based in</dt>
-          <dd>London, UK</dd>
+          <dt>Year</dt>
+          <dd>2025</dd>
         </div>
         <div>
-          <dt>Available</dt>
-          <dd>Immediately</dd>
+          <dt>Built with</dt>
+          <dd>GPT · Stanford HCMST dataset</dd>
         </div>
       </dl>
-      <p class="live-link">
-        <a href="mailto:aron.ryszka@gmail.com">
-          aron.ryszka@gmail.com
-          <span aria-hidden="true">↗</span>
-        </a>
-        <a class="live-link-url" href="https://www.linkedin.com/in/aron-ryszka/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-      </p>
     </div>
   </header>
 
-  <!-- ─── 1. Selected work ──────────────────────────────────────── -->
-  <section id="work">
+  <!-- ─── 1. Starting point ─────────────────────────────────────── -->
+  <section id="start">
     <div class="container">
       <div class="section-head">
         <p class="section-num">01</p>
-        <h2 class="section-title">Selected <em>work</em></h2>
+        <h2 class="section-title">The <em>starting point</em></h2>
       </div>
 
       <div class="prose">
         <p class="lead">
-          Four projects from the last twelve months. One MSc capstone, one human-factors case study, three deliverables from a product internship, and one academic prototype on AI matchmaking.
+          Dating apps ask for a lot up front. Profile fields, photographs, lifestyle preferences, height, employment, prompts. Most of what they collect is performative — what people say they want rather than what predicts whether they'll actually like the person they meet. The starting hypothesis for EverMatch was modest: that AI could improve on the form-and-photo paradigm by inferring compatibility from a smaller set of carefully chosen signals.
         </p>
-      </div>
-
-      <div class="tiles">
-        <a class="tile" style="--tile-accent:#C4652A;" href="/branchflow.html" aria-label="Read the BranchFlow case study">
-          <p class="tile-eyebrow">2025–26 · MSc Capstone</p>
-          <h3>BranchFlow</h3>
-          <p class="tile-pitch">A branching interface for AI-assisted research.</p>
-          <p class="tile-body">A working React app testing whether interface architecture — branches, curated context, explicit commit semantics — can address five documented failure modes of chat-style LLMs for sustained intellectual work. Two pilots and four think-aloud sessions; 4 of 4 participants articulated the conceptual model unprompted.</p>
-          <span class="tile-link">Read the case →</span>
-        </a>
-
-        <a class="tile" style="--tile-accent:#1F5F6B;" href="/guardian-4.html" aria-label="Read the Guardian 4 CGM case study">
-          <p class="tile-eyebrow">2025 · MSc Human Factors</p>
-          <h3>Guardian 4 CGM</h3>
-          <p class="tile-pitch">Cognitive ergonomics of a medical device I use every day.</p>
-          <p class="tile-body">A cognitive-ergonomics analysis of Medtronic's continuous glucose monitor, applying Schema-Based Error Types, Rasmussen's SRK model, and Norman's framework against my own year of personal use. Three low-cost design interventions and a usability-testing plan grounded in the analysis.</p>
-          <span class="tile-link">Read the case →</span>
-        </a>
-
-        <a class="tile" style="--tile-accent:#5B3F6E;" href="/chapter-2.html" aria-label="Read the Chapter 2 internship case study">
-          <p class="tile-eyebrow">2025 · Product Internship</p>
-          <h3>Chapter 2</h3>
-          <p class="tile-pitch">Four months at a recruitment-tech startup. Three things shipped.</p>
-          <p class="tile-body">An end-to-end candidate workflow synthesised from real recruiter transcripts and AI-generated JTBD personas. A provisional-booking state architecture and its in-product messaging. A platform-wide UX copy audit with a voice-and-tone framework. Plus one API caching insight that lowered cost.</p>
-          <span class="tile-link">Read the case →</span>
-        </a>
-
-        <a class="tile" style="--tile-accent:#B85878;" href="/evermatch.html" aria-label="Read the EverMatch case study">
-          <p class="tile-eyebrow">2025 · MSc Project</p>
-          <h3>EverMatch</h3>
-          <p class="tile-pitch">An AI matchmaker that became an AI companion.</p>
-          <p class="tile-body">An exploration of what AI can — and can't — do for dating. Started with the Stanford HCMST dataset and a GPT-plus-clustering match engine. Pivoted, after testing exposed the limits of structured data, to a behavioural chat-companion model that earns trust before it asks for input.</p>
-          <span class="tile-link">Read the case →</span>
-        </a>
+        <p>
+          The opening question — <em>what can AI actually contribute to matching that the existing paradigm can't?</em> — broke into three sub-questions:
+        </p>
+        <ul>
+          <li>Which traits actually predict relationship success?</li>
+          <li>Can a model learn those traits from conversation rather than forms?</li>
+          <li>And can the result feel like guidance, not surveillance?</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- ─── 2. About ──────────────────────────────────────────────── -->
-  <section id="about">
-    <div class="container">
-      <div class="section-head">
-        <p class="section-num">02</p>
-        <h2 class="section-title">About</h2>
+  <!-- ─── 2. What the data says ─────────────────────────────────── -->
+  <section id="data">
+    <div class="container-wide">
+      <div class="container" style="width:100%; padding:0; margin:0;">
+        <div class="section-head">
+          <p class="section-num">02</p>
+          <h2 class="section-title">What the <em>data says</em></h2>
+        </div>
+
+        <div class="prose">
+          <p class="lead">
+            To find an empirical floor, I used the <strong>Stanford HCMST dataset (2017–2022)</strong> — the longitudinal How Couples Meet and Stay Together study, which tracks paired couples and what stays paired across waves of the survey.
+          </p>
+          <p>
+            A feature-importance pass on the dataset surfaced the strongest predictors of couples still being together at the latest wave. Some of them were unsurprising (relationship length at first survey, age gap). Some were less obvious — meeting context, frequency of shared social activity, weekly chore distribution, the survey's measure of "differing political opinions" as a <em>positive</em> predictor when paired with reported communication quality.
+          </p>
+          <p>
+            What the dataset <em>couldn't</em> tell me was anything about the early-stage compatibility question — what predicts a first meeting going well, before there's enough shared history to measure. Most of the strong predictors require time. The matching question and the survey design didn't fully overlap.
+          </p>
+          <blockquote class="quote">
+            "I wouldn't use any chatbot to speak about anything private, just because there's no easy way to guarantee the security of your data."
+            <cite>— Initial user research (n=9, MSc 2025)</cite>
+          </blockquote>
+        </div>
       </div>
 
-      <div class="prose">
-        <p class="lead">
-          I'm Aron — a London-based product UX designer, working research-first with an MSc in User Experience Engineering from City, University of London. Before that, I worked as a copywriter for a Polish home-décor retailer, then spent two years as a door supervisor in UK hospitality — which taught me more about reading rooms and de-escalation than any course since.
-        </p>
-        <p>
-          Most recently I spent four months at <strong>Chapter 2</strong>, a recruitment-tech startup, as a research-led product intern. I synthesised real recruiter interview transcripts with AI-generated JTBD personas to produce an 8-stage workflow map that guided the team's roadmap. I designed the platform's booking journey, audited every line of copy in the recruiter view, and proposed an API caching change that lowered our Gemini API spend.
-        </p>
-        <p>
-          My approach: <strong>understand the problem before solving it</strong>. That sounds obvious. It isn't. Most of the friction in the products I've worked on came from skipping that step — from a brief that assumed it knew the answer, or a feature that solved the wrong problem fluently. The copywriting background is why I'm sensitive to this. The wrong word is almost always the wrong concept underneath. Fixing one without the other never works.
-        </p>
-        <p>
-          What I'm looking for: a UX research role on a team that treats research as the start of the work, not the end of it. Comfortable with AI in the loop — sceptical about it doing the loop for me.
-        </p>
-      </div>
+      <figure class="figure">
+        <img src="assets/evermatch-predictive-traits.jpg" width="1400" height="843" loading="lazy"
+             alt="Horizontal bar chart titled &quot;What Predicts Relationship Success — Which Features Matter Most for Relationship Success?&quot;. The top predictor by a wide margin is relationship duration in years. Other strong predictors: age, cohabitation status, weekly frequency, income, marital status, professional or doctoral education. Source: Stanford HCMST dataset 2017 to 2022.">
+        <figcaption>
+          Feature importance from the Stanford HCMST dataset (2017–2022). Relationship duration dominates as a predictor of couples remaining together — but it requires history to measure, which the early-compatibility question doesn't have.
+        </figcaption>
+      </figure>
     </div>
   </section>
 
-  <!-- ─── 3. Contact ────────────────────────────────────────────── -->
-  <section id="contact">
+  <!-- ─── 3. Prototype one ──────────────────────────────────────── -->
+  <section id="prototype-one">
     <div class="container">
       <div class="section-head">
         <p class="section-num">03</p>
-        <h2 class="section-title">Get in <em>touch</em></h2>
+        <h2 class="section-title">Prototype <em>one</em></h2>
       </div>
 
       <div class="prose">
         <p class="lead">
-          The fastest way is email. London-based, available for full-time research roles from <strong>January 2026</strong>.
+          The first prototype was a match engine: collect user traits via a GPT-driven form, embed them, cluster the user against the existing user base, and surface the nearest neighbours as candidate matches.
         </p>
       </div>
 
-      <dl class="meta meta-3">
-        <div>
-          <dt>Email</dt>
-          <dd><a href="mailto:aron.ryszka@gmail.com">aron.ryszka@gmail.com</a></dd>
-        </div>
-        <div>
-          <dt>LinkedIn</dt>
-          <dd><a href="https://www.linkedin.com/in/aron-ryszka/" target="_blank" rel="noopener noreferrer">aron-ryszka ↗</a></dd>
-        </div>
-        <div>
-          <dt>Phone</dt>
-          <dd><a href="tel:+447851052053">+44 7851 052 053</a></dd>
-        </div>
-      </dl>
+      <figure class="figure">
+        <img src="assets/evermatch-matching-flow.jpg"
+             alt="Matching flow diagram. Four stages connected by arrows: Input (user with phone), Compare to Dataset (database icon with embedding cluster), Assign to Cluster (overlapping user circles), Find Matches (two profile cards). Caption beneath the diagram reads 'Image generated using ChatGPT'."
+             width="1600" height="1090">
+        <figcaption>The architecture: collect input → embed against the dataset → cluster the user → surface nearest-neighbour matches.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <p><strong>What the prototype taught:</strong></p>
+      </div>
+
+      <ol class="impl">
+        <li><strong>Comparing answers works, but lacks nuance.</strong><span>Two users who described their politics, hobbies, and weekend habits in similar terms scored as a match. Whether they would actually <em>enjoy</em> each other's company was invisible to the system.</span></li>
+        <li><strong>Personality and intent are invisible to structured data.</strong><span>The dataset's strongest predictors required relationship history. The application context — strangers being matched for a first meeting — has no history yet. The data-driven floor was lower than it looked.</span></li>
+        <li><strong>Users were sceptical of sharing enough to train better.</strong><span>Privacy worries weren't theoretical. Asking for the depth of data that might have made the matching genuinely better hit immediate resistance.</span></li>
+      </ol>
+
+      <div class="prose">
+        <p>
+          Prototype one worked technically — but ran into the limits of what structured data can predict, and the trust needed to gather more. The path forward needed a different shape.
+        </p>
+      </div>
+
+      <figure class="figure">
+        <img src="assets/evermatch-prototype-1.jpg"
+             alt="Screenshot of the Prototype 1 interface, a dark-themed ChatGPT conversation. Top message: 'Talked to evermatch-api.onrender.com. Got your matches! Based on your answers, here are your top 3 potential partners.' Two candidate cards follow: Profile Image, Age 29, Compatibility Score 0.32, with a written explanation; and Profile Image, Age 25, Compatibility Score 0.21, with a second written explanation."
+             width="1200" height="989">
+        <figcaption>What Prototype 1 actually looked like in use — GPT-driven, returning ranked candidates with compatibility scores and one-line rationales.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ─── 4. The pivot ──────────────────────────────────────────── -->
+  <section id="pivot">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">04</p>
+        <h2 class="section-title">The <em>pivot</em></h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          The pivot took the question from "<em>how do we match people more accurately?</em>" to "<em>what could AI usefully do for someone dating?</em>" — and the answer changed.
+        </p>
+        <p>Three pieces of secondary research moved the design:</p>
+        <ul>
+          <li><strong>Matchmakers observe before they prescribe.</strong> Professional human matchmakers spend disproportionate time learning the client's patterns and preferences before they propose anyone. The "match" is the easy part; the "know" is the work.</li>
+          <li><strong>Streaming platforms learn from behaviour, not declarations.</strong> Netflix doesn't ask whether you like comedies; it watches what you finish. The strongest signal is what you actually do, not what you say you want.</li>
+          <li><strong>Feedback loops build trust over time.</strong> Hinge's "We Met" prompt — <em>did you actually meet? how did it go?</em> — is structurally simple and behaviourally powerful. Users learn that the app is paying attention and adjust accordingly.</li>
+        </ul>
+        <p>
+          The pivot: stop building a matcher. Build a <strong>companion that watches, asks lightly, and learns</strong> — and surfaces matches only when its model of the user is dense enough to mean something. The match engine becomes the back-of-house. The user-facing thing is conversation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 5. Prototype two ──────────────────────────────────────── -->
+  <section id="prototype-two">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">05</p>
+        <h2 class="section-title">Prototype <em>two</em></h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          The redesigned prototype is a chat-companion. The user doesn't fill in a form; they have a conversation. The model learns over time. Matches surface in the conversation when the model has the confidence to suggest them.
+        </p>
+        <p>Three deliberate moves:</p>
+        <ul>
+          <li><strong>Let the user ask, not just receive.</strong> The companion is reactive to user-initiated questions ("<em>what should I be doing differently?</em>", "<em>should I message back tonight or in the morning?</em>"), not just a top-down recommender.</li>
+          <li><strong>Earn trust before it's spent.</strong> The first sessions focus on listening — what dating actually feels like for this user right now, what worked and what didn't. Matching is held back until the user wants it.</li>
+          <li><strong>Focus on what users do, not what they say.</strong> Sentiment after dates, frequency of conversation continuation, follow-through on suggestions — all of it observable, all of it richer than form data.</li>
+        </ul>
+        <p>
+          The companion never asks for the kind of demographic data that triggered the privacy resistance in prototype one. It infers what it needs from how the conversation moves.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 6. Answered, unanswered ───────────────────────────────── -->
+  <section id="answered">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">06</p>
+        <h2 class="section-title">Answered, <em>unanswered</em></h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">
+          The honest summary at the end of a short project.
+        </p>
+      </div>
+
+      <div class="props">
+        <article>
+          <span class="severity win">Answered</span>
+          <ul>
+            <li><strong>Can AI improve matching using behaviour?</strong> To some extent — yes, behavioural signals outperform self-reported preferences on the predictors the dataset could measure.</li>
+            <li><strong>Can AI feel like a companion, not a tool?</strong> Likely yes. The reframing from recommender to conversational partner is the most consequential design move in the project.</li>
+            <li><strong>What matters most for compatibility?</strong> Subtle personality cues, not surface preferences.</li>
+            <li><strong>Can engagement be built without addictive mechanics?</strong> Yes — through helpful suggestions and follow-ups, not novelty rewards.</li>
+            <li><strong>Can the model train without invasive personal data?</strong> By learning from what users <em>do</em>, not what they declare.</li>
+          </ul>
+        </article>
+        <article>
+          <span class="severity moderate">Unanswered</span>
+          <ul>
+            <li><strong>What role does AI play long-term in romantic decisions?</strong> Open. The case study only covers the first three to six sessions of use.</li>
+            <li><strong>Can AI truly adapt to emotional nuance over time?</strong> Open. A longer-term, longitudinal study would be needed — and not within the scope of a single MSc module.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 7. What it taught me ──────────────────────────────────── -->
+  <section id="taught">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-num">07</p>
+        <h2 class="section-title">What this project <em>taught me</em></h2>
+      </div>
+
+      <div class="prose">
+        <p class="lead">EverMatch was a single-semester academic project — useful primarily as a teaching case about AI-driven products and where their real constraints sit.</p>
+
+        <p>Prototype one was the design originally planned. It worked technically; the data couldn't answer the early-compatibility question, and users wouldn't share the depth of information that might have closed the gap. That combination is the structure of a recurring pattern in AI products: a solution running on the wrong shape of problem, with users hesitant to fill in the gap with personal data.</p>
+
+        <p>The pivot was the lesson. Most of the AI-product work since — including the design of BranchFlow's curated-context model — has been informed by what EverMatch surfaced: that the most valuable thing AI can do for a user is often not the thing the user is currently being asked to feed it data for.</p>
+      </div>
     </div>
   </section>
 
@@ -1058,7 +1115,7 @@
 <footer>
   <p class="mark">Aron Ryszka</p>
   <p>London · 2026</p>
-  <p class="colophon">UX Research &amp; Design · Open to roles</p>
+  <p class="colophon">MSc Project · AI matchmaking prototype</p>
 </footer>
 
 </body>
