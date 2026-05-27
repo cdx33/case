@@ -7,33 +7,33 @@
 <meta name="description" content="An MSc HCI artefact investigating whether interface design alone can address five documented failure modes of chat-style LLMs for sustained intellectual work. Aron Ryszka, 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #F5F2EB;
-    --paper: #FFFEFA;
-    --paper-alt: #F0EDE6;
-    --border: #DDD8CE;
-    --border-soft: #E8E3D6;
-    --ink: #2C2416;
-    --ink-soft: #6B6256;
-    --ink-mute: #9C948A;
-    --accent: #C4652A;
-    --accent-soft: #FBF0E8;
-    --accent-deep: #A8541F;
-    --commit: #5A7C5A;
-    --commit-soft: #EDF4ED;
-    --stale: #C49000;
-    --stale-soft: #FEF7E0;
-    --danger: #B5403A;
-    --danger-soft: #FCEEED;
+    --bg: #FAFAF7;
+    --paper: #FFFFFE;
+    --paper-alt: #EFEEE9;
+    --border: #D4D2CC;
+    --border-soft: #E5E3DE;
+    --ink: #161614;
+    --ink-soft: #4D4B47;
+    --ink-mute: #8B8884;
+    --accent: #0040FF;
+    --accent-soft: #E8EEFF;
+    --accent-deep: #0030B8;
+    --commit: #2D5A3E;
+    --commit-soft: #E8F0EA;
+    --stale: #A67100;
+    --stale-soft: #F8EFD8;
+    --danger: #9E2A24;
+    --danger-soft: #F8E8E7;
     --theory: #7B5EA7;
     --regulation: #4A6FA5;
     --research: #2A7F6F;
 
-    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
-    --sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
-    --mono: 'IBM Plex Mono', 'SF Mono', Menlo, monospace;
+    --sans:  'IBM Plex Sans', 'Inter', system-ui, sans-serif;
+    --serif: 'IBM Plex Serif', Georgia, serif;
+    --mono:  'IBM Plex Mono', 'JetBrains Mono', 'SF Mono', Menlo, monospace;
 
     --container: min(720px, calc(100% - 3rem));
     --container-wide: min(940px, calc(100% - 3rem));
@@ -73,7 +73,7 @@
     padding: 0.875rem 0;
   }
   .topnav-mark {
-    font-family: var(--serif); font-weight: 500;
+    font-family: var(--sans); font-weight: 500;
     font-size: 1.0625rem; letter-spacing: -0.01em;
     color: var(--ink);
     text-decoration: none;
@@ -173,9 +173,10 @@
   }
   .sidebar-fields > div:last-child { border-bottom: 1px solid var(--border-soft); }
   .sidebar-fields dt {
+    font-family: var(--mono);
     font-size: 0.75rem;
-    font-variant-caps: all-small-caps;
-    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     color: var(--ink-mute);
     font-weight: 500;
     line-height: 1.4;
@@ -221,10 +222,10 @@
   .case-sidebar-mobile > summary {
     padding: 1rem 0;
     cursor: pointer;
-    font-family: var(--sans);
+    font-family: var(--mono);
     font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.08em;
     color: var(--accent);
     font-weight: 500;
     list-style: none;
@@ -237,11 +238,10 @@
 
   /* ── Oversized margin numerals ────────────────────────────────── */
   .section-num {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-variation-settings: "opsz" 144, "SOFT" 60;
-    font-size: clamp(3rem, 5vw, 4rem);
-    letter-spacing: -0.04em;
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    letter-spacing: 0;
     color: var(--accent);
     margin: 0 0 0.5rem;
     line-height: 1;
@@ -249,32 +249,12 @@
   .section-num::after { content: none; }
   @media (min-width: 960px) {
     .section-num {
-      font-size: clamp(4rem, 7vw, 6rem);
+      font-size: clamp(2.75rem, 5vw, 4.25rem);
       position: relative;
       margin-left: -2rem;
       margin-bottom: 0.75rem;
     }
   }
-
-  /* ── Hero h1 upgrade ──────────────────────────────────────────── */
-  h1.title {
-    font-size: clamp(3.5rem, 10vw, 7.25rem);
-    font-variation-settings: "opsz" 144, "SOFT" 50;
-    letter-spacing: -0.035em;
-  }
-  .dek {
-    font-variation-settings: "SOFT" 100;
-  }
-
-  /* ── Section opener small caps ────────────────────────────────── */
-  .opener {
-    font-variant-caps: all-small-caps;
-    letter-spacing: 0.04em;
-    font-weight: 500;
-  }
-
-  /* ── Tabular figures on the hero meta ─────────────────────────── */
-  .meta dd { font-variant-numeric: tabular-nums; }
 
   /* ── Read next ────────────────────────────────────────────────── */
   .read-next {
@@ -302,8 +282,8 @@
   }
   .read-next-title {
     display: block;
-    font-family: var(--serif);
-    font-weight: 400;
+    font-family: var(--sans);
+    font-weight: 500;
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     line-height: 1.05;
     letter-spacing: -0.025em;
@@ -345,9 +325,10 @@
     .hero { padding: 7rem 0 5rem; }
   }
   .eyebrow {
+    font-family: var(--mono);
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.08em;
     color: var(--accent);
     margin: 0 0 1.75rem;
     font-weight: 500;
@@ -360,11 +341,11 @@
     color: var(--accent);
   }
   h1.title {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(3.25rem, 9vw, 6rem);
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: clamp(3.25rem, 9vw, 6.25rem);
     line-height: 0.95;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
     margin: 0 0 1.5rem;
     color: var(--ink);
   }
@@ -379,7 +360,7 @@
     max-width: 32ch;
   }
   .lede {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 400;
     font-size: clamp(1.0625rem, 1.3vw, 1.1875rem);
     line-height: 1.55;
@@ -400,9 +381,10 @@
   }
   .meta > div { margin: 0; }
   .meta dt {
+    font-family: var(--mono);
     font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
     color: var(--ink-mute);
     margin-bottom: 0.375rem;
     font-weight: 500;
@@ -412,6 +394,7 @@
     font-size: 0.9375rem;
     color: var(--ink);
     line-height: 1.4;
+    font-variant-numeric: tabular-nums;
   }
 
   /* ── Sections ────────────────────────────────────────────────── */
@@ -424,33 +407,21 @@
   }
 
   .section-head { margin-bottom: 2.5rem; }
-  .section-num {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: 0.875rem;
-    letter-spacing: 0.05em;
-    color: var(--accent);
-    margin: 0 0 1rem;
-  }
-  .section-num::after {
-    content: " /";
-    color: var(--ink-mute);
-    margin-left: 0.25rem;
-  }
   h2.section-title {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: clamp(1.875rem, 4vw, 2.75rem);
     line-height: 1.05;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.015em;
     margin: 0;
     color: var(--ink);
     max-width: 22ch;
   }
   h2.section-title em {
+    font-family: var(--serif);
     font-style: italic;
     color: var(--accent);
-    font-weight: 400;
+    font-weight: 500;
   }
 
   /* ── Body prose ──────────────────────────────────────────────── */
@@ -460,21 +431,12 @@
     color: var(--ink);
   }
   .prose p.lead {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 1.25rem;
     line-height: 1.55;
     color: var(--ink);
     margin-bottom: 2rem;
     max-width: 30em;
-  }
-  .prose p.lead::first-letter {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: 4.25rem;
-    line-height: 0.85;
-    float: left;
-    padding: 0.4rem 0.5rem 0 0;
-    color: var(--accent);
   }
   .prose strong {
     font-weight: 600;
@@ -538,15 +500,15 @@
     content: counter(failure, decimal-leading-zero);
     position: absolute;
     left: 0; top: 1.3rem;
-    font-family: var(--serif);
+    font-family: var(--mono);
     font-weight: 400;
     font-size: 0.8125rem;
     color: var(--accent);
-    letter-spacing: 0.04em;
+    letter-spacing: 0;
   }
   .failures strong {
     display: block;
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 1.0625rem;
     font-weight: 500;
     margin-bottom: 0.25rem;
@@ -586,7 +548,7 @@
     margin-bottom: 0.75rem;
   }
   .props h3 {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 1.1875rem;
     line-height: 1.25;
@@ -633,7 +595,7 @@
   }
   .live-link a span { font-size: 0.875em; }
   .live-link-url {
-    font-family: 'SF Mono', 'Consolas', Menlo, monospace;
+    font-family: var(--mono);
     font-size: 0.8125rem;
     color: var(--ink-mute);
     letter-spacing: -0.005em;
@@ -671,7 +633,7 @@
   .browser-url {
     flex: 1;
     min-width: 0;
-    font-family: 'SF Mono', 'Consolas', Menlo, monospace;
+    font-family: var(--mono);
     font-size: 0.78125rem;
     color: var(--ink-soft);
     background: var(--paper);
@@ -802,15 +764,16 @@
     border-radius: 4px;
   }
   .commitment-label {
+    font-family: var(--mono);
     font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
     color: var(--commit);
     margin-bottom: 0.625rem;
     font-weight: 500;
   }
   .commitment h3 {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 1.25rem;
     line-height: 1.25;
@@ -845,13 +808,14 @@
   .hero-stat::before { left: -1px; }
   .hero-stat::after  { right: -1px; }
   .hero-stat .stat-num {
-    font-family: var(--serif);
-    font-weight: 300;
+    font-family: var(--mono);
+    font-weight: 500;
     font-size: clamp(3.5rem, 8vw, 5rem);
     line-height: 1;
     color: var(--accent);
     margin: 0 0 0.75rem;
     letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
   }
   .hero-stat .stat-num span {
     font-size: 0.5em;
@@ -863,6 +827,7 @@
   .hero-stat .stat-label {
     font-family: var(--serif);
     font-style: italic;
+    font-weight: 500;
     font-size: 1.125rem;
     color: var(--ink);
     max-width: 28rem;
@@ -883,7 +848,7 @@
     margin-bottom: 0.875rem;
   }
   .theme h3 {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 1.375rem;
     line-height: 1.25;
@@ -893,9 +858,10 @@
   }
   .severity {
     display: inline-block;
+    font-family: var(--mono);
     font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     padding: 0.25rem 0.625rem;
     border-radius: 99px;
     font-weight: 500;
@@ -918,7 +884,7 @@
     border-left: 2px solid var(--accent);
     font-family: var(--serif);
     font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 1.0625rem;
     line-height: 1.5;
     color: var(--ink);
@@ -927,11 +893,11 @@
   blockquote.quote cite {
     display: block;
     margin-top: 0.5rem;
-    font-family: var(--sans);
+    font-family: var(--mono);
     font-style: normal;
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
     color: var(--ink-mute);
     font-weight: 500;
   }
@@ -955,14 +921,14 @@
     content: counter(imp, decimal-leading-zero);
     position: absolute;
     left: 0; top: 1.6rem;
-    font-family: var(--serif);
+    font-family: var(--mono);
     font-weight: 400;
     font-size: 0.875rem;
     color: var(--accent);
   }
   .impl strong {
     display: block;
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 1.125rem;
     margin-bottom: 0.375rem;
@@ -988,6 +954,7 @@
   footer p.mark {
     font-family: var(--serif);
     font-style: italic;
+    font-weight: 500;
     font-size: 1rem;
     color: var(--ink-soft);
     margin-bottom: 1rem;
@@ -1129,7 +1096,7 @@
 
       <div class="prose">
         <p class="lead">
-          <span class="opener">Researchers, academic</span> writers, and knowledge workers increasingly run early-stage thinking through LLMs — secondary research, exploratory writing, sensemaking. The interface they do it inside was never designed for that work. Five failure modes are now documented in the literature:
+          Researchers, academic writers, and knowledge workers increasingly run early-stage thinking through LLMs — secondary research, exploratory writing, sensemaking. The interface they do it inside was never designed for that work. Five failure modes are now documented in the literature:
         </p>
 
         <ol class="failures">
@@ -1173,7 +1140,7 @@
 
         <div class="prose">
           <p class="lead">
-            <span class="opener">Once learned,</span> branching architecture and explicit commit semantics reduce sustained cognitive load by externalising state the user's working memory can't hold. That is the hypothesis. It rests on four design propositions.
+            Once learned, branching architecture and explicit commit semantics reduce sustained cognitive load by externalising state the user's working memory can't hold. That is the hypothesis. It rests on four design propositions.
           </p>
         </div>
       </div>
@@ -1214,7 +1181,7 @@
 
         <div class="prose">
           <p class="lead">
-            <span class="opener">BranchFlow is</span> a single-page React app backed by a serverless LLM proxy. The working surface is three panels. The model on the right of every interaction is Gemini 2.5 Flash. The architecture, more than the UI, carries the design's argument.
+            BranchFlow is a single-page React app backed by a serverless LLM proxy. The working surface is three panels. The model on the right of every interaction is Gemini 2.5 Flash. The architecture, more than the UI, carries the design's argument.
           </p>
 
           <p>
@@ -1298,7 +1265,7 @@
 
       <div class="prose">
         <p class="lead">
-          <span class="opener">Research-through-design</span> (Zimmerman, Forlizzi &amp; Evenson, 2007) across four phases: competitive analysis, concept design, prototype, evaluation. The prototype was supposed to be a Figma deck. It became a working React app on Vercel.
+          Research-through-design (Zimmerman, Forlizzi &amp; Evenson, 2007) across four phases: competitive analysis, concept design, prototype, evaluation. The prototype was supposed to be a Figma deck. It became a working React app on Vercel.
         </p>
 
         <p>
@@ -1326,7 +1293,7 @@
 
       <div class="prose">
         <p class="lead">
-          <span class="opener">Reflexive thematic</span> analysis (Braun &amp; Clarke, 2019) across four transcripts produced thirty inductive codes, clustered through affinity mapping into seven themes. The strongest signal arrived early and unprompted.
+          Reflexive thematic analysis (Braun &amp; Clarke, 2019) across four transcripts produced thirty inductive codes, clustered through affinity mapping into seven themes. The strongest signal arrived early and unprompted.
         </p>
       </div>
 
@@ -1435,7 +1402,7 @@
 
       <div class="prose">
         <p class="lead">
-          <span class="opener">Five generalisable</span> lessons for AI research tools, in order of evidential confidence.
+          Five generalisable lessons for AI research tools, in order of evidential confidence.
         </p>
 
         <ol class="impl">
@@ -1474,7 +1441,7 @@
 
       <div class="prose">
         <p class="lead">
-          <span class="opener">The design's</span> core cognitive claim — that branching plus commit semantics reduces sustained cognitive load — was not tested by this study, and could not have been. A single-session first-encounter evaluation can confirm that the conceptual model is learnable. It cannot distinguish germane schema acquisition from extraneous surface learning.
+          The design's core cognitive claim — that branching plus commit semantics reduces sustained cognitive load — was not tested by this study, and could not have been. A single-session first-encounter evaluation can confirm that the conceptual model is learnable. It cannot distinguish germane schema acquisition from extraneous surface learning.
         </p>
 
         <blockquote class="quote">
@@ -1498,7 +1465,7 @@
       <a href="guardian-4.html" class="read-next-link">
         <span class="read-next-title">Guardian 4 CGM</span>
         <span class="read-next-dek">Cognitive ergonomics of a medical device people apply at home, every day.</span>
-        <span class="read-next-arrow" style="color: #1F5F6B" aria-hidden="true">→</span>
+        <span class="read-next-arrow" style="color: #006B4F" aria-hidden="true">→</span>
       </a>
     </aside>
 
