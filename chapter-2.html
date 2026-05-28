@@ -7,33 +7,33 @@
 <meta name="description" content="Four months as a research-led product intern at Chapter 2, a recruitment-tech startup. Three deliverables shipped across research, service design, and content systems.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #F5F2EB;
-    --paper: #FFFEFA;
-    --paper-alt: #F0EDE6;
-    --border: #DDD8CE;
-    --border-soft: #E8E3D6;
-    --ink: #2C2416;
-    --ink-soft: #6B6256;
-    --ink-mute: #9C948A;
-    --accent: #5B3F6E;
-    --accent-soft: #EFE9F2;
-    --accent-deep: #452F54;
-    --commit: #5A7C5A;
-    --commit-soft: #EDF4ED;
-    --stale: #C49000;
-    --stale-soft: #FEF7E0;
-    --danger: #B5403A;
-    --danger-soft: #FCEEED;
+    --bg: #FAFAF7;
+    --paper: #FFFFFE;
+    --paper-alt: #EFEEE9;
+    --border: #D4D2CC;
+    --border-soft: #E5E3DE;
+    --ink: #161614;
+    --ink-soft: #4D4B47;
+    --ink-mute: #8B8884;
+    --accent: #6B0F4F;
+    --accent-soft: #F4E8F0;
+    --accent-deep: #50083A;
+    --commit: #2D5A3E;
+    --commit-soft: #E8F0EA;
+    --stale: #A67100;
+    --stale-soft: #F8EFD8;
+    --danger: #9E2A24;
+    --danger-soft: #F8E8E7;
     --theory: #7B5EA7;
     --regulation: #4A6FA5;
     --research: #2A7F6F;
 
-    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
-    --sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
-    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --sans:  'IBM Plex Sans', 'Inter', system-ui, sans-serif;
+    --serif: 'IBM Plex Serif', Georgia, serif;
+    --mono:  'IBM Plex Mono', 'JetBrains Mono', 'SF Mono', Menlo, monospace;
 
     --container: min(720px, calc(100% - 3rem));
     --container-wide: min(940px, calc(100% - 3rem));
@@ -73,7 +73,7 @@
     padding: 0.875rem 0;
   }
   .topnav-mark {
-    font-family: var(--serif); font-weight: 500;
+    font-family: var(--sans); font-weight: 500;
     font-size: 1.0625rem; letter-spacing: -0.01em;
     color: var(--ink);
     text-decoration: none;
@@ -107,9 +107,10 @@
     .hero { padding: 7rem 0 5rem; }
   }
   .eyebrow {
+    font-family: var(--mono);
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.08em;
     color: var(--accent);
     margin: 0 0 1.75rem;
     font-weight: 500;
@@ -122,11 +123,11 @@
     color: var(--accent);
   }
   h1.title {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(3.25rem, 9vw, 6rem);
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: clamp(3.25rem, 9vw, 6.25rem);
     line-height: 0.95;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
     margin: 0 0 1.5rem;
     color: var(--ink);
   }
@@ -141,7 +142,7 @@
     max-width: 32ch;
   }
   .lede {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 400;
     font-size: clamp(1.0625rem, 1.3vw, 1.1875rem);
     line-height: 1.55;
@@ -162,9 +163,10 @@
   }
   .meta > div { margin: 0; }
   .meta dt {
+    font-family: var(--mono);
     font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
     color: var(--ink-mute);
     margin-bottom: 0.375rem;
     font-weight: 500;
@@ -174,6 +176,7 @@
     font-size: 0.9375rem;
     color: var(--ink);
     line-height: 1.4;
+    font-variant-numeric: tabular-nums;
   }
 
   /* ── Sections ────────────────────────────────────────────────── */
@@ -187,11 +190,10 @@
 
   .section-head { margin-bottom: 2.5rem; }
   .section-num {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-variation-settings: "opsz" 144, "SOFT" 60;
-    font-size: clamp(3rem, 5vw, 4rem);
-    letter-spacing: -0.04em;
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    letter-spacing: 0;
     color: var(--accent);
     margin: 0 0 0.5rem;
     line-height: 1;
@@ -199,26 +201,27 @@
   .section-num::after { content: none; }
   @media (min-width: 960px) {
     .section-num {
-      font-size: clamp(4rem, 7vw, 6rem);
+      font-size: clamp(2.75rem, 5vw, 4.25rem);
       position: relative;
       margin-left: -2rem;
       margin-bottom: 0.75rem;
     }
   }
   h2.section-title {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: clamp(1.875rem, 4vw, 2.75rem);
     line-height: 1.05;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.015em;
     margin: 0;
     color: var(--ink);
     max-width: 22ch;
   }
   h2.section-title em {
+    font-family: var(--serif);
     font-style: italic;
     color: var(--accent);
-    font-weight: 400;
+    font-weight: 500;
   }
 
   /* ── Body prose ──────────────────────────────────────────────── */
@@ -228,21 +231,12 @@
     color: var(--ink);
   }
   .prose p.lead {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 1.25rem;
     line-height: 1.55;
     color: var(--ink);
     margin-bottom: 2rem;
     max-width: 30em;
-  }
-  .prose p.lead::first-letter {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: 4.25rem;
-    line-height: 0.85;
-    float: left;
-    padding: 0.4rem 0.5rem 0 0;
-    color: var(--accent);
   }
   .prose strong {
     font-weight: 600;
@@ -265,7 +259,7 @@
     text-decoration-color: var(--accent);
   }
   .prose code {
-    font-family: 'SF Mono', 'Consolas', 'Liberation Mono', Menlo, monospace;
+    font-family: var(--mono);
     font-size: 0.875em;
     background: var(--paper);
     padding: 0.125em 0.4em;
@@ -297,15 +291,15 @@
     content: counter(failure, decimal-leading-zero);
     position: absolute;
     left: 0; top: 1.3rem;
-    font-family: var(--serif);
+    font-family: var(--mono);
     font-weight: 400;
     font-size: 0.8125rem;
     color: var(--accent);
-    letter-spacing: 0.04em;
+    letter-spacing: 0;
   }
   .failures strong {
     display: block;
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 1.0625rem;
     font-weight: 500;
     margin-bottom: 0.25rem;
@@ -345,7 +339,7 @@
     margin-bottom: 0.75rem;
   }
   .props h3 {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 1.1875rem;
     line-height: 1.25;
@@ -392,7 +386,7 @@
   }
   .live-link a span { font-size: 0.875em; }
   .live-link-url {
-    font-family: 'SF Mono', 'Consolas', Menlo, monospace;
+    font-family: var(--mono);
     font-size: 0.8125rem;
     color: var(--ink-mute);
     letter-spacing: -0.005em;
@@ -430,7 +424,7 @@
   .browser-url {
     flex: 1;
     min-width: 0;
-    font-family: 'SF Mono', 'Consolas', Menlo, monospace;
+    font-family: var(--mono);
     font-size: 0.78125rem;
     color: var(--ink-soft);
     background: var(--paper);
@@ -561,15 +555,16 @@
     border-radius: 4px;
   }
   .commitment-label {
+    font-family: var(--mono);
     font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
     color: var(--commit);
     margin-bottom: 0.625rem;
     font-weight: 500;
   }
   .commitment h3 {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 1.25rem;
     line-height: 1.25;
@@ -604,13 +599,14 @@
   .hero-stat::before { left: -1px; }
   .hero-stat::after  { right: -1px; }
   .hero-stat .stat-num {
-    font-family: var(--serif);
-    font-weight: 300;
+    font-family: var(--mono);
+    font-weight: 500;
     font-size: clamp(3.5rem, 8vw, 5rem);
     line-height: 1;
     color: var(--accent);
     margin: 0 0 0.75rem;
     letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
   }
   .hero-stat .stat-num span {
     font-size: 0.5em;
@@ -622,6 +618,7 @@
   .hero-stat .stat-label {
     font-family: var(--serif);
     font-style: italic;
+    font-weight: 500;
     font-size: 1.125rem;
     color: var(--ink);
     max-width: 28rem;
@@ -642,7 +639,7 @@
     margin-bottom: 0.875rem;
   }
   .theme h3 {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 1.375rem;
     line-height: 1.25;
@@ -652,9 +649,10 @@
   }
   .severity {
     display: inline-block;
+    font-family: var(--mono);
     font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     padding: 0.25rem 0.625rem;
     border-radius: 99px;
     font-weight: 500;
@@ -677,7 +675,7 @@
     border-left: 2px solid var(--accent);
     font-family: var(--serif);
     font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 1.0625rem;
     line-height: 1.5;
     color: var(--ink);
@@ -686,11 +684,11 @@
   blockquote.quote cite {
     display: block;
     margin-top: 0.5rem;
-    font-family: var(--sans);
+    font-family: var(--mono);
     font-style: normal;
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
     color: var(--ink-mute);
     font-weight: 500;
   }
@@ -714,14 +712,14 @@
     content: counter(imp, decimal-leading-zero);
     position: absolute;
     left: 0; top: 1.6rem;
-    font-family: var(--serif);
+    font-family: var(--mono);
     font-weight: 400;
     font-size: 0.875rem;
     color: var(--accent);
   }
   .impl strong {
     display: block;
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 1.125rem;
     margin-bottom: 0.375rem;
@@ -747,6 +745,7 @@
   footer p.mark {
     font-family: var(--serif);
     font-style: italic;
+    font-weight: 500;
     font-size: 1rem;
     color: var(--ink-soft);
     margin-bottom: 1rem;
@@ -793,7 +792,7 @@
 
   /* ── Prose sub-heads and lists ───────────────────────────────── */
   .prose h3 {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 1.375rem;
     line-height: 1.25;
@@ -908,9 +907,10 @@
   }
   .sidebar-fields > div:last-child { border-bottom: 1px solid var(--border-soft); }
   .sidebar-fields dt {
+    font-family: var(--mono);
     font-size: 0.75rem;
-    font-variant-caps: all-small-caps;
-    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     color: var(--ink-mute);
     font-weight: 500;
     line-height: 1.4;
@@ -949,10 +949,10 @@
   .case-sidebar-mobile > summary {
     padding: 1rem 0;
     cursor: pointer;
-    font-family: var(--sans);
+    font-family: var(--mono);
     font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.08em;
     color: var(--accent);
     font-weight: 500;
     list-style: none;
@@ -960,24 +960,6 @@
   .case-sidebar-mobile > summary::-webkit-details-marker { display: none; }
   .case-sidebar-mobile[open] > summary { padding-bottom: 0.5rem; }
   .case-sidebar-mobile > *:not(summary) { padding-bottom: 1rem; }
-
-  /* ── h1.title + .dek font-variation upgrades ─────────────────── */
-  h1.title {
-    font-variation-settings: "opsz" 144, "SOFT" 20;
-  }
-  .dek {
-    font-variation-settings: "SOFT" 40;
-  }
-
-  /* ── Section opener small caps ───────────────────────────────── */
-  .opener {
-    font-variant-caps: all-small-caps;
-    letter-spacing: 0.04em;
-    font-weight: 500;
-  }
-
-  /* ── Tabular figures on the hero meta ─────────────────────────── */
-  .meta dd { font-variant-numeric: tabular-nums; }
 
   /* ── Read next ────────────────────────────────────────────────── */
   .read-next {
@@ -1005,8 +987,8 @@
   }
   .read-next-title {
     display: block;
-    font-family: var(--serif);
-    font-weight: 400;
+    font-family: var(--sans);
+    font-weight: 500;
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     line-height: 1.05;
     letter-spacing: -0.025em;
@@ -1168,7 +1150,7 @@
 
       <div class="prose">
         <p class="lead">
-          <span class="opener">Chapter 2 is</span> a London-based recruitment-tech startup building tooling for in-house recruiters. I joined for four months as a product intern — research-led, sitting between the product manager and the engineering team. The three deliverables below are the ones I'd put on a placement debrief. The fourth (an API caching observation) sits at the bottom because it didn't need a deliverable to land.
+          Chapter 2 is a London-based recruitment-tech startup building tooling for in-house recruiters. I joined for four months as a product intern — research-led, sitting between the product manager and the engineering team. The three deliverables below are the ones I'd put on a placement debrief. The fourth (an API caching observation) sits at the bottom because it didn't need a deliverable to land.
         </p>
         <p>
           The placement coincided with the team rebuilding the recruiter view of the platform from the ground up. That timing was lucky: I joined when there were big questions on the table — what does the recruiter actually do, in what order, with what tools, against what brief — and the team needed answers more than they needed polish. Most of what follows came out of that window.
@@ -1191,7 +1173,7 @@
             Mapping the recruiter's end-to-end candidate journey, from client brief to placement, to identify high-impact intervention points for the product.
           </p>
           <p>
-            <span class="opener">The team had</span> three things going in: a small library of real recruiter interview transcripts collected before I joined; a sprint of AI-generated JTBD personas the product manager had commissioned; and a near-universal sense from leadership that the recruiter view of the platform was working <em>around</em> recruiters' actual flow, not with it. What was missing was a workflow map that synthesised both sources into a single picture.
+            The team had three things going in: a small library of real recruiter interview transcripts collected before I joined; a sprint of AI-generated JTBD personas the product manager had commissioned; and a near-universal sense from leadership that the recruiter view of the platform was working <em>around</em> recruiters' actual flow, not with it. What was missing was a workflow map that synthesised both sources into a single picture.
           </p>
           <p>
             That synthesis was my work. I read the transcripts, coded recurring activity types, and stress-tested the AI-generated personas against what real recruiters described. Where the personas held up, I kept them; where they didn't — there was a strong fit on tool use, a weak fit on the timing of placement decisions — I dropped or rewrote them. The output was an <strong>eight-stage candidate workflow map</strong>, structured as: <em>Get Brief · Clarify Role · Plan Sourcing · Inbound Side · Outbound Side · Plan Tools · Screen &amp; List · Maintain Pool.</em> Each stage carried goals, actions, inputs and outputs, recruiter pain points, and product opportunity areas.
@@ -1240,7 +1222,7 @@
             Designing the end-to-end candidate booking journey, from provisional sent through to confirmed booking and platform-level integration.
           </p>
           <p>
-            <span class="opener">The brief:</span> define and redesign the provisional booking process — booking states, transition logic, and Worksome (contract platform) integration — so the engineering team could implement the functionality. The previous design had two states (booked / not booked) and a lot of edge cases the recruiters were navigating by Slack.
+            The brief: define and redesign the provisional booking process — booking states, transition logic, and Worksome (contract platform) integration — so the engineering team could implement the functionality. The previous design had two states (booked / not booked) and a lot of edge cases the recruiters were navigating by Slack.
           </p>
           <p>
             I built a service blueprint covering five states (<em>Provisional Sent · Provisional Accepted · In Progress · Booking Confirmed · Cancelled</em>), with explicit transition rules between them and triggers for the Worksome integration at the contract stage. Every transition produced a system event; every system event produced both an in-product notification and an email to the client and candidate. The blueprint listed all of them.
@@ -1287,7 +1269,7 @@
             A platform-wide copy audit of the recruiter view, with a voice-and-tone framework grounded in the company's brand principles.
           </p>
           <p>
-            <span class="opener">The recruiter view</span> had no copy system. Button labels were inconsistent across screens (<em>Save · Submit · Confirm</em> in different places for similar actions); status logic varied; helper text was authored ad-hoc per feature. I audited the full recruiter surface — every button, every status, every system message, every form field — flagged the inconsistencies, and proposed standardised replacements.
+            The recruiter view had no copy system. Button labels were inconsistent across screens (<em>Save · Submit · Confirm</em> in different places for similar actions); status logic varied; helper text was authored ad-hoc per feature. I audited the full recruiter surface — every button, every status, every system message, every form field — flagged the inconsistencies, and proposed standardised replacements.
           </p>
           <p>
             The framework underneath the audit is a voice chart built against six company brand principles — <em>Efficient · Trustworthy · Connects · Energetic · Innovative · Client-Centric</em> — broken down into five axes: concepts, vocabulary, verbosity, grammar, punctuation, capitalisation. Where the brand principles pulled in different directions (efficiency wants short; trustworthiness wants complete; client-centricity wants warm), the chart specifies which wins in which context.
@@ -1333,7 +1315,7 @@
           Mid-placement, while running the recruiter-view rebuild past the engineering team, I noticed the candidate search was re-running the same Gemini API call every time a recruiter navigated back from a result detail page.
         </p>
         <p>
-          <span class="opener">The pattern was:</span> recruiter runs a search, opens a candidate, navigates back, search re-runs from scratch. Every back-navigation cost an API call. At the volume the platform was running, that was a meaningful share of the monthly LLM bill — searches the recruiter had already performed within the last few minutes were being run again because the result wasn't being cached.
+          The pattern was: recruiter runs a search, opens a candidate, navigates back, search re-runs from scratch. Every back-navigation cost an API call. At the volume the platform was running, that was a meaningful share of the monthly LLM bill — searches the recruiter had already performed within the last few minutes were being run again because the result wasn't being cached.
         </p>
         <p>
           I flagged it, sketched a cache-on-search-result pattern, and handed it to engineering. The fix wasn't designerly. The observation came from sitting next to engineering enough to spot the call pattern in dev tools while reviewing a flow.
@@ -1355,7 +1337,7 @@
 
       <div class="prose">
         <p class="lead">
-          Four months at Chapter 2 was the first time I'd worked in product proper — close to engineering, close to the brief, close to a real backlog. <span class="opener">Three things</span> changed how I work as a result.
+          Four months at Chapter 2 was the first time I'd worked in product proper — close to engineering, close to the brief, close to a real backlog. Three things changed how I work as a result.
         </p>
       </div>
 
@@ -1372,7 +1354,7 @@
         <a href="evermatch.html" class="read-next-link">
           <span class="read-next-title">EverMatch</span>
           <span class="read-next-dek">An AI matchmaker that became an AI companion.</span>
-          <span class="read-next-arrow" style="color: #B85878" aria-hidden="true">→</span>
+          <span class="read-next-arrow" style="color: #B91C1C" aria-hidden="true">→</span>
         </a>
       </aside>
 

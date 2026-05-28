@@ -7,33 +7,33 @@
 <meta name="description" content="An MSc Human Factors case study applying Schema-Based Errors, Rasmussen's SRK model, and Norman's framework to a continuous glucose monitor whose application process has barely changed in 17 years.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #F5F2EB;
-    --paper: #FFFEFA;
-    --paper-alt: #F0EDE6;
-    --border: #DDD8CE;
-    --border-soft: #E8E3D6;
-    --ink: #2C2416;
-    --ink-soft: #6B6256;
-    --ink-mute: #9C948A;
-    --accent: #1F5F6B;
-    --accent-soft: #E8F2F4;
-    --accent-deep: #164751;
-    --commit: #5A7C5A;
-    --commit-soft: #EDF4ED;
-    --stale: #C49000;
-    --stale-soft: #FEF7E0;
-    --danger: #B5403A;
-    --danger-soft: #FCEEED;
+    --bg: #FAFAF7;
+    --paper: #FFFFFE;
+    --paper-alt: #EFEEE9;
+    --border: #D4D2CC;
+    --border-soft: #E5E3DE;
+    --ink: #161614;
+    --ink-soft: #4D4B47;
+    --ink-mute: #8B8884;
+    --accent: #006B4F;
+    --accent-soft: #E8F4F0;
+    --accent-deep: #00533B;
+    --commit: #2D5A3E;
+    --commit-soft: #E8F0EA;
+    --stale: #A67100;
+    --stale-soft: #F8EFD8;
+    --danger: #9E2A24;
+    --danger-soft: #F8E8E7;
     --theory: #7B5EA7;
     --regulation: #4A6FA5;
     --research: #2A7F6F;
 
-    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
-    --sans: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
-    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --sans:  'IBM Plex Sans', 'Inter', system-ui, sans-serif;
+    --serif: 'IBM Plex Serif', Georgia, serif;
+    --mono:  'IBM Plex Mono', 'JetBrains Mono', 'SF Mono', Menlo, monospace;
 
     --container: min(720px, calc(100% - 3rem));
     --container-wide: min(940px, calc(100% - 3rem));
@@ -73,7 +73,7 @@
     padding: 0.875rem 0;
   }
   .topnav-mark {
-    font-family: var(--serif); font-weight: 500;
+    font-family: var(--sans); font-weight: 500;
     font-size: 1.0625rem; letter-spacing: -0.01em;
     color: var(--ink);
     text-decoration: none;
@@ -107,9 +107,10 @@
     .hero { padding: 7rem 0 5rem; }
   }
   .eyebrow {
+    font-family: var(--mono);
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.08em;
     color: var(--accent);
     margin: 0 0 1.75rem;
     font-weight: 500;
@@ -122,11 +123,11 @@
     color: var(--accent);
   }
   h1.title {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(3.25rem, 9vw, 6rem);
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: clamp(3.25rem, 9vw, 6.25rem);
     line-height: 0.95;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
     margin: 0 0 1.5rem;
     color: var(--ink);
   }
@@ -141,7 +142,7 @@
     max-width: 32ch;
   }
   .lede {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 400;
     font-size: clamp(1.0625rem, 1.3vw, 1.1875rem);
     line-height: 1.55;
@@ -162,9 +163,10 @@
   }
   .meta > div { margin: 0; }
   .meta dt {
+    font-family: var(--mono);
     font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
     color: var(--ink-mute);
     margin-bottom: 0.375rem;
     font-weight: 500;
@@ -174,6 +176,7 @@
     font-size: 0.9375rem;
     color: var(--ink);
     line-height: 1.4;
+    font-variant-numeric: tabular-nums;
   }
 
   /* ── Sections ────────────────────────────────────────────────── */
@@ -187,11 +190,10 @@
 
   .section-head { margin-bottom: 2.5rem; }
   .section-num {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-variation-settings: "opsz" 144, "SOFT" 60;
-    font-size: clamp(3rem, 5vw, 4rem);
-    letter-spacing: -0.04em;
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    letter-spacing: 0;
     color: var(--accent);
     margin: 0 0 0.5rem;
     line-height: 1;
@@ -199,26 +201,27 @@
   .section-num::after { content: none; }
   @media (min-width: 960px) {
     .section-num {
-      font-size: clamp(4rem, 7vw, 6rem);
+      font-size: clamp(2.75rem, 5vw, 4.25rem);
       position: relative;
       margin-left: -2rem;
       margin-bottom: 0.75rem;
     }
   }
   h2.section-title {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: clamp(1.875rem, 4vw, 2.75rem);
     line-height: 1.05;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.015em;
     margin: 0;
     color: var(--ink);
     max-width: 22ch;
   }
   h2.section-title em {
+    font-family: var(--serif);
     font-style: italic;
     color: var(--accent);
-    font-weight: 400;
+    font-weight: 500;
   }
 
   /* ── Body prose ──────────────────────────────────────────────── */
@@ -228,21 +231,12 @@
     color: var(--ink);
   }
   .prose p.lead {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 1.25rem;
     line-height: 1.55;
     color: var(--ink);
     margin-bottom: 2rem;
     max-width: 30em;
-  }
-  .prose p.lead::first-letter {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: 4.25rem;
-    line-height: 0.85;
-    float: left;
-    padding: 0.4rem 0.5rem 0 0;
-    color: var(--accent);
   }
   .prose strong {
     font-weight: 600;
@@ -265,7 +259,7 @@
     text-decoration-color: var(--accent);
   }
   .prose code {
-    font-family: 'SF Mono', 'Consolas', 'Liberation Mono', Menlo, monospace;
+    font-family: var(--mono);
     font-size: 0.875em;
     background: var(--paper);
     padding: 0.125em 0.4em;
@@ -297,15 +291,15 @@
     content: counter(failure, decimal-leading-zero);
     position: absolute;
     left: 0; top: 1.3rem;
-    font-family: var(--serif);
+    font-family: var(--mono);
     font-weight: 400;
     font-size: 0.8125rem;
     color: var(--accent);
-    letter-spacing: 0.04em;
+    letter-spacing: 0;
   }
   .failures strong {
     display: block;
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 1.0625rem;
     font-weight: 500;
     margin-bottom: 0.25rem;
@@ -345,7 +339,7 @@
     margin-bottom: 0.75rem;
   }
   .props h3 {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 1.1875rem;
     line-height: 1.25;
@@ -392,7 +386,7 @@
   }
   .live-link a span { font-size: 0.875em; }
   .live-link-url {
-    font-family: 'SF Mono', 'Consolas', Menlo, monospace;
+    font-family: var(--mono);
     font-size: 0.8125rem;
     color: var(--ink-mute);
     letter-spacing: -0.005em;
@@ -430,7 +424,7 @@
   .browser-url {
     flex: 1;
     min-width: 0;
-    font-family: 'SF Mono', 'Consolas', Menlo, monospace;
+    font-family: var(--mono);
     font-size: 0.78125rem;
     color: var(--ink-soft);
     background: var(--paper);
@@ -561,15 +555,16 @@
     border-radius: 4px;
   }
   .commitment-label {
+    font-family: var(--mono);
     font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
     color: var(--commit);
     margin-bottom: 0.625rem;
     font-weight: 500;
   }
   .commitment h3 {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 1.25rem;
     line-height: 1.25;
@@ -604,13 +599,14 @@
   .hero-stat::before { left: -1px; }
   .hero-stat::after  { right: -1px; }
   .hero-stat .stat-num {
-    font-family: var(--serif);
-    font-weight: 300;
+    font-family: var(--mono);
+    font-weight: 500;
     font-size: clamp(3.5rem, 8vw, 5rem);
     line-height: 1;
     color: var(--accent);
     margin: 0 0 0.75rem;
     letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
   }
   .hero-stat .stat-num span {
     font-size: 0.5em;
@@ -622,6 +618,7 @@
   .hero-stat .stat-label {
     font-family: var(--serif);
     font-style: italic;
+    font-weight: 500;
     font-size: 1.125rem;
     color: var(--ink);
     max-width: 28rem;
@@ -642,7 +639,7 @@
     margin-bottom: 0.875rem;
   }
   .theme h3 {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 1.375rem;
     line-height: 1.25;
@@ -652,9 +649,10 @@
   }
   .severity {
     display: inline-block;
+    font-family: var(--mono);
     font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     padding: 0.25rem 0.625rem;
     border-radius: 99px;
     font-weight: 500;
@@ -677,7 +675,7 @@
     border-left: 2px solid var(--accent);
     font-family: var(--serif);
     font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 1.0625rem;
     line-height: 1.5;
     color: var(--ink);
@@ -686,11 +684,11 @@
   blockquote.quote cite {
     display: block;
     margin-top: 0.5rem;
-    font-family: var(--sans);
+    font-family: var(--mono);
     font-style: normal;
     font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.08em;
     color: var(--ink-mute);
     font-weight: 500;
   }
@@ -714,14 +712,14 @@
     content: counter(imp, decimal-leading-zero);
     position: absolute;
     left: 0; top: 1.6rem;
-    font-family: var(--serif);
+    font-family: var(--mono);
     font-weight: 400;
     font-size: 0.875rem;
     color: var(--accent);
   }
   .impl strong {
     display: block;
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 1.125rem;
     margin-bottom: 0.375rem;
@@ -747,6 +745,7 @@
   footer p.mark {
     font-family: var(--serif);
     font-style: italic;
+    font-weight: 500;
     font-size: 1rem;
     color: var(--ink-soft);
     margin-bottom: 1rem;
@@ -777,7 +776,7 @@
 
   /* ── Prose sub-heads and lists ───────────────────────────────── */
   .prose h3 {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-weight: 500;
     font-size: 1.375rem;
     line-height: 1.25;
@@ -892,9 +891,10 @@
   }
   .sidebar-fields > div:last-child { border-bottom: 1px solid var(--border-soft); }
   .sidebar-fields dt {
+    font-family: var(--mono);
     font-size: 0.75rem;
-    font-variant-caps: all-small-caps;
-    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
     color: var(--ink-mute);
     font-weight: 500;
     line-height: 1.4;
@@ -933,10 +933,10 @@
   .case-sidebar-mobile > summary {
     padding: 1rem 0;
     cursor: pointer;
-    font-family: var(--sans);
+    font-family: var(--mono);
     font-size: 0.6875rem;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.08em;
     color: var(--accent);
     font-weight: 500;
     list-style: none;
@@ -944,24 +944,6 @@
   .case-sidebar-mobile > summary::-webkit-details-marker { display: none; }
   .case-sidebar-mobile[open] > summary { padding-bottom: 0.5rem; }
   .case-sidebar-mobile > *:not(summary) { padding-bottom: 1rem; }
-
-  /* ── h1.title + .dek font-variation upgrades ─────────────────── */
-  h1.title {
-    font-variation-settings: "opsz" 144, "SOFT" 20;
-  }
-  .dek {
-    font-variation-settings: "SOFT" 40;
-  }
-
-  /* ── Section opener small caps ───────────────────────────────── */
-  .opener {
-    font-variant-caps: all-small-caps;
-    letter-spacing: 0.04em;
-    font-weight: 500;
-  }
-
-  /* ── Tabular figures on the hero meta ─────────────────────────── */
-  .meta dd { font-variant-numeric: tabular-nums; }
 
   /* ── Read next ────────────────────────────────────────────────── */
   .read-next {
@@ -989,8 +971,8 @@
   }
   .read-next-title {
     display: block;
-    font-family: var(--serif);
-    font-weight: 400;
+    font-family: var(--sans);
+    font-weight: 500;
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     line-height: 1.05;
     letter-spacing: -0.025em;
@@ -1124,7 +1106,7 @@
 
       <div class="prose">
         <p class="lead">
-          <span class="opener">The Medtronic</span> Guardian 4 is a continuous glucose monitor (CGM) — a small sensor worn on the body that reads interstitial glucose every few minutes and feeds the data to an insulin pump or a phone. It is one of the most commonly NHS-prescribed CGMs for Type 1 diabetes. It is also, by application complexity, the closest thing to medical equipment a patient will ever attach to themselves at home.
+          The Medtronic Guardian 4 is a continuous glucose monitor (CGM) — a small sensor worn on the body that reads interstitial glucose every few minutes and feeds the data to an insulin pump or a phone. It is one of the most commonly NHS-prescribed CGMs for Type 1 diabetes. It is also, by application complexity, the closest thing to medical equipment a patient will ever attach to themselves at home.
         </p>
         <p>
           The Guardian 4 launched in late 2023. Its predecessor launched in 2006. The application process — the sequence of physical steps the user performs every seven days to start a new sensor — has not meaningfully changed across that 17-year span. The sensor is applied via a one-press serter, the needle has to be removed manually, three adhesive patches are applied in a specific order, a transmitter is clicked on, and the system is paired with the pump. Skipping any step or doing them in the wrong order can render a £55 sensor unusable.
@@ -1151,7 +1133,7 @@
 
       <div class="prose">
         <p class="lead">
-          <span class="opener">A qualitative</span> review of Medtronic user forums and CGM communities identified fourteen recurring application errors. Some are slips of attention; some are reasonable misapplications of mental models learned from other devices; some are the device's design genuinely fighting the user. Grouped by stage of application:
+          A qualitative review of Medtronic user forums and CGM communities identified fourteen recurring application errors. Some are slips of attention; some are reasonable misapplications of mental models learned from other devices; some are the device's design genuinely fighting the user. Grouped by stage of application:
         </p>
       </div>
 
@@ -1190,7 +1172,7 @@
 
       <div class="prose">
         <p class="lead">
-          <span class="opener">The fourteen</span> errors look chaotic; classified through the right frameworks, they aren't. The analysis applies three lenses sequentially — each catches what the others miss.
+          The fourteen errors look chaotic; classified through the right frameworks, they aren't. The analysis applies three lenses sequentially — each catches what the others miss.
         </p>
 
         <h3>Schema-Based Error Types</h3>
@@ -1235,7 +1217,7 @@
 
       <div class="prose">
         <p class="lead">
-          <span class="opener">Three design</span> changes proposed, all low-cost relative to the device's £55 unit cost, and each targeted at a specific cluster of errors from the cross-model analysis. Together they address eleven of the fourteen errors.
+          Three design changes proposed, all low-cost relative to the device's £55 unit cost, and each targeted at a specific cluster of errors from the cross-model analysis. Together they address eleven of the fourteen errors.
         </p>
       </div>
 
@@ -1272,7 +1254,7 @@
 
       <div class="prose">
         <p class="lead">
-          <span class="opener">Three interventions</span> are hypotheses, not facts. The case study includes a usability-testing plan that the redesign would need to pass before it could be claimed as a fix.
+          Three interventions are hypotheses, not facts. The case study includes a usability-testing plan that the redesign would need to pass before it could be claimed as a fix.
         </p>
         <p>
           <strong>Method.</strong> Comparative usability testing, redesigned device against current Guardian 4. Within-participant design, counterbalanced order.
@@ -1305,7 +1287,7 @@
 
       <div class="prose">
         <p class="lead">
-          <span class="opener">Three lessons</span> that hold outside the medical-device context.
+          Three lessons that hold outside the medical-device context.
         </p>
       </div>
 
@@ -1327,7 +1309,7 @@
 
       <div class="prose">
         <p class="lead">
-          <span class="opener">The proposal</span> is grounded in established frameworks and qualitative analysis of recurring user reports. It would still need testing against real users to claim impact. What this case study <em>can</em> honestly claim is that the analytical method works — applying three frameworks to a complex sequential task produced a clearer map of where failures cluster, and that map turned into design interventions that target specific error classes rather than the symptoms.
+          The proposal is grounded in established frameworks and qualitative analysis of recurring user reports. It would still need testing against real users to claim impact. What this case study <em>can</em> honestly claim is that the analytical method works — applying three frameworks to a complex sequential task produced a clearer map of where failures cluster, and that map turned into design interventions that target specific error classes rather than the symptoms.
         </p>
         <p>
           If the redesign reduced the rate of <code class="mono">Error 06</code> alone — sensor lost with the needle — Medtronic would recoup the cost of the design change in under a year of warranty claims. That is not the point of the case study; it is, however, an answer to the question of whether human-factors analysis pays for itself.
@@ -1341,7 +1323,7 @@
         <a href="chapter-2.html" class="read-next-link">
           <span class="read-next-title">Chapter 2</span>
           <span class="read-next-dek">Four months at a recruitment-tech startup. Three things shipped.</span>
-          <span class="read-next-arrow" style="color: #5B3F6E" aria-hidden="true">→</span>
+          <span class="read-next-arrow" style="color: #6B0F4F" aria-hidden="true">→</span>
         </a>
       </aside>
 
