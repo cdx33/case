@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aron Ryszka — UX Researcher</title>
-<meta name="description" content="Selected UX research and design work by Aron Ryszka — MSc UX Engineering at City, University of London, with a copywriting background. London.">
+<title>Aron Ryszka — Product discovery and AI prototyping</title>
+<meta name="description" content="Product discovery, AI prototypes and workflow improvement by Aron Ryszka. App implementation at Venn Apps, a product internship and an MSc in AI in User Experience Engineering. London.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -895,8 +895,10 @@
     .meta.meta-3 { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
+<link rel="stylesheet" href="assets/portfolio-updates.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <nav class="topnav" aria-label="Page navigation">
   <div class="topnav-inner">
@@ -909,33 +911,34 @@
   </div>
 </nav>
 
-<main id="top">
+<main id="main-content" tabindex="-1">
+<span id="top" aria-hidden="true"></span>
 
   <!-- ─── Hero ──────────────────────────────────────────────────── -->
   <header class="hero">
     <div class="container">
       <p class="eyebrow">Portfolio</p>
       <h1 class="title">Aron Ryszka</h1>
-      <p class="dek">Product UX, research-led.</p>
+      <p class="dek">Product discovery.<br>AI prototyping.</p>
       <p class="lede">
-        My background is in copywriting and content; I now work in UX research and design. That mix means I think about what users need to <em>understand</em>, not just what they see. MSc in User Experience Engineering, City, University of London — looking for research roles where understanding the problem is where the work starts.
+        I work in app implementation and use AI tools to prototype ideas for better workflows. My experience includes a product internship and an MSc in AI in User Experience Engineering. I’m looking for a junior role in product, AI implementation or product operations.
       </p>
       <dl class="meta">
         <div>
-          <dt>Author</dt>
-          <dd>Aron Ryszka</dd>
+          <dt>Current role</dt>
+          <dd>Junior Implementation Specialist</dd>
         </div>
         <div>
-          <dt>Role</dt>
-          <dd>UX Researcher</dd>
+          <dt>Company</dt>
+          <dd>Venn Apps · since June 2026</dd>
         </div>
         <div>
           <dt>Based in</dt>
           <dd>London, UK</dd>
         </div>
         <div>
-          <dt>Available</dt>
-          <dd>Immediately</dd>
+          <dt>Looking for</dt>
+          <dd>Junior product and AI roles</dd>
         </div>
       </dl>
       <p class="live-link">
@@ -958,40 +961,44 @@
 
       <div class="prose">
         <p class="lead">
-          Four projects from the last twelve months. One MSc capstone, one human-factors case study, three deliverables from a product internship, and one academic prototype on AI matchmaking.
+          Start with BranchFlow for prototype evaluation, Chapter 2 for professional product work, or Groundwork for my current exploration of AI and workflow improvement.
         </p>
       </div>
 
       <div class="tiles">
-        <a class="tile" style="--tile-accent:#0040FF;" href="/branchflow.html" aria-label="Read the BranchFlow case study">
-          <p class="tile-eyebrow">2025–26 · MSc Capstone</p>
+        <a class="tile" style="--tile-accent:#0040FF;" href="branchflow.html" aria-label="Read the BranchFlow case study">
+          <p class="tile-eyebrow">2025–26 · MSc capstone · AI prototype</p>
           <h3>BranchFlow</h3>
-          <p class="tile-pitch">A branching interface for AI-assisted research.</p>
-          <p class="tile-body">A working React app testing whether interface architecture — branches, curated context, explicit commit semantics — can address five documented failure modes of chat-style LLMs for sustained intellectual work. Two pilots and four think-aloud sessions; 4 of 4 participants articulated the conceptual model unprompted.</p>
+          <p class="tile-pitch">Testing a different way to research with AI.</p>
+          <p class="tile-body">I defined the concept and user flows, built with AI-generated code, and evaluated usability in four valid think-aloud sessions. The results separated an understandable concept from actions that still confused users.</p>
           <span class="tile-link">Read the case →</span>
         </a>
-
-        <a class="tile" style="--tile-accent:#006B4F;" href="/guardian-4.html" aria-label="Read the Guardian 4 CGM case study">
-          <p class="tile-eyebrow">2025 · MSc Human Factors</p>
-          <h3>Guardian 4 CGM</h3>
-          <p class="tile-pitch">Cognitive ergonomics of a medical device I use every day.</p>
-          <p class="tile-body">A cognitive-ergonomics analysis of Medtronic's continuous glucose monitor, applying Schema-Based Error Types, Rasmussen's SRK model, and Norman's framework against my own year of personal use. Three low-cost design interventions and a usability-testing plan grounded in the analysis.</p>
-          <span class="tile-link">Read the case →</span>
-        </a>
-
-        <a class="tile" style="--tile-accent:#6B0F4F;" href="/chapter-2.html" aria-label="Read the Chapter 2 internship case study">
-          <p class="tile-eyebrow">2025 · Product Internship</p>
+        <a class="tile" style="--tile-accent:#6B0F4F;" href="chapter-2.html" aria-label="Read the Chapter 2 internship case study">
+          <p class="tile-eyebrow">Aug–Dec 2025 · Product internship</p>
           <h3>Chapter 2</h3>
-          <p class="tile-pitch">Four months at a recruitment-tech startup. Three things shipped.</p>
-          <p class="tile-body">An end-to-end candidate workflow synthesised from real recruiter transcripts and AI-generated JTBD personas. A provisional-booking state architecture and its in-product messaging. A platform-wide UX copy audit with a voice-and-tone framework. Plus one API caching insight that lowered cost.</p>
+          <p class="tile-pitch">Research and workflow decisions for recruitment software.</p>
+          <p class="tile-body">An eight-stage workflow map adopted by the product team, a booking journey with message specifications, and a UX writing audit. I also proposed caching to avoid repeated AI API calls.</p>
           <span class="tile-link">Read the case →</span>
         </a>
-
-        <a class="tile" style="--tile-accent:#B91C1C;" href="/evermatch.html" aria-label="Read the EverMatch case study">
-          <p class="tile-eyebrow">2025 · MSc Project</p>
+        <a class="tile" style="--tile-accent:#145A46;" href="groundwork.html" aria-label="Read about the Groundwork prototype">
+          <p class="tile-eyebrow">2026 · Personal project · In development</p>
+          <h3>Groundwork</h3>
+          <p class="tile-pitch">An AI-assisted way to examine workflow bottlenecks.</p>
+          <p class="tile-body">A prototype that uses staged prompts to analyse evidence, suggest improvements and check assumptions behind potential time savings. Inspired by workplace friction; its usefulness and savings remain to be tested.</p>
+          <span class="tile-link">Explore the project →</span>
+        </a>
+        <a class="tile" style="--tile-accent:#B91C1C;" href="evermatch.html" aria-label="Read the EverMatch case study">
+          <p class="tile-eyebrow">2025 · MSc project · Exploratory prototype</p>
           <h3>EverMatch</h3>
-          <p class="tile-pitch">An AI matchmaker that became an AI companion.</p>
-          <p class="tile-body">An exploration of what AI can — and can't — do for dating. Started with the Stanford HCMST dataset and a GPT-plus-clustering match engine. Pivoted, after testing exposed the limits of structured data, to a behavioural chat-companion model that earns trust before it asks for input.</p>
+          <p class="tile-pitch">Reconsidering what an AI dating product should do.</p>
+          <p class="tile-body">Dataset exploration and early privacy concerns led me from a matching prototype toward a conversational concept. This is a case about reframing a problem, rather than evidence of better matches.</p>
+          <span class="tile-link">Read the case →</span>
+        </a>
+        <a class="tile tile-secondary" style="--tile-accent:#006B4F;" href="guardian-4.html" aria-label="Read the Guardian 4 CGM case study">
+          <p class="tile-eyebrow">2025 · MSc human factors case study</p>
+          <h3>Guardian 4 CGM</h3>
+          <p class="tile-pitch">Understanding errors in a device I use every day.</p>
+          <p class="tile-body">A human factors analysis of a continuous glucose monitor, with three proposed usability interventions and a testing plan. An analytical case study, with the proposals still to be validated.</p>
           <span class="tile-link">Read the case →</span>
         </a>
       </div>
@@ -1007,18 +1014,14 @@
       </div>
 
       <div class="prose">
-        <p class="lead">
-          I'm Aron — a London-based product UX designer, working research-first with an MSc in User Experience Engineering from City, University of London. Before that, I worked as a copywriter for a Polish home-décor retailer, then spent two years as a door supervisor in UK hospitality — which taught me more about reading rooms and de-escalation than any course since.
-        </p>
-        <p>
-          Most recently I spent four months at <strong>Chapter 2</strong>, a recruitment-tech startup, as a research-led product intern. I synthesised real recruiter interview transcripts with AI-generated JTBD personas to produce an 8-stage workflow map that guided the team's roadmap. I designed the platform's booking journey, audited every line of copy in the recruiter view, and proposed an API caching change that lowered our Gemini API spend.
-        </p>
-        <p>
-          My approach: <strong>understand the problem before solving it</strong>. That sounds obvious. It isn't. Most of the friction in the products I've worked on came from skipping that step — from a brief that assumed it knew the answer, or a feature that solved the wrong problem fluently. The copywriting background is why I'm sensitive to this. The wrong word is almost always the wrong concept underneath. Fixing one without the other never works.
-        </p>
-        <p>
-          What I'm looking for: a UX research role on a team that treats research as the start of the work, not the end of it. Comfortable with AI in the loop — sceptical about it doing the loop for me.
-        </p>
+        <p class="lead">I’m Aron, based in London. I’m interested in understanding how people work, testing useful ideas with AI, and helping teams turn those ideas into practical changes.</p>
+        <h3>Current work</h3>
+        <p>Since June 2026, I’ve worked at <strong>Venn Apps as a Junior Implementation Specialist</strong>. I configure Shopify mobile apps through JSON files and CMS content to match supplied designs. I also set up metafields and metaobjects, discuss setup requirements with clients by email and calls, and coordinate requests that need engineering support.</p>
+        <h3>Product and research experience</h3>
+        <p>At <strong>Chapter 2</strong>, I worked from existing recruiter interview transcripts to create an eight-stage workflow map adopted by the product team. I also mapped the candidate booking journey and developed in-product messaging. My <strong>MSc in AI in User Experience Engineering at City St George’s, University of London</strong> included building and evaluating an AI research prototype. Before that, I earned a First Class BSc in Media Production at De Montfort University.</p>
+        <h3>How I use AI</h3>
+        <p>I use Claude, ChatGPT, Gemini and Cursor to explore ideas and build prototypes with AI-generated code. My contribution is defining the problem, shaping workflows, iterating prompts and evaluating the result.</p>
+        <p>Alongside my day job, I’m developing <a href="groundwork.html">Groundwork</a> to explore how AI might help examine workplace processes. I’m looking for a junior product, AI implementation or product operations role where I can keep learning through practical work.</p>
       </div>
     </div>
   </section>
@@ -1033,7 +1036,7 @@
 
       <div class="prose">
         <p class="lead">
-          The fastest way is email. London-based, available for full-time research roles from <strong>January 2026</strong>.
+          Email is the best way to reach me about junior product, AI implementation or product operations opportunities. I’m based in London and currently employed; start dates can be discussed.
         </p>
       </div>
 
@@ -1059,7 +1062,7 @@
 <footer>
   <p class="mark">Aron Ryszka</p>
   <p>London · 2026</p>
-  <p class="colophon">UX Research &amp; Design · Open to roles</p>
+  <p class="colophon">Product discovery · AI prototyping · London</p>
 </footer>
 
 </body>

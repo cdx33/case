@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Groundwork — AI-assisted workflow audit prototype</title>
+<meta name="description" content="Groundwork is Aron Ryszka’s personal prototype for examining workflow evidence, suggesting improvements and checking assumptions behind potential savings. In development.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --paper: #FFFFFE;
+    --paper-alt: #EFEEE9;
+    --border: #D4D2CC;
+    --border-soft: #E5E3DE;
+    --ink: #161614;
+    --ink-soft: #4D4B47;
+    --ink-mute: #8B8884;
+    --accent: #0040FF;
+    --accent-soft: #E8EEFF;
+    --accent-deep: #0030B8;
+    --commit: #2D5A3E;
+    --commit-soft: #E8F0EA;
+    --stale: #A67100;
+    --stale-soft: #F8EFD8;
+    --danger: #9E2A24;
+    --danger-soft: #F8E8E7;
+    --theory: #7B5EA7;
+    --regulation: #4A6FA5;
+    --research: #2A7F6F;
+
+    --sans:  'IBM Plex Sans', 'Inter', system-ui, sans-serif;
+    --serif: 'IBM Plex Serif', Georgia, serif;
+    --mono:  'IBM Plex Mono', 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+    --container: min(720px, calc(100% - 3rem));
+    --container-wide: min(940px, calc(100% - 3rem));
+    --container-full: min(1100px, calc(100% - 3rem));
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ── Reusable layout ─────────────────────────────────────────── */
+  .container { width: var(--container); margin-inline: auto; }
+  .container-wide { width: var(--container-wide); margin-inline: auto; }
+  .container-full { width: var(--container-full); margin-inline: auto; }
+
+  /* ── Top nav ─────────────────────────────────────────────────── */
+  .topnav {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: saturate(120%) blur(8px);
+    -webkit-backdrop-filter: saturate(120%) blur(8px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .topnav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    width: var(--container-full); margin-inline: auto;
+    padding: 0.875rem 0;
+  }
+  .topnav-mark {
+    font-family: var(--sans); font-weight: 500;
+    font-size: 1.0625rem; letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .topnav-mark::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .topnav-links {
+    display: none;
+    gap: 1.75rem;
+    font-size: 0.8125rem;
+    color: var(--ink-soft);
+  }
+  .topnav-links a {
+    color: inherit; text-decoration: none;
+    transition: color 150ms ease;
+  }
+  .topnav-links a:hover { color: var(--accent); }
+  @media (min-width: 760px) {
+    .topnav-links { display: flex; }
+  }
+
+  /* ── Hero ────────────────────────────────────────────────────── */
+  .hero {
+    padding: 4rem 0 3.5rem;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  @media (min-width: 760px) {
+    .hero { padding: 7rem 0 5rem; }
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 1.75rem;
+    font-weight: 500;
+  }
+  .eyebrow::before {
+    content: "◆";
+    margin-right: 0.5rem;
+    font-size: 0.625rem;
+    vertical-align: 0.1em;
+    color: var(--accent);
+  }
+  h1.title {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: clamp(3.25rem, 9vw, 6.25rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin: 0 0 1.5rem;
+    color: var(--ink);
+  }
+  .dek {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.375rem, 3vw, 2rem);
+    line-height: 1.25;
+    color: var(--ink-soft);
+    margin: 0 0 2.5rem;
+    max-width: 32ch;
+  }
+  .lede {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: clamp(1.0625rem, 1.3vw, 1.1875rem);
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0 0 3rem;
+    max-width: 52ch;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 2rem;
+    margin: 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-soft);
+  }
+  @media (min-width: 640px) {
+    .meta { grid-template-columns: repeat(4, 1fr); }
+  }
+  .meta > div { margin: 0; }
+  .meta dt {
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    margin-bottom: 0.375rem;
+    font-weight: 500;
+  }
+  .meta dd {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  /* ── Sections ────────────────────────────────────────────────── */
+  section {
+    padding: 4rem 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  @media (min-width: 760px) {
+    section { padding: 6rem 0; }
+  }
+
+  .section-head { margin-bottom: 2.5rem; }
+  .section-num {
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 0.875rem;
+    letter-spacing: 0;
+    color: var(--accent);
+    margin: 0 0 1rem;
+  }
+  .section-num::after {
+    content: " /";
+    color: var(--ink-mute);
+    margin-left: 0.25rem;
+  }
+  h2.section-title {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: clamp(1.875rem, 4vw, 2.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0;
+    color: var(--ink);
+    max-width: 22ch;
+  }
+  h2.section-title em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ── Body prose ──────────────────────────────────────────────── */
+  .prose { max-width: 38rem; }
+  .prose p {
+    margin: 0 0 1.25rem;
+    color: var(--ink);
+  }
+  .prose p.lead {
+    font-family: var(--sans);
+    font-size: 1.25rem;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 2rem;
+    max-width: 30em;
+  }
+  .prose strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .prose em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .prose a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: color-mix(in srgb, var(--accent) 50%, transparent);
+    transition: text-decoration-color 150ms ease;
+  }
+  .prose a:hover {
+    text-decoration-color: var(--accent);
+  }
+  .prose code {
+    font-family: var(--mono);
+    font-size: 0.875em;
+    background: var(--paper);
+    padding: 0.125em 0.4em;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .cite {
+    color: var(--ink-mute);
+    font-size: 0.9em;
+  }
+
+  /* ── Failure modes list ──────────────────────────────────────── */
+  .failures {
+    list-style: none;
+    margin: 0 0 2rem;
+    padding: 0;
+    counter-reset: failure;
+    max-width: 38rem;
+  }
+  .failures li {
+    counter-increment: failure;
+    position: relative;
+    padding: 1.25rem 0 1.25rem 3.25rem;
+    border-top: 1px solid var(--border-soft);
+  }
+  .failures li:last-child { border-bottom: 1px solid var(--border-soft); }
+  .failures li::before {
+    content: counter(failure, decimal-leading-zero);
+    position: absolute;
+    left: 0; top: 1.3rem;
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 0.8125rem;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+  .failures strong {
+    display: block;
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: var(--ink);
+  }
+  .failures span {
+    font-size: 0.9375rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* ── Propositions grid ───────────────────────────────────────── */
+  .props {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--border-soft);
+    border: 1px solid var(--border-soft);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0;
+  }
+  @media (min-width: 640px) {
+    .props { grid-template-columns: 1fr 1fr; }
+  }
+  .props > article {
+    background: var(--paper);
+    padding: 1.75rem 1.75rem 1.875rem;
+    position: relative;
+  }
+  .props .prop-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .props h3 {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 1.1875rem;
+    line-height: 1.25;
+    margin: 0 0 0.75rem;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .props p {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  /* ── Live demo link in hero ──────────────────────────────────── */
+  .live-link {
+    margin: 1.5rem 0 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-soft);
+    display: flex;
+    align-items: baseline;
+    gap: 0.875rem;
+    flex-wrap: wrap;
+  }
+  .live-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 0.5rem 0.9375rem;
+    background: var(--accent-soft);
+    border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+    border-radius: 99px;
+    transition: all 180ms ease;
+  }
+  .live-link a:hover {
+    background: var(--accent);
+    color: var(--paper);
+    border-color: var(--accent);
+  }
+  .live-link a span { font-size: 0.875em; }
+  .live-link-url {
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    color: var(--ink-mute);
+    letter-spacing: -0.005em;
+  }
+
+  /* ── Live preview (browser frame) ────────────────────────────── */
+  .live-preview { margin: 2.5rem 0 1.5rem; }
+  .browser-frame {
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 16px 40px -16px rgba(44, 36, 22, 0.18),
+                0 2px 6px rgba(44, 36, 22, 0.05);
+    overflow: hidden;
+  }
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.625rem 0.875rem;
+    background: var(--paper-alt);
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 0.8125rem;
+  }
+  .browser-dots { display: inline-flex; gap: 0.375rem; flex-shrink: 0; }
+  .browser-dots i {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+    display: block;
+  }
+  .browser-url {
+    flex: 1;
+    min-width: 0;
+    font-family: var(--mono);
+    font-size: 0.78125rem;
+    color: var(--ink-soft);
+    background: var(--paper);
+    border: 1px solid var(--border);
+    padding: 0.3125rem 0.75rem;
+    border-radius: 99px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    letter-spacing: -0.005em;
+  }
+  .browser-url-protocol { color: var(--ink-mute); }
+  .browser-open {
+    flex-shrink: 0;
+    font-family: var(--sans);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 0.3125rem 0.625rem;
+    border-radius: 4px;
+    transition: background 150ms ease;
+    white-space: nowrap;
+  }
+  .browser-open:hover { background: var(--accent-soft); }
+  @media (max-width: 540px) {
+    .browser-open { font-size: 0; padding: 0.3125rem; }
+    .browser-open span { font-size: 0.875rem; }
+  }
+  .browser-viewport {
+    position: relative;
+    aspect-ratio: 1.9;
+    background: var(--paper-alt);
+    overflow: hidden;
+  }
+  .browser-viewport-link {
+    position: absolute;
+    inset: 0;
+    display: block;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .browser-fallback {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 600ms cubic-bezier(0.2, 0.6, 0.2, 1);
+    /* Defensive: if the image ever fails to load, hide the alt
+       text bloat and let the link container show its hover CTA. */
+    color: transparent;
+    font-size: 0;
+    text-indent: -9999px;
+    background: var(--paper-alt);
+  }
+  .browser-viewport-link:hover .browser-fallback {
+    transform: scale(1.015);
+  }
+  .browser-viewport-link::after {
+    content: "Open ↗";
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.5rem 0.875rem;
+    border-radius: 99px;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 200ms ease, transform 200ms ease;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(44, 36, 22, 0.2);
+  }
+  .browser-viewport-link:hover::after,
+  .browser-viewport-link:focus-visible::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Workspace figure ────────────────────────────────────────── */
+  .figure {
+    margin: 2.5rem 0 1.5rem;
+    text-align: center;
+  }
+  .figure svg {
+    width: 100%;
+    height: auto;
+    max-width: 880px;
+    display: block;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .figure figcaption {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.875rem;
+    color: var(--ink-mute);
+    margin-top: 1rem;
+    max-width: 42rem;
+    margin-inline: auto;
+    line-height: 1.5;
+  }
+
+  /* ── Commitment callouts ─────────────────────────────────────── */
+  .commitments {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  @media (min-width: 760px) {
+    .commitments { grid-template-columns: 1fr 1fr; }
+  }
+  .commitment {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--commit);
+    padding: 1.75rem 1.875rem;
+    border-radius: 4px;
+  }
+  .commitment-label {
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--commit);
+    margin-bottom: 0.625rem;
+    font-weight: 500;
+  }
+  .commitment h3 {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.25;
+    margin: 0 0 1rem;
+    color: var(--ink);
+  }
+  .commitment p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .commitment p + p { margin-top: 0.75rem; }
+
+  /* ── Hero stat (testing wins) ────────────────────────────────── */
+  .hero-stat {
+    margin: 2.5rem 0 3rem;
+    padding: 2.5rem 2rem;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-stat::before, .hero-stat::after {
+    content: "";
+    position: absolute;
+    width: 32px; height: 1px;
+    background: var(--accent);
+    top: 50%;
+  }
+  .hero-stat::before { left: -1px; }
+  .hero-stat::after  { right: -1px; }
+  .hero-stat .stat-num {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: clamp(3.5rem, 8vw, 5rem);
+    line-height: 1;
+    color: var(--accent);
+    margin: 0 0 0.75rem;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+  .hero-stat .stat-num span {
+    font-size: 0.5em;
+    color: var(--ink-mute);
+    font-style: italic;
+    vertical-align: 0.3em;
+    margin: 0 0.15em;
+  }
+  .hero-stat .stat-label {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.125rem;
+    color: var(--ink);
+    max-width: 28rem;
+    margin: 0 auto;
+    line-height: 1.4;
+  }
+
+  /* ── Themes ──────────────────────────────────────────────────── */
+  .themes { display: grid; gap: 2.5rem; margin-top: 1rem; }
+  .theme {
+    max-width: 38rem;
+  }
+  .theme-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.875rem;
+  }
+  .theme h3 {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 1.375rem;
+    line-height: 1.25;
+    margin: 0;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .severity {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.625rem;
+    border-radius: 99px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .severity.major    { background: var(--stale-soft);   color: var(--stale); }
+  .severity.critical { background: var(--danger-soft);  color: var(--danger); }
+  .severity.moderate { background: var(--paper-alt);    color: var(--ink-soft); }
+  .severity.win      { background: var(--commit-soft);  color: var(--commit); }
+  .theme p {
+    margin: 0 0 1rem;
+    color: var(--ink);
+    line-height: 1.65;
+  }
+
+  /* ── Pull quotes ─────────────────────────────────────────────── */
+  blockquote.quote {
+    margin: 1.5rem 0;
+    padding: 0 0 0 1.25rem;
+    border-left: 2px solid var(--accent);
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    color: var(--ink);
+    max-width: 36em;
+  }
+  blockquote.quote cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-family: var(--mono);
+    font-style: normal;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-mute);
+    font-weight: 500;
+  }
+
+  /* ── Implications list ───────────────────────────────────────── */
+  .impl {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    counter-reset: imp;
+    max-width: 38rem;
+  }
+  .impl li {
+    counter-increment: imp;
+    position: relative;
+    padding: 1.5rem 0 1.5rem 3.5rem;
+    border-top: 1px solid var(--border-soft);
+  }
+  .impl li:last-child { border-bottom: 1px solid var(--border-soft); }
+  .impl li::before {
+    content: counter(imp, decimal-leading-zero);
+    position: absolute;
+    left: 0; top: 1.6rem;
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: var(--accent);
+  }
+  .impl strong {
+    display: block;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 1.125rem;
+    margin-bottom: 0.375rem;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .impl span {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  /* ── Footer ──────────────────────────────────────────────────── */
+  footer {
+    padding: 3.5rem 0 4rem;
+    color: var(--ink-mute);
+    text-align: center;
+  }
+  footer p {
+    margin: 0 0 0.5rem;
+    font-size: 0.875rem;
+  }
+  footer p.mark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    margin-bottom: 1rem;
+  }
+  footer .colophon {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-mute);
+  }
+
+  /* ── Subtle reveal on load ───────────────────────────────────── */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: rise 700ms cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
+    }
+    .hero .eyebrow { animation-delay: 80ms; }
+    .hero .title   { animation-delay: 160ms; }
+    .hero .dek     { animation-delay: 260ms; }
+    .hero .lede    { animation-delay: 340ms; }
+    .hero .meta    { animation-delay: 420ms; }
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
+
+  /* ── Focus state ─────────────────────────────────────────────── */
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ── Tiny helpers ────────────────────────────────────────────── */
+  .small-cap {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 500;
+    color: var(--ink-mute);
+  }
+
+
+  /* ── Project tiles (index only) ──────────────────────────────── */
+  .tiles {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  @media (min-width: 760px) {
+    .tiles { grid-template-columns: 1fr 1fr; }
+  }
+  .tile {
+    display: flex;
+    flex-direction: column;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--tile-accent);
+    border-radius: 4px;
+    padding: 1.75rem 1.875rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .tile { transition: transform 180ms ease, border-left-width 180ms ease; }
+  }
+  .tile:hover {
+    transform: translateY(-2px);
+    border-left-width: 5px;
+  }
+  .tile-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--tile-accent);
+    font-weight: 500;
+    margin: 0 0 0.75rem;
+  }
+  .tile h3 {
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: 1.75rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.75rem;
+    color: var(--ink);
+  }
+  .tile-pitch {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.1875rem;
+    line-height: 1.35;
+    color: var(--ink-soft);
+    margin: 0 0 1rem;
+  }
+  .tile-body {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0 0 1.25rem;
+  }
+  .tile-link {
+    margin-top: auto;
+    font-family: var(--sans);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--tile-accent);
+  }
+  .tile:hover .tile-link {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .tile:focus-visible {
+    outline: 2px solid var(--tile-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* LinkedIn rendered as url-style link, not a pill */
+  .live-link a.live-link-url {
+    background: none;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--ink-mute);
+    letter-spacing: -0.005em;
+  }
+  .live-link a.live-link-url:hover {
+    background: none;
+    color: var(--accent);
+    border: none;
+  }
+
+  /* Links inside the contact meta strip */
+  .meta dd a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+  .meta dd a:hover { color: var(--accent-deep); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* Contact strip: 1 col on mobile, 3 on desktop */
+  .meta.meta-3 { grid-template-columns: 1fr; }
+  @media (min-width: 640px) {
+    .meta.meta-3 { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+<link rel="stylesheet" href="assets/portfolio-updates.css">
+<style>:root { --accent:#145A46; --accent-soft:#E8F0EA; --accent-deep:#104434; } .project-overview { padding-top:2.5rem; } .project-overview .meta { margin-bottom:0; } .project-overview p { max-width:38rem; } .prose h3 { font-size:1.2rem; margin:2rem 0 0.75rem; } .prose ul { padding-left:1.25rem; } .prose li { margin-bottom:0.6rem; } .case-nav { margin-top:2rem; } .case-nav a { color:var(--accent); }</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<nav class="topnav" aria-label="Page navigation"><div class="topnav-inner">
+  <a class="topnav-mark" href="index.html">Aron Ryszka — Groundwork</a>
+  <div class="topnav-links"><a href="index.html#work">Back to work <span aria-hidden="true">↗</span></a></div>
+</div></nav>
+<main id="main-content" tabindex="-1">
+  <header class="hero"><div class="container">
+    <p class="eyebrow">Personal project · 2026</p>
+    <h1 class="title">Groundwork</h1>
+    <p class="dek">Examining workflows with AI.</p>
+    <p class="lede">I’m developing a prototype to analyse evidence of workflow bottlenecks and suggest improvements. It is inspired by friction I noticed at work, and explores the kind of practical AI and process-improvement work I want to do.</p>
+    <span class="project-status">Prototype in development</span>
+    <dl class="meta">
+      <div><dt>My contribution</dt><dd>Problem definition, workflow and prompt iteration</dd></div>
+      <div><dt>Build approach</dt><dd>AI-assisted prototyping</dd></div>
+      <div><dt>Context</dt><dd>Independent personal project</dd></div>
+      <div><dt>Evidence so far</dt><dd>Prototype work; no measured team impact</dd></div>
+    </dl>
+  </div></header>
+  <section class="project-overview" aria-labelledby="overview-title"><div class="container prose">
+    <p class="section-num">01</p><h2 class="section-title" id="overview-title">The <em>question</em></h2>
+    <p class="lead">Can an AI-assisted workflow audit help turn scattered observations into a useful improvement proposal?</p>
+    <p>A process can feel inefficient without it being clear where to intervene. I wanted to explore an approach that starts with evidence of a bottleneck, then asks what might change and what assumptions sit behind the recommendation.</p>
+    <p>I’m exploring this independently, alongside my implementation work. It is a personal prototype, with team adoption and impact still to be evaluated.</p>
+  </div></section>
+  <section aria-labelledby="approach-title"><div class="container">
+    <div class="section-head"><p class="section-num">02</p><h2 class="section-title" id="approach-title">The current <em>approach</em></h2></div>
+    <div class="prose"><p>The prototype uses staged prompts to examine workflow evidence and develop suggestions. The stages below describe the approach I’m exploring, rather than a validated end-to-end process.</p></div>
+    <ol class="workflow-steps">
+      <li><strong>Collect evidence</strong><p>Start from information about how a workflow operates and where friction appears.</p></li>
+      <li><strong>Examine bottlenecks</strong><p>Use AI assistance to analyse the evidence and identify possible problems.</p></li>
+      <li><strong>Review suggestions</strong><p>Develop improvement proposals for a person to assess against the actual workflow.</p></li>
+      <li><strong>Check assumptions</strong><p>Flag missing baselines and unsupported claims behind potential time savings.</p></li>
+    </ol>
+    <div class="prose"><p>Potential savings are estimates to investigate. They do not establish that a change has saved time in practice.</p></div>
+  </div></section>
+  <section aria-labelledby="contribution-title"><div class="container prose">
+    <div class="section-head"><p class="section-num">03</p><h2 class="section-title" id="contribution-title">My <em>contribution</em></h2></div>
+    <p>I define the problem and workflow, iterate prompts and use AI-generated code to build the prototype. My focus is shaping the product behaviour and evaluating whether its suggestions are useful.</p>
+    <p>The product decision I’m investigating is how to keep an improvement proposal connected to evidence and visible assumptions, so a confident-sounding answer is not mistaken for a proven result.</p>
+  </div></section>
+  <section aria-labelledby="next-title"><div class="container prose">
+    <div class="section-head"><p class="section-num">04</p><h2 class="section-title" id="next-title">What needs <em>testing</em></h2></div>
+    <p>The project is unfinished. I haven’t established that it improves team productivity or produces reliable time-saving estimates. A useful next evaluation would:</p>
+    <ul>
+      <li>Use an example workflow with a known baseline and a clear bottleneck.</li>
+      <li>Ask a person familiar with that workflow to check the recommendations against the evidence.</li>
+      <li>Examine what happens when evidence is incomplete or contradicts a proposed improvement.</li>
+      <li>Compare a proposed change with the original process before claiming a saving.</li>
+    </ul>
+    <p>This is the direction I want to develop professionally: understand a real process, build a useful prototype, and evaluate whether the proposed change helps.</p>
+    <p class="case-nav"><a href="branchflow.html">Next: BranchFlow — evaluating an AI research prototype →</a></p>
+  </div></section>
+</main>
+<footer><p class="mark">Aron Ryszka</p><p>London · 2026</p><p class="colophon">Personal project · In development</p></footer>
+</body>
+</html>

@@ -982,19 +982,22 @@
     color: var(--ink-mute);
   }
 </style>
+<link rel="stylesheet" href="assets/portfolio-updates.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <nav class="topnav" aria-label="Page navigation">
   <div class="topnav-inner">
     <a href="#top" class="topnav-mark">Aron Ryszka — BranchFlow</a>
     <div class="topnav-links">
-      <a href="/index.html#work">Back to work <span aria-hidden="true">↗</span></a>
+      <a href="index.html#work">Back to work <span aria-hidden="true">↗</span></a>
     </div>
   </div>
 </nav>
 
-<main id="top">
+<main id="main-content" tabindex="-1">
+<span id="top" aria-hidden="true"></span>
 
   <!-- ─── Hero ──────────────────────────────────────────────────── -->
   <header class="hero">
@@ -1003,7 +1006,7 @@
       <h1 class="title">BranchFlow</h1>
       <p class="dek">A branching interface for AI-assisted research.</p>
       <p class="lede">
-        Chat-style interfaces predate large language models by three decades. They were designed for transactional exchange, not for sustained intellectual work. BranchFlow is an MSc artefact testing whether interface design alone — not better models — can address five documented failure modes of LLMs used for research.
+        BranchFlow explores how branching, curated context and explicit confirmation might support sustained research with AI. I defined the concept and workflows, used AI-generated code to build a working prototype, and evaluated its usability. The study found useful directions and clear interaction problems; it did not establish a reduction in cognitive load.
       </p>
       <dl class="meta">
         <div>
@@ -1041,10 +1044,10 @@
       <dl class="sidebar-fields">
         <div><dt>Year</dt><dd>2025–26</dd></div>
         <div><dt>Format</dt><dd>MSc capstone</dd></div>
-        <div><dt>Role</dt><dd>Research · concept · design · build</dd></div>
+        <div><dt>Role</dt><dd>Research · workflows · AI-assisted prototyping</dd></div>
         <div><dt>Method</dt><dd>Research-through-design</dd></div>
         <div><dt>Stack</dt><dd>React · Gemini 2.5 Flash</dd></div>
-        <div><dt>Built with</dt><dd>Claude (Sonnet &amp; Opus)</dd></div>
+        <div><dt>Built with</dt><dd>AI-generated code with Claude</dd></div>
         <div><dt>Demo</dt><dd><a href="https://branchingv2.vercel.app/" target="_blank" rel="noopener noreferrer"><code class="mono">branchingv2.vercel.app</code> <span aria-hidden="true">↗</span></a></dd></div>
       </dl>
       <p class="eyebrow eyebrow-spaced">Outcomes</p>
@@ -1064,10 +1067,10 @@
         <dl class="sidebar-fields">
           <div><dt>Year</dt><dd>2025–26</dd></div>
           <div><dt>Format</dt><dd>MSc capstone</dd></div>
-          <div><dt>Role</dt><dd>Research · concept · design · build</dd></div>
+          <div><dt>Role</dt><dd>Research · workflows · AI-assisted prototyping</dd></div>
           <div><dt>Method</dt><dd>Research-through-design</dd></div>
           <div><dt>Stack</dt><dd>React · Gemini 2.5 Flash</dd></div>
-          <div><dt>Built with</dt><dd>Claude (Sonnet &amp; Opus)</dd></div>
+          <div><dt>Built with</dt><dd>AI-generated code with Claude</dd></div>
           <div><dt>Demo</dt><dd><a href="https://branchingv2.vercel.app/" target="_blank" rel="noopener noreferrer"><code class="mono">branchingv2.vercel.app</code> <span aria-hidden="true">↗</span></a></dd></div>
         </dl>
         <p class="eyebrow eyebrow-spaced">Outcomes</p>
@@ -1079,11 +1082,12 @@
       </details>
 
       <!-- Summary card -->
-      <aside class="summary-card">
-        <p class="eyebrow">In short</p>
-        <p><em>The problem.</em> Chat interfaces don't support sustained research — five documented failure modes around context, drift, cognition, metacognition.</p>
-        <p><em>The bet.</em> Interface architecture (not better models) can address them: branching, curated context, explicit commit, goal visibility.</p>
-        <p><em>What surfaced.</em> The conceptual model landed (4 of 4 articulated it unprompted). The verb surface didn't — clarity-of-concept ≠ clarity-of-action. Five transferable lessons for AI research tools.</p>
+      <aside class="summary-card" aria-label="Project overview">
+        <p class="eyebrow">Project overview</p>
+        <p><em>Problem.</em> Linear chat makes it difficult to keep exploration separate from findings a user has decided to retain.</p>
+        <p><em>My contribution.</em> Concept and user flows, prompt iteration, a working prototype built with AI-generated code, and usability evaluation.</p>
+        <p><em>Evidence.</em> Four valid think-aloud sessions; mean SUS 60 (range 45–80). Participants could explain the concept, but terminology and file routing still caused friction.</p>
+        <p><em>Next step.</em> Improve the interactions and test sustained use against a linear-chat baseline. The cognitive-load hypothesis remains untested.</p>
       </aside>
 
   <!-- ─── 1. The gap ────────────────────────────────────────────── -->
@@ -1265,7 +1269,7 @@
 
       <div class="prose">
         <p class="lead">
-          Research-through-design (Zimmerman, Forlizzi &amp; Evenson, 2007) across four phases: competitive analysis, concept design, prototype, evaluation. The prototype was supposed to be a Figma deck. It became a working React app on Vercel.
+          Research-through-design (Zimmerman, Forlizzi &amp; Evenson, 2007) across four phases: competitive analysis, concept design, prototype, evaluation. I extended the planned static prototype into a working app using AI-generated code, so participants could interact with real model responses.
         </p>
 
         <p>
@@ -1298,7 +1302,7 @@
       </div>
 
       <aside class="hero-stat">
-        <p class="stat-num"><span class="stat-digit" data-target="4">0</span><span>of</span><span class="stat-digit" data-target="4">0</span></p>
+        <p class="stat-num"><span class="stat-digit" data-target="4">4</span><span>of</span><span class="stat-digit" data-target="4">4</span></p>
         <p class="stat-label">participants spontaneously articulated the Finding · Branch · Conclusion model — without prompting, in their own words.</p>
       </aside>
 
@@ -1323,7 +1327,7 @@
             <cite>— P1</cite>
           </blockquote>
           <p>
-            The transferable insight is the <strong>separability</strong>: concept-clarity work and verb-surface work are different design problems, and one can succeed while the other fails. The literature on AI interfaces does not currently treat this as its own dimension.
+            The transferable insight is the <strong>separability</strong>: concept-clarity work and verb-surface work are different design problems, and one can succeed while the other fails. For this prototype, the distinction suggests that the next iteration should focus on action labels as well as explaining the concept.
           </p>
         </article>
 
@@ -1340,7 +1344,7 @@
             <cite>— P3</cite>
           </blockquote>
           <p>
-            When the model <em>refused</em> rather than fabricating, trust increased. The conventional design assumption is that the AI should always answer; this finding inverts it. Refusal with rationale is a product feature, not a degradation.
+            When the model <em>refused</em> rather than fabricating, trust increased. In this study, a refusal with a reason was sometimes useful evidence of the system’s limits. Refusal with rationale is a product feature, not a degradation.
           </p>
         </article>
 
@@ -1367,7 +1371,7 @@
             <span class="severity moderate">Moderate</span>
           </div>
           <p>
-            Cross-referencing the pilot (no onboarding) against the main study confirmed that the tour resolves first-contact terminology confusion — nobody in the main study asked what a Finding was. But the tour teaches what objects <em>are</em>, not how to stitch them together.
+            Comparing the pilot with the main study suggested that the tour helped with terminology: nobody in the main study asked what a Finding was. This was not a controlled comparison. Participants still needed help connecting objects into a workflow.
           </p>
           <blockquote class="quote">
             "I did not know how to integrate more knowledge to ask a different kind of question."
@@ -1408,11 +1412,11 @@
         <ol class="impl">
           <li>
             <strong>The conceptual model is a primary design lever.</strong>
-            <span>Naming the canonical objects (Finding, Branch, Conclusion) clearly enough that users articulate the model in their own words is more valuable than any single feature. <em>4/4 evidence.</em></span>
+            <span>Naming the canonical objects (Finding, Branch, Conclusion) clearly enough that users articulate the model in their own words is more valuable than any single feature. <em>Observed in this small sample; broader learnability remains to be tested.</em></span>
           </li>
           <li>
             <strong>AI refusal belongs in the product.</strong>
-            <span>Visible refusal with rationale builds trust faster than confident-sounding answers. The product question becomes: when should the model decline, and how does it show that — not just <em>how do we minimise refusals?</em></span>
+            <span>One participant valued refusal with a rationale. That suggests testing whether making system limits visible helps users judge its answers. The product question becomes: when should the model decline, and how does it show that — not just <em>how do we minimise refusals?</em></span>
           </li>
           <li>
             <strong>Treat conceptual clarity and operational clarity as separable problems.</strong>
@@ -1441,7 +1445,7 @@
 
       <div class="prose">
         <p class="lead">
-          The design's core cognitive claim — that branching plus commit semantics reduces sustained cognitive load — was not tested by this study, and could not have been. A single-session first-encounter evaluation can confirm that the conceptual model is learnable. It cannot distinguish germane schema acquisition from extraneous surface learning.
+          The design's core cognitive claim — that branching plus commit semantics reduces sustained cognitive load — was not tested by this study, and could not have been. A single-session evaluation can indicate whether participants understand the conceptual model on first encounter. It cannot distinguish germane schema acquisition from extraneous surface learning.
         </p>
 
         <blockquote class="quote">
@@ -1481,10 +1485,7 @@
   <p class="colophon">MSc HCI artefact · Research-through-design</p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js" defer></script>
-<script src="scripts/case-choreography.js" defer></script>
+<script src="scripts/portfolio.js" defer></script>
 
 </body>
 </html>

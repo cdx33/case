@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EverMatch — An AI matchmaker that became an AI companion</title>
-<meta name="description" content="An MSc prototype exploring AI matchmaking using the Stanford <code class="mono">HCMST</code> dataset. Pivoted from data-driven matching to a behavioural chat-companion model after testing exposed the limits of structured data.">
+<title>EverMatch — Reframing an AI dating concept</title>
+<meta name="description" content="An exploratory MSc project using the Stanford HCMST dataset and AI-assisted prototypes to reconsider a dating product. Matching and privacy hypotheses remain unvalidated.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1042,28 +1042,31 @@
     transform: translateX(4px);
   }
 </style>
+<link rel="stylesheet" href="assets/portfolio-updates.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <nav class="topnav" aria-label="Page navigation">
   <div class="topnav-inner">
     <a href="#top" class="topnav-mark">Aron Ryszka — EverMatch</a>
     <div class="topnav-links">
-      <a href="/index.html#work">Back to work <span aria-hidden="true">↗</span></a>
+      <a href="index.html#work">Back to work <span aria-hidden="true">↗</span></a>
     </div>
   </div>
 </nav>
 
-<main id="top">
+<main id="main-content" tabindex="-1">
+<span id="top" aria-hidden="true"></span>
 
   <!-- ─── Hero ──────────────────────────────────────────────────── -->
   <header class="hero">
     <div class="container">
       <p class="eyebrow">Case Study</p>
       <h1 class="title">EverMatch</h1>
-      <p class="dek">An AI matchmaker that became an AI companion.</p>
+      <p class="dek">Reframing an AI dating concept.</p>
       <p class="lede">
-        A short academic prototype that started as a data-driven dating match engine, ran into the limits of what structured data can actually predict about human connection, and pivoted into a behavioural chat-companion built on observed behaviour rather than declared preferences. The pivot is the case.
+        An exploratory MSc project that moved from a matching prototype toward a conversational concept after dataset exploration and early privacy concerns. I used AI assistance to explore the idea and prototype interactions, reframing the product question around usefulness and privacy.
       </p>
       <dl class="meta">
         <div>
@@ -1093,15 +1096,15 @@
       <dl class="sidebar-fields">
         <div><dt>Year</dt><dd>2025</dd></div>
         <div><dt>Format</dt><dd>MSc project (single semester)</dd></div>
-        <div><dt>Role</dt><dd>Concept · research · design · build</dd></div>
+        <div><dt>Role</dt><dd>Concept · research · AI-assisted prototyping</dd></div>
         <div><dt>Built with</dt><dd>GPT · Stanford <code class="mono">HCMST</code> dataset</dd></div>
         <div><dt>Method</dt><dd>Iterative prototyping, behavioural pivot</dd></div>
       </dl>
       <p class="eyebrow eyebrow-spaced">Takeaways</p>
       <ul class="sidebar-outcomes">
         <li><code class="mono">HCMST</code> predictive analysis informed match logic</li>
-        <li>Prototype 1 → 2 pivot based on user trust signals</li>
-        <li>Behavioural learning &gt; declared preference data</li>
+        <li>Privacy concerns informed a change in product direction</li>
+        <li>Behavioural signals proposed for follow-up testing</li>
       </ul>
     </aside>
 
@@ -1112,23 +1115,24 @@
         <dl class="sidebar-fields">
           <div><dt>Year</dt><dd>2025</dd></div>
           <div><dt>Format</dt><dd>MSc project (single semester)</dd></div>
-          <div><dt>Role</dt><dd>Concept · research · design · build</dd></div>
+          <div><dt>Role</dt><dd>Concept · research · AI-assisted prototyping</dd></div>
           <div><dt>Built with</dt><dd>GPT · Stanford <code class="mono">HCMST</code> dataset</dd></div>
           <div><dt>Method</dt><dd>Iterative prototyping, behavioural pivot</dd></div>
         </dl>
         <p class="eyebrow">Takeaways</p>
         <ul class="sidebar-outcomes">
           <li><code class="mono">HCMST</code> predictive analysis informed match logic</li>
-          <li>Prototype 1 → 2 pivot based on user trust signals</li>
-          <li>Behavioural learning &gt; declared preference data</li>
+          <li>Privacy concerns informed a change in product direction</li>
+          <li>Behavioural signals proposed for follow-up testing</li>
         </ul>
       </details>
 
-      <aside class="summary-card">
-        <p class="eyebrow">In short</p>
-        <p><em>The starting hypothesis.</em> That AI could improve on the form-and-photo dating paradigm by inferring compatibility from a smaller set of carefully chosen signals.</p>
-        <p><em>Where the data took it.</em> The Stanford <code class="mono">HCMST</code> dataset's strongest predictors required relationship history — which the early-compatibility question doesn't have. Users wouldn't share enough to fix it.</p>
-        <p><em>The pivot.</em> Stop building a matcher; build a chat companion that watches, asks lightly, learns over time. The pivot is the case.</p>
+      <aside class="summary-card" aria-label="Project overview">
+        <p class="eyebrow">Project overview</p>
+        <p><em>Question.</em> Could an AI product support people who find existing dating-app interactions unhelpful?</p>
+        <p><em>My contribution.</em> Concept development, dataset exploration with AI assistance, prototype interactions and a change of product direction.</p>
+        <p><em>Learning.</em> Data about established relationships did not directly answer a first-meeting compatibility question. Early research also raised privacy concerns.</p>
+        <p><em>Limit.</em> The conversational direction is a hypothesis. This project does not demonstrate improved matching, trust, engagement or privacy.</p>
       </aside>
 
   <!-- ─── 1. Starting point ─────────────────────────────────────── -->
@@ -1141,7 +1145,7 @@
 
       <div class="prose">
         <p class="lead">
-          Dating apps ask for a lot up front. Profile fields, photographs, lifestyle preferences, height, employment, prompts. Most of what they collect is performative — what people say they want rather than what predicts whether they'll actually like the person they meet. The starting hypothesis for EverMatch was modest: that AI could improve on the form-and-photo paradigm by inferring compatibility from a smaller set of carefully chosen signals.
+          Dating apps often ask for profile information before a user can explore the service. I wanted to investigate whether a conversational approach could offer a different way to learn about a person’s preferences. That was a design question, not an established claim that AI could predict compatibility.
         </p>
         <p>
           The opening question — <em>what can AI actually contribute to matching that the existing paradigm can't?</em> — broke into three sub-questions:
@@ -1169,7 +1173,7 @@
             To find an empirical floor, I used the <strong>Stanford <code class="mono">HCMST</code> dataset (2017–2022)</strong> — the longitudinal How Couples Meet and Stay Together study, which tracks paired couples and what stays paired across waves of the survey.
           </p>
           <p>
-            A feature-importance pass on the dataset surfaced the strongest predictors of couples still being together at the latest wave. Some of them were unsurprising (relationship length at first survey, age gap). Some were less obvious — meeting context, frequency of shared social activity, weekly chore distribution, the survey's measure of "differing political opinions" as a <em>positive</em> predictor when paired with reported communication quality.
+            An exploratory feature-importance pass, supported by AI tools, considered factors associated with couples remaining together. This was not a validated compatibility model: feature importance does not establish causation, and results depend on the data and modelling choices.
           </p>
           <p>
             What the dataset <em>couldn't</em> tell me was anything about the early-stage compatibility question — what predicts a first meeting going well, before there's enough shared history to measure. Most of the strong predictors require time. The matching question and the survey design didn't fully overlap.
@@ -1183,7 +1187,7 @@
 
       <figure class="figure">
         <img src="assets/evermatch-predictive-traits.jpg" width="1400" height="843" loading="lazy"
-             alt="Horizontal bar chart titled &quot;What Predicts Relationship Success — Which Features Matter Most for Relationship Success?&quot;. The top predictor by a wide margin is relationship duration in years. Other strong predictors: age, cohabitation status, weekly frequency, income, marital status, professional or doctoral education. Source: Stanford <code class="mono">HCMST</code> dataset 2017 to 2022.">
+             alt="Horizontal bar chart titled &quot;What Predicts Relationship Success — Which Features Matter Most for Relationship Success?&quot;. The top predictor by a wide margin is relationship duration in years. Other strong predictors: age, cohabitation status, weekly frequency, income, marital status, professional or doctoral education. Source: Stanford HCMST dataset 2017 to 2022.">
         <figcaption>
           Feature importance from the Stanford <code class="mono">HCMST</code> dataset (2017–2022). Relationship duration dominates as a predictor of couples remaining together — but it requires history to measure, which the early-compatibility question doesn't have.
         </figcaption>
@@ -1224,7 +1228,7 @@
 
       <div class="prose">
         <p>
-          Prototype one worked technically — but ran into the limits of what structured data can predict, and the trust needed to gather more. The path forward needed a different shape.
+          The first prototype helped me explore the interaction, but did not validate matching quality. The mismatch between the dataset and the product question, together with privacy concerns, prompted a different direction.
         </p>
       </div>
 
@@ -1249,14 +1253,14 @@
         <p class="lead">
           The pivot took the question from "<em>how do we match people more accurately?</em>" to "<em>what could AI usefully do for someone dating?</em>" — and the answer changed.
         </p>
-        <p>Three pieces of secondary research moved the design:</p>
+        <p>Three reference patterns informed the next concept:</p>
         <ul>
-          <li><strong>Matchmakers observe before they prescribe.</strong> Professional human matchmakers spend disproportionate time learning the client's patterns and preferences before they propose anyone. The "match" is the easy part; the "know" is the work.</li>
-          <li><strong>Streaming platforms learn from behaviour, not declarations.</strong> Netflix doesn't ask whether you like comedies; it watches what you finish. The strongest signal is what you actually do, not what you say you want.</li>
-          <li><strong>Feedback loops build trust over time.</strong> Hinge's "We Met" prompt — <em>did you actually meet? how did it go?</em> — is structurally simple and behaviourally powerful. Users learn that the app is paying attention and adjust accordingly.</li>
+          <li><strong>Learn before recommending.</strong> A matchmaking service suggested a possible pattern: understand someone’s needs before proposing an option.</li>
+          <li><strong>Consider behaviour alongside stated preferences.</strong> Recommendation services suggested a question worth testing: could interaction history add useful information?</li>
+          <li><strong>Ask about outcomes.</strong> Post-date feedback suggested a way to check a recommendation against what happened. Whether this would improve trust remained untested.</li>
         </ul>
         <p>
-          The pivot: stop building a matcher. Build a <strong>companion that watches, asks lightly, and learns</strong> — and surfaces matches only when its model of the user is dense enough to mean something. The match engine becomes the back-of-house. The user-facing thing is conversation.
+          I shifted the concept toward a conversational companion that could ask about preferences over time. The proposed matching component became secondary. The next question was whether people would find that interaction useful and comfortable.
         </p>
       </div>
     </div>
@@ -1272,7 +1276,7 @@
 
       <div class="prose">
         <p class="lead">
-          The redesigned prototype is a chat-companion. The user doesn't fill in a form; they have a conversation. The model learns over time. Matches surface in the conversation when the model has the confidence to suggest them.
+          The second concept uses conversation rather than an upfront form. It proposes learning preferences over time and introducing recommendations later. Those are intended behaviours for evaluation, not demonstrated capabilities.
         </p>
         <p>Three deliberate moves:</p>
         <ul>
@@ -1281,7 +1285,7 @@
           <li><strong>Focus on what users do, not what they say.</strong> Sentiment after dates, frequency of conversation continuation, follow-through on suggestions — all of it observable, all of it richer than form data.</li>
         </ul>
         <p>
-          The companion never asks for the kind of demographic data that triggered the privacy resistance in prototype one. It infers what it needs from how the conversation moves.
+          Reducing form fields would not by itself make this approach private: conversations and inferred preferences can also be sensitive. Consent, data minimisation and a clear explanation of what is inferred would need to be designed and tested.
         </p>
       </div>
     </div>
@@ -1292,31 +1296,30 @@
     <div class="container">
       <div class="section-head">
         <p class="section-num">06</p>
-        <h2 class="section-title">Answered, <em>unanswered</em></h2>
+        <h2 class="section-title">What changed, <em>what remains open</em></h2>
       </div>
 
       <div class="prose">
         <p class="lead">
-          The honest summary at the end of a short project.
+          The project produced a revised product direction and a set of questions for further evaluation.
         </p>
       </div>
 
       <div class="props">
         <article>
-          <span class="severity win">Answered</span>
+          <span class="severity win">What changed</span>
           <ul>
-            <li><strong>Can AI improve matching using behaviour?</strong> To some extent — yes, behavioural signals outperform self-reported preferences on the predictors the dataset could measure.</li>
-            <li><strong>Can AI feel like a companion, not a tool?</strong> Likely yes. The reframing from recommender to conversational partner is the most consequential design move in the project.</li>
-            <li><strong>What matters most for compatibility?</strong> Subtle personality cues, not surface preferences.</li>
-            <li><strong>Can engagement be built without addictive mechanics?</strong> Yes — through helpful suggestions and follow-ups, not novelty rewards.</li>
-            <li><strong>Can the model train without invasive personal data?</strong> By learning from what users <em>do</em>, not what they declare.</li>
+            <li><strong>The product question.</strong> I moved from predicting compatibility to exploring a useful conversational interaction.</li>
+            <li><strong>The use of data.</strong> I recognised that an established-couples dataset could not directly validate first-meeting recommendations.</li>
+            <li><strong>The next design.</strong> Early privacy concerns informed a concept that would introduce questions gradually.</li>
           </ul>
         </article>
         <article>
-          <span class="severity moderate">Unanswered</span>
+          <span class="severity moderate">Still to test</span>
           <ul>
-            <li><strong>What role does AI play long-term in romantic decisions?</strong> Open. The case study only covers the first three to six sessions of use.</li>
-            <li><strong>Can AI truly adapt to emotional nuance over time?</strong> Open. A longer-term, longitudinal study would be needed — and not within the scope of a single MSc module.</li>
+            <li><strong>Usefulness and trust.</strong> Would people prefer the conversational approach, and under what conditions?</li>
+            <li><strong>Matching quality.</strong> There is no validated comparison demonstrating better compatibility.</li>
+            <li><strong>Privacy and sustained use.</strong> Consent, inference, retention and longer-term effects require further work.</li>
           </ul>
         </article>
       </div>
@@ -1334,9 +1337,9 @@
       <div class="prose">
         <p class="lead">EverMatch was a single-semester academic project — useful primarily as a teaching case about AI-driven products and where their real constraints sit.</p>
 
-        <p>Prototype one was the design originally planned. It worked technically; the data couldn't answer the early-compatibility question, and users wouldn't share the depth of information that might have closed the gap. That combination is the structure of a recurring pattern in AI products: a solution running on the wrong shape of problem, with users hesitant to fill in the gap with personal data.</p>
+        <p>The original matching idea relied on data that did not answer the product question. The revised concept was a response to that limitation and to privacy concerns, rather than evidence that conversational AI would solve them.</p>
 
-        <p>The pivot was the lesson. Most of the AI-product work since — including the design of BranchFlow's curated-context model — has been informed by what EverMatch surfaced: that the most valuable thing AI can do for a user is often not the thing the user is currently being asked to feed it data for.</p>
+        <p>The lesson I took into BranchFlow was to define the question and the evidence needed before committing to an AI feature. A promising interaction is a reason to test further, not proof of a useful product.</p>
       </div>
     </div>
   </section>
@@ -1362,10 +1365,7 @@
   <p class="colophon">MSc Project · AI matchmaking prototype</p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js" defer></script>
-<script src="scripts/case-choreography.js" defer></script>
+<script src="scripts/portfolio.js" defer></script>
 
 </body>
 </html>

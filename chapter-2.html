@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chapter 2 — Product internship work by Aron Ryszka</title>
-<meta name="description" content="Four months as a research-led product intern at Chapter 2, a recruitment-tech startup. Three deliverables shipped across research, service design, and content systems.">
+<meta name="description" content="Four months as a research-led product intern at Chapter 2, a recruitment-tech startup. Research synthesis, booking workflows and UX writing delivered during a product internship.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1047,28 +1047,31 @@
     cursor: zoom-in;
   }
 </style>
+<link rel="stylesheet" href="assets/portfolio-updates.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <nav class="topnav" aria-label="Page navigation">
   <div class="topnav-inner">
     <a href="#top" class="topnav-mark">Aron Ryszka — Chapter 2</a>
     <div class="topnav-links">
-      <a href="/index.html#work">Back to work <span aria-hidden="true">↗</span></a>
+      <a href="index.html#work">Back to work <span aria-hidden="true">↗</span></a>
     </div>
   </div>
 </nav>
 
-<main id="top">
+<main id="main-content" tabindex="-1">
+<span id="top" aria-hidden="true"></span>
 
   <!-- ─── Hero ──────────────────────────────────────────────────── -->
   <header class="hero">
     <div class="container">
       <p class="eyebrow">Internship Case</p>
       <h1 class="title">Chapter 2</h1>
-      <p class="dek">Four months at a recruitment-tech startup. Three things shipped.</p>
+      <p class="dek">Product decisions grounded in recruitment workflows.</p>
       <p class="lede">
-        A research-led product internship at Chapter 2, a London recruitment-tech startup. Three deliverables shipped — a candidate workflow synthesised from transcripts and AI personas, an end-to-end booking journey, and a platform-wide copy audit. Plus one engineering insight that lowered our Gemini API spend.
+        A research-led product internship at Chapter 2, a London recruitment-tech startup. I delivered a candidate workflow map, a booking journey and message specifications, and a UX writing audit. I also flagged repeated Gemini API calls and proposed caching to avoid unnecessary requests.
       </p>
       <dl class="meta">
         <div>
@@ -1108,7 +1111,7 @@
         <li>8-stage candidate workflow adopted by product team</li>
         <li>Provisional booking state machine + 19 message templates</li>
         <li>Platform-wide voice &amp; tone framework</li>
-        <li>API caching insight — lowered Gemini API spend</li>
+        <li>Caching proposal to avoid repeated Gemini API calls</li>
       </ul>
     </aside>
 
@@ -1129,15 +1132,16 @@
           <li>8-stage candidate workflow adopted by product team</li>
           <li>Provisional booking state machine + 19 message templates</li>
           <li>Platform-wide voice &amp; tone framework</li>
-          <li>API caching insight — lowered Gemini API spend</li>
+          <li>Caching proposal to avoid repeated Gemini API calls</li>
         </ul>
       </details>
 
-      <aside class="summary-card">
-        <p class="eyebrow">In short</p>
-        <p><em>The placement.</em> Four months as a research-led product intern at a London recruitment-tech startup, sitting between product and engineering on the recruiter-view rebuild.</p>
-        <p><em>What shipped.</em> An 8-stage candidate workflow synthesised from real recruiter transcripts and AI-generated JTBD personas; a provisional booking state machine with 19 system messages; a platform-wide UX copy audit with a voice &amp; tone framework.</p>
-        <p><em>One extra observation.</em> An API caching gap in the candidate search that was costing real Gemini spend — sketched and handed to engineering.</p>
+      <aside class="summary-card" aria-label="Project overview">
+        <p class="eyebrow">Project overview</p>
+        <p><em>Context.</em> Product Management Intern at Chapter 2, August–December 2025, supporting a rebuild of the recruiter-facing platform.</p>
+        <p><em>My contribution.</em> Research synthesis into an eight-stage workflow map, booking states and 19 message templates, and a UX copy audit.</p>
+        <p><em>Outcome.</em> The workflow map was adopted to guide roadmap decisions. Other outputs were specifications and recommendations; a caching proposal was passed to engineering.</p>
+        <p><em>Evidence boundary.</em> The interviews predated my placement. I analysed transcripts; I did not conduct those interviews or measure a cost saving from caching.</p>
       </aside>
 
   <!-- ─── 1. The placement ──────────────────────────────────────── -->
@@ -1150,7 +1154,7 @@
 
       <div class="prose">
         <p class="lead">
-          Chapter 2 is a London-based recruitment-tech startup building tooling for in-house recruiters. I joined for four months as a product intern — research-led, sitting between the product manager and the engineering team. The three deliverables below are the ones I'd put on a placement debrief. The fourth (an API caching observation) sits at the bottom because it didn't need a deliverable to land.
+          Chapter 2 is a London-based recruitment-tech startup building tooling for in-house recruiters. I joined for four months as a product intern — research-led, sitting between the product manager and the engineering team. The three deliverables below show my work on research synthesis, workflow specification and product communication. A separate caching observation was passed to engineering.
         </p>
         <p>
           The placement coincided with the team rebuilding the recruiter view of the platform from the ground up. That timing was lucky: I joined when there were big questions on the table — what does the recruiter actually do, in what order, with what tools, against what brief — and the team needed answers more than they needed polish. Most of what follows came out of that window.
@@ -1315,13 +1319,13 @@
           Mid-placement, while running the recruiter-view rebuild past the engineering team, I noticed the candidate search was re-running the same Gemini API call every time a recruiter navigated back from a result detail page.
         </p>
         <p>
-          The pattern was: recruiter runs a search, opens a candidate, navigates back, search re-runs from scratch. Every back-navigation cost an API call. At the volume the platform was running, that was a meaningful share of the monthly LLM bill — searches the recruiter had already performed within the last few minutes were being run again because the result wasn't being cached.
+          The pattern was: recruiter runs a search, opens a candidate, navigates back, search re-runs from scratch. Every back-navigation cost an API call. The same search could be repeated after a recruiter returned from a candidate detail page. I proposed caching the results to avoid unnecessary calls; I did not quantify the potential or realised savings.
         </p>
         <p>
-          I flagged it, sketched a cache-on-search-result pattern, and handed it to engineering. The fix wasn't designerly. The observation came from sitting next to engineering enough to spot the call pattern in dev tools while reviewing a flow.
+          I flagged it, sketched a cache-on-search-result pattern, and handed it to engineering. The proposal concerned the behaviour behind the interface. The observation came from sitting next to engineering enough to spot the call pattern in dev tools while reviewing a flow.
         </p>
         <p>
-          What it taught me: research-led product roles in small teams aren't only about the user-facing surface. Sometimes the highest-leverage move is the one that doesn't change what the user sees.
+          What it taught me: research-led product roles in small teams aren't only about the user-facing surface. In this case, reviewing the workflow also surfaced a possible efficiency improvement behind the interface.
         </p>
       </div>
     </div>
@@ -1353,7 +1357,7 @@
         <p class="eyebrow">Read next</p>
         <a href="evermatch.html" class="read-next-link">
           <span class="read-next-title">EverMatch</span>
-          <span class="read-next-dek">An AI matchmaker that became an AI companion.</span>
+          <span class="read-next-dek">Reframing an AI dating concept.</span>
           <span class="read-next-arrow" style="color: #B91C1C" aria-hidden="true">→</span>
         </a>
       </aside>
@@ -1370,41 +1374,13 @@
   <p class="colophon">Chapter 2 · Product internship · Aug–Dec 2025</p>
 </footer>
 
-<div class="lb-overlay" id="lb-overlay" role="dialog" aria-modal="true">
-  <img id="lb-img" src="" alt="">
-</div>
+<dialog class="image-lightbox" id="image-lightbox" aria-label="Enlarged project image">
+  <button type="button" class="lightbox-close" autofocus>Close image</button>
+  <img alt="">
+</dialog>
+<script src="scripts/image-lightbox.js" defer></script>
 
-<script>
-  (function () {
-    var overlay = document.getElementById('lb-overlay');
-    var lbImg   = document.getElementById('lb-img');
-
-    document.querySelectorAll('.figure--wide img').forEach(function (img) {
-      img.addEventListener('click', function () {
-        lbImg.src = img.src;
-        lbImg.alt = img.alt;
-        overlay.classList.add('is-open');
-      });
-    });
-
-    overlay.addEventListener('click', function () {
-      overlay.classList.remove('is-open');
-      lbImg.src = '';
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        overlay.classList.remove('is-open');
-        lbImg.src = '';
-      }
-    });
-  })();
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js" defer></script>
-<script src="scripts/case-choreography.js" defer></script>
+<script src="scripts/portfolio.js" defer></script>
 
 </body>
 </html>

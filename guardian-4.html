@@ -1005,19 +1005,22 @@
     transform: translateX(4px);
   }
 </style>
+<link rel="stylesheet" href="assets/portfolio-updates.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <nav class="topnav" aria-label="Page navigation">
   <div class="topnav-inner">
     <a href="#top" class="topnav-mark">Aron Ryszka — Guardian 4</a>
     <div class="topnav-links">
-      <a href="/index.html#work">Back to work <span aria-hidden="true">↗</span></a>
+      <a href="index.html#work">Back to work <span aria-hidden="true">↗</span></a>
     </div>
   </div>
 </nav>
 
-<main id="top">
+<main id="main-content" tabindex="-1">
+<span id="top" aria-hidden="true"></span>
 
   <!-- ─── Hero ──────────────────────────────────────────────────── -->
   <header class="hero">
@@ -1322,7 +1325,7 @@
         <p class="eyebrow">Read next</p>
         <a href="chapter-2.html" class="read-next-link">
           <span class="read-next-title">Chapter 2</span>
-          <span class="read-next-dek">Four months at a recruitment-tech startup. Three things shipped.</span>
+          <span class="read-next-dek">Product research, workflows and message specifications.</span>
           <span class="read-next-arrow" style="color: #6B0F4F" aria-hidden="true">→</span>
         </a>
       </aside>
@@ -1339,10 +1342,7 @@
   <p class="colophon">MSc Human Factors · Cognitive ergonomics case study</p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js" defer></script>
-<script src="scripts/case-choreography.js" defer></script>
+<script src="scripts/portfolio.js" defer></script>
 
 </body>
 </html>
